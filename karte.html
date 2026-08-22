@@ -1,0 +1,427 @@
+<title>プロイセン王国の版図</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%85%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== Design tokens (shared with index.html) ===================== */
+:root{
+  --ink:#1c2b39;
+  --ink-soft:#2f4256;
+  --prussian:#17395c;
+  --prussian-bright:#3f6f9e;
+  --parchment:#f4ecdb;
+  --parchment-dim:#e8dcc2;
+  --parchment-line:#d8c9a6;
+  --sanssouci:#6f8c68;
+  --sanssouci-soft:#e4e9de;
+  --gilt:#a9832f;
+  --gilt-bright:#c79a3d;
+  --steel:#8b95a0;
+  --sea:#c7d6d1;
+  --panel-dark:#132132;
+  --panel-dark-2:#0f1a29;
+  --text-on-dark:#e9e1c9;
+  --text-on-dark-dim:#aeb9c4;
+  --shadow: 0 18px 40px -20px rgba(20,30,42,.35);
+  color-scheme: light;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --ink:#e9e1c9;
+    --ink-soft:#cdbf9c;
+    --prussian:#5f93c4;
+    --prussian-bright:#8fb8de;
+    --parchment:#12181f;
+    --parchment-dim:#171f28;
+    --parchment-line:#31404c;
+    --sanssouci:#9db794;
+    --sanssouci-soft:#1a231c;
+    --gilt:#d8b25a;
+    --gilt-bright:#e9c877;
+    --steel:#7f8b96;
+    --sea:#182428;
+    --panel-dark:#0a1119;
+    --panel-dark-2:#070d13;
+    --text-on-dark:#e9e1c9;
+    --text-on-dark-dim:#93a0ab;
+    --shadow: 0 18px 40px -20px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e9e1c9;
+  --ink-soft:#cdbf9c;
+  --prussian:#5f93c4;
+  --prussian-bright:#8fb8de;
+  --parchment:#12181f;
+  --parchment-dim:#171f28;
+  --parchment-line:#31404c;
+  --sanssouci:#9db794;
+  --sanssouci-soft:#1a231c;
+  --gilt:#d8b25a;
+  --gilt-bright:#e9c877;
+  --steel:#7f8b96;
+  --sea:#182428;
+  --panel-dark:#0a1119;
+  --panel-dark-2:#070d13;
+  --text-on-dark:#e9e1c9;
+  --text-on-dark-dim:#93a0ab;
+  --shadow: 0 18px 40px -20px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+}
+
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'EB Garamond', Georgia, 'Noto Serif JP', serif;
+  font-size:18px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{ text-wrap:balance; margin:0; font-weight:600; }
+p{ margin:0 0 1em; }
+a{ color:inherit; }
+::selection{ background:var(--gilt); color:var(--panel-dark-2); }
+
+.eyebrow{
+  font-family:'Cormorant Garamond', serif; font-style:italic; font-size:.78rem; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--gilt); display:flex; align-items:center; justify-content:center; gap:.7em;
+  margin-bottom:.9em;
+}
+.eyebrow::before, .eyebrow::after{ content:""; width:2.2em; height:1px; background:currentColor; opacity:.6; display:inline-block; }
+.section-head{ font-family:'Cormorant Garamond', serif; font-size:clamp(2rem, 4.2vw, 3rem); letter-spacing:.01em; }
+
+/* ===================== Nav (shared) ===================== */
+.topnav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.9rem clamp(1.2rem,4vw,3rem);
+  background:color-mix(in srgb, var(--parchment) 88%, transparent);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--parchment-line);
+}
+.brandmark{
+  font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.05rem; letter-spacing:.06em;
+  display:flex; align-items:baseline; gap:.5em; text-decoration:none;
+}
+.brandmark small{ font-size:.65rem; letter-spacing:.18em; color:var(--steel); font-style:italic; }
+.navlinks{ display:flex; gap:2rem; list-style:none; margin:0; padding:0; }
+.navlinks a{
+  text-decoration:none; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); position:relative; padding-bottom:.3em;
+}
+.navlinks a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--gilt);
+  transition:right .3s ease;
+}
+.navlinks a:hover::after{ right:0; }
+.navlinks .current{ font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--prussian); border-bottom:1px solid var(--gilt); padding-bottom:.3em; }
+
+/* ===================== Header ===================== */
+.mheader{
+  padding:8.5rem 1.4rem 3rem; text-align:center;
+  background:radial-gradient(ellipse 80% 55% at 50% 0%, color-mix(in srgb, var(--prussian) 12%, transparent), transparent 60%), var(--parchment);
+}
+.mheader-mark{ font-family:'UnifrakturMaguntia', serif; font-size:clamp(2.2rem,5vw,3rem); color:var(--prussian); margin-bottom:.2em; line-height:1; }
+.mheader .range{ font-size:.85rem; letter-spacing:.24em; text-transform:uppercase; color:var(--steel); margin:1rem 0 1.6rem; }
+.mheader p.lede{ max-width:58ch; margin:0 auto; color:var(--ink-soft); font-size:1.02rem; }
+
+/* ===================== Era switcher ===================== */
+.era-bar{ display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; padding:0 1.2rem 2.4rem; max-width:900px; margin:0 auto; }
+.era-btn{
+  font-family:'Cormorant Garamond', serif; font-size:.95rem; letter-spacing:.03em; color:var(--ink-soft);
+  background:var(--parchment-dim); border:1px solid var(--parchment-line); padding:.6em 1.3em; cursor:pointer;
+  transition:background .25s ease, color .25s ease, border-color .25s ease;
+}
+.era-btn .yr{ display:block; font-family:'EB Garamond', serif; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--steel); margin-bottom:.2em; }
+.era-btn:hover{ border-color:var(--gilt); }
+.era-btn.active{ background:var(--prussian); border-color:var(--prussian); color:var(--text-on-dark); }
+.era-btn.active .yr{ color:var(--gilt-bright); }
+
+/* ===================== Map ===================== */
+.map-wrap{ max-width:960px; margin:0 auto; padding:0 1.2rem 2.4rem; }
+.map-scroll{ overflow-x:auto; border:1px solid var(--parchment-line); background:var(--sea); box-shadow:var(--shadow); }
+.map-scroll svg{ display:block; width:100%; min-width:640px; height:auto; }
+
+.region-shape{ stroke:var(--parchment); stroke-width:2; transition:fill 1.1s ease, opacity 1.1s ease, stroke 1.1s ease; }
+.region-group.status-held .region-shape{ fill:var(--prussian); opacity:.92; }
+.region-group.status-new .region-shape{ fill:var(--gilt); opacity:.95; stroke:var(--gilt-bright); }
+.region-group.status-foreign .region-shape{ fill:url(#hatch); opacity:.9; }
+
+.region-label, .region-label-ja, .enclave-label{ transition:fill .6s ease; fill:var(--ink-soft); pointer-events:none; }
+.region-group.status-held .region-label, .region-group.status-new .region-label,
+.region-group.status-held .region-label-ja, .region-group.status-new .region-label-ja{ fill:var(--text-on-dark); }
+
+.region-label{ font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:600; }
+.region-label-ja{ font-family:'EB Garamond','Noto Serif JP',serif; }
+.enclave-label{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:11px; }
+
+.sea-label{ fill:var(--ink-soft); opacity:.7; font-family:'Cormorant Garamond', serif; font-style:italic; }
+
+.city-pin{ fill:var(--gilt-bright); stroke:var(--ink); stroke-width:1; }
+.city-label{
+  font-family:'Cormorant Garamond', serif; font-weight:600; font-size:19px;
+  fill:var(--ink); stroke:var(--parchment); stroke-width:4; paint-order:stroke; pointer-events:none;
+}
+.city-label-ja{
+  font-family:'EB Garamond','Noto Serif JP',serif; font-size:12px;
+  fill:var(--ink-soft); stroke:var(--parchment); stroke-width:3; paint-order:stroke; pointer-events:none;
+}
+.town-pin{ fill:var(--gilt); stroke:var(--ink); stroke-width:.8; }
+.town-label{
+  font-family:'Cormorant Garamond', serif; font-style:italic; font-size:13px;
+  fill:var(--ink-soft); stroke:var(--parchment); stroke-width:3; paint-order:stroke; pointer-events:none;
+}
+
+.compass{ fill:none; stroke:var(--ink-soft); stroke-width:1; opacity:.6; }
+.compass text{ font-family:'Cormorant Garamond', serif; font-size:14px; fill:var(--ink-soft); }
+
+/* ===================== Legend & caption ===================== */
+.legend{ display:flex; flex-wrap:wrap; gap:1.6rem; justify-content:center; margin-top:1.4rem; font-size:.85rem; color:var(--ink-soft); }
+.legend-item{ display:flex; align-items:center; gap:.5em; }
+.legend-swatch{ width:20px; height:14px; display:inline-block; border:1px solid var(--parchment-line); flex-shrink:0; }
+.legend-swatch.held{ background:var(--prussian); }
+.legend-swatch.new{ background:var(--gilt); }
+.legend-swatch.foreign{ background:var(--parchment-dim); background-image:repeating-linear-gradient(45deg, var(--steel) 0 1px, transparent 1px 6px); }
+
+.caption-box{ max-width:720px; margin:2.2rem auto 0; text-align:center; }
+.caption-box h3{ font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--prussian); margin-bottom:.5em; }
+.caption-box p{ color:var(--ink-soft); font-size:.98rem; max-width:64ch; margin:0 auto 1em; }
+
+.map-footnote{ max-width:70ch; margin:1.4rem auto 0; text-align:center; font-size:.8rem; color:var(--steel); }
+
+footer{
+  padding:2.4rem 1.4rem; text-align:center; font-size:.78rem; letter-spacing:.08em;
+  background:var(--panel-dark-2); color:var(--text-on-dark-dim);
+}
+footer a{ color:var(--gilt-bright); text-decoration:none; border-bottom:1px solid currentColor; margin:0 .6em; }
+
+a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-offset:2px; }
+</style>
+
+<nav class="topnav">
+  <a class="brandmark" href="index.html">FR <small>· König von Preußen</small></a>
+  <ul class="navlinks">
+    <li><a href="index.html">大王の生涯</a></li>
+    <li><a href="genealogy.html">家系図</a></li>
+    <li><span class="current">版図の変遷</span></li>
+  </ul>
+</nav>
+
+<header class="mheader">
+  <div class="mheader-mark">Landkarte</div>
+  <h1 class="section-head">プロイセン王国の版図</h1>
+  <p class="range">1701年 — 1786年 ・ 三代にわたる領土の変化</p>
+  <p class="lede">飛び地だらけの小国から、ほぼ地続きの大国へ。フリードリヒ一世の戴冠から大王の治世末まで、ホーエンツォレルン家の領土がどう広がったかを地図で辿る。下のボタンで時代を切り替えると、色分けが変化する。</p>
+</header>
+
+<div class="era-bar" role="group" aria-label="時代を選択">
+  <button class="era-btn active" data-era="1701"><span class="yr">1701</span>フリードリヒ一世</button>
+  <button class="era-btn" data-era="1720"><span class="yr">1713–1740</span>フリードリヒ・ヴィルヘルム一世</button>
+  <button class="era-btn" data-era="1786"><span class="yr">1740–1786</span>フリードリヒ大王</button>
+</div>
+
+<div class="map-wrap">
+  <div class="map-scroll">
+    <svg viewBox="0 0 1000 700" role="img" aria-label="プロイセン王国とその周辺の版図変遷図">
+      <defs>
+        <pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+          <rect width="7" height="7" fill="var(--parchment-dim)"/>
+          <line x1="0" y1="0" x2="0" y2="7" class="hatch-line" stroke="var(--steel)" stroke-width="1" opacity=".5"/>
+        </pattern>
+      </defs>
+
+      <!-- Baltic Sea -->
+      <path d="M0,0 L1000,0 L1000,95 L945,125 L880,100 L820,135 L760,105 L705,140 L660,155 L610,125 L555,145 L500,105 L445,130 L390,95 L335,130 L280,105 L225,135 L165,100 L105,130 L45,95 L0,115 Z" fill="var(--sea)"/>
+      <text x="800" y="55" class="sea-label" font-size="16">Ostsee</text>
+      <text x="800" y="72" class="sea-label" font-size="11">バルト海</text>
+
+      <!-- ===== Regions whose status never changes across the three eras shown ===== -->
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="0,115 105,130 115,245 40,275 0,255"/>
+        <text x="20" y="195" class="region-label" font-size="13">Mecklenb.</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="105,130 225,135 235,215 150,240 115,245"/>
+        <text x="130" y="190" class="region-label" font-size="11">Schwed.-Pomm.</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="200,380 340,400 355,495 235,520 175,460"/>
+        <text x="228" y="450" class="region-label" font-size="14">Sachsen</text>
+        <text x="228" y="466" class="region-label-ja" font-size="11">ザクセン</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="355,495 500,490 590,470 620,550 480,610 340,580"/>
+        <text x="410" y="545" class="region-label" font-size="14">Österreich</text>
+        <text x="410" y="561" class="region-label-ja" font-size="11">オーストリア（ボヘミア）</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="700,290 895,270 945,320 930,485 800,555 700,515 655,395"/>
+        <text x="750" y="410" class="region-label" font-size="14">Polen</text>
+        <text x="750" y="426" class="region-label-ja" font-size="11">ポーランド・リトアニア</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="650,148 700,150 696,178 660,182"/>
+        <text x="636" y="140" class="enclave-label" font-size="11">Danzig</text>
+        <text x="636" y="152" class="enclave-label" font-size="9">ダンツィヒ</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="628,258 668,255 665,285 630,288"/>
+        <text x="606" y="304" class="enclave-label" font-size="11">Thorn</text>
+        <text x="606" y="316" class="enclave-label" font-size="9">トルン</text>
+      </g>
+
+      <!-- ===== Regions that change status by era ===== -->
+
+      <!-- Vorpommern süd / Stettin: foreign -> new -> held -->
+      <g class="region-group status-foreign" data-e1701="foreign" data-e1720="new" data-e1786="held">
+        <polygon class="region-shape" points="225,135 335,130 345,220 235,215"/>
+      </g>
+
+      <!-- Hinterpommern: held throughout -->
+      <g class="region-group status-held" data-e1701="held" data-e1720="held" data-e1786="held">
+        <polygon class="region-shape" points="335,130 500,105 545,215 470,245 345,220"/>
+        <text x="395" y="172" class="region-label" font-size="14">Pommern</text>
+        <text x="395" y="188" class="region-label-ja" font-size="11">ポンメルン</text>
+      </g>
+
+      <!-- Brandenburg: held throughout -->
+      <g class="region-group status-held" data-e1701="held" data-e1720="held" data-e1786="held">
+        <polygon class="region-shape" points="150,240 235,215 345,220 470,245 460,360 340,400 200,380"/>
+        <text x="280" y="300" class="region-label" font-size="14">Brandenburg</text>
+        <text x="280" y="316" class="region-label-ja" font-size="11">ブランデンブルク</text>
+      </g>
+
+      <!-- Schlesien: foreign -> foreign -> new -->
+      <g class="region-group status-foreign" data-e1701="foreign" data-e1720="foreign" data-e1786="new">
+        <polygon class="region-shape" points="470,245 545,215 610,260 640,370 590,470 500,490 460,360"/>
+        <text x="510" y="345" class="region-label" font-size="14">Schlesien</text>
+        <text x="510" y="361" class="region-label-ja" font-size="11">シュレージエン</text>
+      </g>
+
+      <!-- Westpreußen corridor: foreign -> foreign -> new -->
+      <g class="region-group status-foreign" data-e1701="foreign" data-e1720="foreign" data-e1786="new">
+        <polygon class="region-shape" points="545,215 660,160 705,175 700,290 610,260"/>
+        <text x="592" y="218" class="region-label" font-size="12">Westpreußen</text>
+        <text x="592" y="232" class="region-label-ja" font-size="10">西プロイセン</text>
+      </g>
+
+      <!-- Ostpreußen: held throughout (though disconnected until 1786) -->
+      <g class="region-group status-held" data-e1701="held" data-e1720="held" data-e1786="held">
+        <polygon class="region-shape" points="700,290 705,175 800,148 900,175 895,270 800,290"/>
+        <text x="760" y="242" class="region-label" font-size="14">Ostpreußen</text>
+        <text x="760" y="258" class="region-label-ja" font-size="11">東プロイセン</text>
+      </g>
+
+      <!-- ===== Cities ===== -->
+      <g transform="translate(300,318)">
+        <polygon class="city-pin" points="0,-8 4,0 0,8 -4,0"/>
+        <circle r="2.4" fill="var(--ink)"/>
+        <text class="city-label" x="9" y="4">Berlin</text>
+        <text class="city-label-ja" x="9" y="19">ベルリン</text>
+      </g>
+
+      <g transform="translate(800,192)">
+        <polygon class="city-pin" points="0,-8 4,0 0,8 -4,0"/>
+        <circle r="2.4" fill="var(--ink)"/>
+        <text class="city-label" x="9" y="4">Königsberg</text>
+        <text class="city-label-ja" x="9" y="19">ケーニヒスベルク</text>
+      </g>
+
+      <g transform="translate(300,168)">
+        <circle class="town-pin" r="3.4"/>
+        <text class="town-label" x="7" y="4">Stettin</text>
+      </g>
+      <g transform="translate(555,395)">
+        <circle class="town-pin" r="3.4"/>
+        <text class="town-label" x="7" y="4">Breslau</text>
+      </g>
+
+      <g class="compass" transform="translate(945,55)">
+        <circle r="20"/>
+        <line x1="0" y1="-20" x2="0" y2="20"/>
+        <line x1="-20" y1="0" x2="20" y2="0"/>
+        <text x="-4" y="-25">N</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-swatch held"></span>プロイセン領（既得）</span>
+    <span class="legend-item"><span class="legend-swatch new"></span>この時代に新たに獲得</span>
+    <span class="legend-item"><span class="legend-swatch foreign"></span>プロイセン領外</span>
+  </div>
+
+  <div class="caption-box" id="captionBox">
+    <h3 id="captionTitle">1701年　フリードリヒ一世の戴冠</h3>
+    <p id="captionText">領土はブランデンブルク、ポンメルン東部（ヒンターポンメルン）、そして飛び地の東プロイセンからなる。東プロイセンは神聖ローマ帝国の外にあったため、フリードリヒは皇帝に配慮して自らを「プロイセンにおける王」と称した。ブランデンブルクと東プロイセンの間にはポーランド領（後の西プロイセン）が挟まり、国土は東西に分断されていた。</p>
+  </div>
+
+  <p class="map-footnote">※ この地図は領域のおおよその位置関係を示す簡略図（デフォルメされた模式図）であり、正確な測量に基づくものではありません。</p>
+</div>
+
+<footer>
+  Königreich Preußen, 1701–1786
+  <a href="index.html">大王の生涯へ</a>
+  <a href="genealogy.html">家系図へ</a>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var captions = {
+    "1701": {
+      title: "1701年　フリードリヒ一世の戴冠",
+      text: "領土はブランデンブルク、ポンメルン東部（ヒンターポンメルン）、そして飛び地の東プロイセンからなる。東プロイセンは神聖ローマ帝国の外にあったため、フリードリヒは皇帝に配慮して自らを「プロイセンにおける王」と称した。ブランデンブルクと東プロイセンの間にはポーランド領（後の西プロイセン）が挟まり、国土は東西に分断されていた。"
+    },
+    "1720": {
+      title: "1713–1740年　フリードリヒ・ヴィルヘルム一世（大北方戦争後）",
+      text: "大北方戦争の講和（ストックホルム条約、1720年）により、スウェーデン領ポンメルンの南部・シュテッティン一帯を獲得。ポンメルンの大部分がプロイセン領となったが、ブランデンブルクと東プロイセンを隔てるポーランド領の分断は、依然として解消されなかった。"
+    },
+    "1786": {
+      title: "1740–1786年　フリードリヒ大王",
+      text: "シュレージエン戦争（1740–45年）でオーストリアからシュレージエンを奪取。さらに第一次ポーランド分割（1772年）で西プロイセンを獲得し、ブランデンブルクと東プロイセンがついに地続きとなった。ただしダンツィヒとトルンの2都市は分割の対象外で、ポーランド領の飛び地として最後まで残った。"
+    }
+  };
+
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.era-btn'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.region-group'));
+  var titleEl = document.getElementById('captionTitle');
+  var textEl = document.getElementById('captionText');
+
+  function setEra(era){
+    groups.forEach(function(el){
+      var status = el.dataset['e' + era];
+      if(!status) return; // regions with no data-e* attributes never change status
+      el.classList.remove('status-held','status-new','status-foreign');
+      el.classList.add('status-' + status);
+    });
+    buttons.forEach(function(b){ b.classList.toggle('active', b.dataset.era === era); });
+    var c = captions[era];
+    if(c){ titleEl.textContent = c.title; textEl.textContent = c.text; }
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ setEra(b.dataset.era); });
+  });
+
+  setEra('1701');
+})();
+</script>
