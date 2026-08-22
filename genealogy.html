@@ -1,0 +1,379 @@
+<title>ホーエンツォレルン家系図</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%85%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== Design tokens (shared with index.html) ===================== */
+:root{
+  --ink:#1c2b39;
+  --ink-soft:#2f4256;
+  --prussian:#17395c;
+  --prussian-bright:#3f6f9e;
+  --parchment:#f4ecdb;
+  --parchment-dim:#e8dcc2;
+  --parchment-line:#d8c9a6;
+  --sanssouci:#6f8c68;
+  --sanssouci-soft:#e4e9de;
+  --gilt:#a9832f;
+  --gilt-bright:#c79a3d;
+  --steel:#8b95a0;
+  --panel-dark:#132132;
+  --panel-dark-2:#0f1a29;
+  --text-on-dark:#e9e1c9;
+  --text-on-dark-dim:#aeb9c4;
+  --shadow: 0 18px 40px -20px rgba(20,30,42,.35);
+  color-scheme: light;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --ink:#e9e1c9;
+    --ink-soft:#cdbf9c;
+    --prussian:#5f93c4;
+    --prussian-bright:#8fb8de;
+    --parchment:#12181f;
+    --parchment-dim:#171f28;
+    --parchment-line:#31404c;
+    --sanssouci:#9db794;
+    --sanssouci-soft:#1a231c;
+    --gilt:#d8b25a;
+    --gilt-bright:#e9c877;
+    --steel:#7f8b96;
+    --panel-dark:#0a1119;
+    --panel-dark-2:#070d13;
+    --text-on-dark:#e9e1c9;
+    --text-on-dark-dim:#93a0ab;
+    --shadow: 0 18px 40px -20px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e9e1c9;
+  --ink-soft:#cdbf9c;
+  --prussian:#5f93c4;
+  --prussian-bright:#8fb8de;
+  --parchment:#12181f;
+  --parchment-dim:#171f28;
+  --parchment-line:#31404c;
+  --sanssouci:#9db794;
+  --sanssouci-soft:#1a231c;
+  --gilt:#d8b25a;
+  --gilt-bright:#e9c877;
+  --steel:#7f8b96;
+  --panel-dark:#0a1119;
+  --panel-dark-2:#070d13;
+  --text-on-dark:#e9e1c9;
+  --text-on-dark-dim:#93a0ab;
+  --shadow: 0 18px 40px -20px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+}
+
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'EB Garamond', Georgia, 'Noto Serif JP', serif;
+  font-size:18px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{ text-wrap:balance; margin:0; font-weight:600; }
+p{ margin:0 0 1em; }
+a{ color:inherit; }
+::selection{ background:var(--gilt); color:var(--panel-dark-2); }
+
+.eyebrow{
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-size:.78rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gilt);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.7em;
+  margin-bottom:.9em;
+}
+.eyebrow::before, .eyebrow::after{
+  content:"";
+  width:2.2em;
+  height:1px;
+  background:currentColor;
+  opacity:.6;
+  display:inline-block;
+}
+
+.section-head{
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(2rem, 4.2vw, 3rem);
+  letter-spacing:.01em;
+}
+
+/* ===================== Nav (shared) ===================== */
+.topnav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.9rem clamp(1.2rem,4vw,3rem);
+  background:color-mix(in srgb, var(--parchment) 88%, transparent);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--parchment-line);
+}
+.brandmark{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:600; font-size:1.05rem; letter-spacing:.06em;
+  display:flex; align-items:baseline; gap:.5em;
+  text-decoration:none;
+}
+.brandmark small{ font-size:.65rem; letter-spacing:.18em; color:var(--steel); font-style:italic; }
+.navlinks{ display:flex; gap:2rem; list-style:none; margin:0; padding:0; }
+.navlinks a{
+  text-decoration:none; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); position:relative; padding-bottom:.3em;
+}
+.navlinks a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--gilt);
+  transition:right .3s ease;
+}
+.navlinks a:hover::after{ right:0; }
+
+/* ===================== Header ===================== */
+.gheader{
+  padding:8.5rem 1.4rem 4rem; text-align:center;
+  background:radial-gradient(ellipse 80% 55% at 50% 0%, color-mix(in srgb, var(--prussian) 12%, transparent), transparent 60%), var(--parchment);
+}
+.gheader-mark{
+  font-family:'UnifrakturMaguntia', serif; font-size:clamp(2.2rem,5vw,3rem); color:var(--prussian); margin-bottom:.2em; line-height:1;
+}
+.gheader h1{ margin-bottom:.5em; }
+.gheader .range{ font-size:.85rem; letter-spacing:.24em; text-transform:uppercase; color:var(--steel); margin-bottom:1.6rem; }
+.gheader p.lede{ max-width:56ch; margin:0 auto; color:var(--ink-soft); font-size:1.02rem; }
+
+/* ===================== Tree ===================== */
+.tree{ position:relative; max-width:960px; margin:0 auto; padding:1rem 1.2rem 6rem; }
+.tree-spine{
+  content:""; position:absolute; left:50%; top:2.4rem; bottom:4rem; width:1px;
+  background:linear-gradient(var(--parchment-line), var(--gilt) 15%, var(--gilt) 85%, var(--parchment-line));
+  transform:translateX(-50%); z-index:0;
+}
+
+.gen{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:4.6rem; }
+.gen-node{
+  width:11px; height:11px; border-radius:50%; background:var(--gilt); border:2px solid var(--parchment);
+  outline:1px solid var(--gilt); margin-bottom:1.1rem;
+}
+.gen-eyebrow{
+  font-family:'Cormorant Garamond', serif; font-style:italic; font-size:.76rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gilt); margin-bottom:.4em;
+}
+.gen-caption{
+  font-family:'Cormorant Garamond', serif; font-size:1.35rem; font-weight:600; color:var(--ink); margin-bottom:2rem;
+}
+
+.couple-row{ display:flex; align-items:center; justify-content:center; gap:1.4rem; flex-wrap:wrap; background:var(--parchment); padding:0 .6rem; }
+.marriage-sign{ display:flex; flex-direction:column; align-items:center; gap:.2em; color:var(--gilt); flex-shrink:0; }
+.marriage-sign .ring{ font-family:'Cormorant Garamond', serif; font-size:1.7rem; line-height:1; }
+.marriage-sign .yr{ font-size:.62rem; letter-spacing:.08em; color:var(--steel); text-transform:uppercase; white-space:nowrap; }
+
+.person-card{
+  position:relative; border:1px solid var(--parchment-line); background:var(--parchment-dim);
+  padding:1.3rem 1.5rem; min-width:220px; max-width:260px; text-align:left;
+}
+.person-card::before, .person-card::after{
+  content:""; position:absolute; width:14px; height:14px; border-color:var(--gilt); border-style:solid;
+}
+.person-card::before{ top:-1px; left:-1px; border-width:1px 0 0 1px; }
+.person-card::after{ bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
+.person-card h3{ font-family:'Cormorant Garamond', serif; font-size:1.15rem; margin-bottom:.15em; }
+.person-card .years{
+  display:block; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--steel);
+  margin-bottom:.55em; font-variant-numeric:tabular-nums;
+}
+.person-card p{ font-size:.88rem; color:var(--ink-soft); margin:0; }
+
+.person-card.subject{ border-color:var(--gilt); background:color-mix(in srgb, var(--gilt) 10%, var(--parchment)); }
+.person-card.subject::before, .person-card.subject::after{ border-color:var(--prussian); }
+.person-card.subject h3{ color:var(--prussian); }
+.subject-tag{
+  display:inline-block; font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gilt);
+  border:1px solid var(--gilt); padding:.15em .55em; margin-bottom:.6em;
+}
+.subject-link{
+  display:inline-block; margin-top:.7em; font-size:.78rem; letter-spacing:.06em; color:var(--prussian);
+  border-bottom:1px solid var(--gilt); text-decoration:none;
+}
+
+.sibling-grid{
+  position:relative; z-index:1; display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr));
+  gap:1rem; width:100%; max-width:960px;
+}
+.sibling-grid .person-card{ min-width:0; max-width:none; }
+.person-card.faded{ opacity:.6; padding:1rem 1.3rem; }
+.person-card.faded::before, .person-card.faded::after{ display:none; }
+.person-card.faded h3{ font-size:1rem; }
+
+.tree-footnote{
+  max-width:70ch; margin:2.2rem auto 0; text-align:center; font-size:.82rem; color:var(--steel);
+}
+
+footer{
+  padding:2.4rem 1.4rem; text-align:center; font-size:.78rem; letter-spacing:.08em;
+  background:var(--panel-dark-2); color:var(--text-on-dark-dim);
+}
+footer a{ color:var(--gilt-bright); text-decoration:none; border-bottom:1px solid currentColor; }
+
+@media (max-width:640px){
+  .couple-row{ flex-direction:column; }
+  .marriage-sign{ flex-direction:row; gap:.6em; }
+}
+a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-offset:2px; }
+</style>
+
+<nav class="topnav">
+  <a class="brandmark" href="index.html">FR <small>· König von Preußen</small></a>
+  <ul class="navlinks">
+    <li><a href="index.html">大王の生涯へ</a></li>
+  </ul>
+</nav>
+
+<header class="gheader">
+  <div class="gheader-mark">Stammbaum</div>
+  <h1 class="section-head">ホーエンツォレルン家系図</h1>
+  <p class="range">Friedrich I. — Friedrich der Große ・ 三代の系譜</p>
+  <p class="lede">プロイセン王国を築いた初代国王フリードリヒ一世から、啓蒙と戦火の時代を生きたフリードリヒ大王の世代まで。三代にわたるホーエンツォレルン家の系図。</p>
+</header>
+
+<main class="tree">
+  <div class="tree-spine" aria-hidden="true"></div>
+
+  <div class="gen">
+    <span class="gen-node" aria-hidden="true"></span>
+    <p class="gen-eyebrow">Generation I ・ 1701</p>
+    <p class="gen-caption">プロイセン王国、始まる</p>
+
+    <div class="couple-row">
+      <div class="person-card">
+        <h3>Friedrich I.</h3>
+        <span class="years">1657 – 1713</span>
+        <p>初代プロイセン王（在位 1701–1713）。ブランデンブルク選帝侯としてはフリードリヒ3世。戴冠によりプロイセンを王国へと格上げした。</p>
+      </div>
+      <div class="marriage-sign">
+        <span class="ring">⚭</span>
+        <span class="yr">1684年 婚姻</span>
+      </div>
+      <div class="person-card">
+        <h3>Sophie Charlotte von Hannover</h3>
+        <span class="years">1668 – 1705</span>
+        <p>初代プロイセン王妃。ハノーファー選帝侯家出身。シャルロッテンブルク宮殿にその名を残す。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gen">
+    <span class="gen-node" aria-hidden="true"></span>
+    <p class="gen-eyebrow">Generation II ・ 1713</p>
+    <p class="gen-caption">「兵隊王」と倹約の時代</p>
+
+    <div class="couple-row">
+      <div class="person-card">
+        <h3>Friedrich Wilhelm I.</h3>
+        <span class="years">1688 – 1740</span>
+        <p>第二代プロイセン王。「兵隊王」の異名で知られる軍制・財政改革者。フリードリヒ大王の父。</p>
+      </div>
+      <div class="marriage-sign">
+        <span class="ring">⚭</span>
+        <span class="yr">1706年 婚姻</span>
+      </div>
+      <div class="person-card">
+        <h3>Sophie Dorothea von Hannover</h3>
+        <span class="years">1687 – 1757</span>
+        <p>第二代プロイセン王妃。英国王ジョージ1世の娘で、後の英国王ジョージ2世の妹にあたる。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gen">
+    <span class="gen-node" aria-hidden="true"></span>
+    <p class="gen-eyebrow">Generation III ・ 1707–1730</p>
+    <p class="gen-caption">十人のきょうだいたち</p>
+
+    <div class="sibling-grid">
+      <div class="person-card faded">
+        <h3>Friedrich Ludwig</h3>
+        <span class="years">1707 – 1708・夭逝</span>
+        <p>長男。生後まもなく死去。</p>
+      </div>
+
+      <div class="person-card">
+        <h3>Wilhelmine</h3>
+        <span class="years">1709 – 1758</span>
+        <p>バイロイト辺境伯夫人。大王が生涯もっとも信頼した姉で、宮廷生活を綴った回想録で知られる。</p>
+      </div>
+
+      <div class="person-card subject">
+        <span class="subject-tag">本サイトの主人公</span>
+        <h3>Friedrich II. der Große</h3>
+        <span class="years">1712 – 1786</span>
+        <p>第三代プロイセン国王。啓蒙専制と七年戦争の王。</p>
+        <a class="subject-link" href="index.html">→ 大王の生涯を読む</a>
+      </div>
+
+      <div class="person-card">
+        <h3>Friederike Luise</h3>
+        <span class="years">1714 – 1784</span>
+        <p>アンスバッハ辺境伯夫人。</p>
+      </div>
+
+      <div class="person-card">
+        <h3>Philippine Charlotte</h3>
+        <span class="years">1716 – 1801</span>
+        <p>ブラウンシュヴァイク＝ヴォルフェンビュッテル公妃。</p>
+      </div>
+
+      <div class="person-card">
+        <h3>Luise Ulrike</h3>
+        <span class="years">1720 – 1782</span>
+        <p>スウェーデン王妃。国王グスタフ3世の母。</p>
+      </div>
+
+      <div class="person-card">
+        <h3>August Wilhelm</h3>
+        <span class="years">1722 – 1758</span>
+        <p>プロイセン王子。大王に嗣子なく、この系統から後の王位継承者が出た。</p>
+      </div>
+
+      <div class="person-card">
+        <h3>Anna Amalie</h3>
+        <span class="years">1723 – 1787</span>
+        <p>クヴェートリンブルク女子修道院長。作曲家としても知られる。</p>
+      </div>
+
+      <div class="person-card">
+        <h3>Heinrich</h3>
+        <span class="years">1726 – 1802</span>
+        <p>プロイセン王子。七年戦争で兄を支えた名将。</p>
+      </div>
+
+      <div class="person-card">
+        <h3>Ferdinand</h3>
+        <span class="years">1730 – 1813</span>
+        <p>プロイセン王子、軍人。末弟。</p>
+      </div>
+    </div>
+
+    <p class="tree-footnote">※ フリードリヒ・ヴィルヘルム一世とゾフィー・ドロテアの間には、上記のほかにも夭逝した子女がおり、二人の子は全14人にのぼる。</p>
+  </div>
+</main>
+
+<footer>
+  Haus Hohenzollern, 1701–1786 ・ <a href="index.html">フリードリヒ大王のページへ戻る</a>
+</footer>
