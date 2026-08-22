@@ -151,7 +151,7 @@ a{ color:inherit; }
 
 /* ===================== Map ===================== */
 .map-wrap{ max-width:960px; margin:0 auto; padding:0 1.2rem 2.4rem; }
-.map-scroll{ overflow-x:auto; border:1px solid var(--parchment-line); background:var(--sea); box-shadow:var(--shadow); }
+.map-scroll{ overflow-x:auto; border:1px solid var(--parchment-line); background:var(--parchment-dim); box-shadow:var(--shadow); }
 .map-scroll svg{ display:block; width:100%; min-width:640px; height:auto; }
 
 .region-shape{ stroke:var(--parchment); stroke-width:2; transition:fill 1.1s ease, opacity 1.1s ease, stroke 1.1s ease; }
@@ -187,6 +187,12 @@ a{ color:inherit; }
 .compass{ fill:none; stroke:var(--ink-soft); stroke-width:1; opacity:.6; }
 .compass text{ font-family:'Cormorant Garamond', serif; font-size:14px; fill:var(--ink-soft); }
 
+.hre-line{ fill:none; stroke:var(--ink-soft); stroke-width:1.6; stroke-dasharray:7 5; opacity:.7; }
+.hre-label{
+  font-family:'Cormorant Garamond', serif; font-style:italic; font-size:12px;
+  fill:var(--ink-soft); stroke:var(--parchment-dim); stroke-width:3; paint-order:stroke; opacity:.9; pointer-events:none;
+}
+
 /* ===================== Legend & caption ===================== */
 .legend{ display:flex; flex-wrap:wrap; gap:1.6rem; justify-content:center; margin-top:1.4rem; font-size:.85rem; color:var(--ink-soft); }
 .legend-item{ display:flex; align-items:center; gap:.5em; }
@@ -194,6 +200,9 @@ a{ color:inherit; }
 .legend-swatch.held{ background:var(--prussian); }
 .legend-swatch.new{ background:var(--gilt); }
 .legend-swatch.foreign{ background:var(--parchment-dim); background-image:repeating-linear-gradient(45deg, var(--steel) 0 1px, transparent 1px 6px); }
+.legend-line{
+  width:22px; height:0; border-top:2px dashed var(--ink-soft); display:inline-block; flex-shrink:0; align-self:center;
+}
 
 .caption-box{ max-width:720px; margin:2.2rem auto 0; text-align:center; }
 .caption-box h3{ font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--prussian); margin-bottom:.5em; }
@@ -254,8 +263,15 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
       </g>
 
       <g class="region-group status-foreign">
+        <polygon class="region-shape" points="0,255 40,275 115,245 150,240 200,380 175,460 90,470 0,400"/>
+        <text x="45" y="345" class="region-label" font-size="12">Hannover</text>
+        <text x="45" y="359" class="region-label-ja" font-size="10">ハノーファー選帝侯国</text>
+      </g>
+
+      <g class="region-group status-foreign">
         <polygon class="region-shape" points="105,130 225,135 235,215 150,240 115,245"/>
-        <text x="130" y="190" class="region-label" font-size="11">Schwed.-Pomm.</text>
+        <text x="128" y="185" class="region-label" font-size="11">Schweden</text>
+        <text x="128" y="197" class="region-label-ja" font-size="9">スウェーデン領</text>
       </g>
 
       <g class="region-group status-foreign">
@@ -273,7 +289,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
       <g class="region-group status-foreign">
         <polygon class="region-shape" points="700,290 895,270 945,320 930,485 800,555 700,515 655,395"/>
         <text x="750" y="410" class="region-label" font-size="14">Polen</text>
-        <text x="750" y="426" class="region-label-ja" font-size="11">ポーランド・リトアニア</text>
+        <text x="750" y="426" class="region-label-ja" font-size="11">ポーランド王国</text>
       </g>
 
       <g class="region-group status-foreign">
@@ -293,13 +309,15 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
       <!-- Vorpommern süd / Stettin: foreign -> new -> held -->
       <g class="region-group status-foreign" data-e1701="foreign" data-e1720="new" data-e1786="held">
         <polygon class="region-shape" points="225,135 335,130 345,220 235,215"/>
+        <text x="252" y="178" class="region-label" font-size="11">Vorpommern</text>
+        <text x="252" y="190" class="region-label-ja" font-size="9">西ポンメルン</text>
       </g>
 
       <!-- Hinterpommern: held throughout -->
       <g class="region-group status-held" data-e1701="held" data-e1720="held" data-e1786="held">
         <polygon class="region-shape" points="335,130 500,105 545,215 470,245 345,220"/>
-        <text x="395" y="172" class="region-label" font-size="14">Pommern</text>
-        <text x="395" y="188" class="region-label-ja" font-size="11">ポンメルン</text>
+        <text x="395" y="172" class="region-label" font-size="14">Ostpommern</text>
+        <text x="395" y="188" class="region-label-ja" font-size="11">東ポンメルン</text>
       </g>
 
       <!-- Brandenburg: held throughout -->
@@ -328,6 +346,13 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
         <polygon class="region-shape" points="700,290 705,175 800,148 900,175 895,270 800,290"/>
         <text x="760" y="242" class="region-label" font-size="14">Ostpreußen</text>
         <text x="760" y="258" class="region-label-ja" font-size="11">東プロイセン</text>
+      </g>
+
+      <!-- Holy Roman Empire's eastern frontier: East/West Prussia always lay outside it -->
+      <g class="hre-boundary">
+        <path class="hre-line" d="M545,215 L610,260 L640,370 L590,470 L620,550"/>
+        <text class="hre-label" x="522" y="415">Heiliges Römisches Reich</text>
+        <text class="hre-label" x="522" y="428" font-size="10">神聖ローマ帝国の東境</text>
       </g>
 
       <!-- ===== Cities ===== -->
@@ -367,6 +392,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
     <span class="legend-item"><span class="legend-swatch held"></span>プロイセン領（既得）</span>
     <span class="legend-item"><span class="legend-swatch new"></span>この時代に新たに獲得</span>
     <span class="legend-item"><span class="legend-swatch foreign"></span>プロイセン領外</span>
+    <span class="legend-item"><span class="legend-line"></span>神聖ローマ帝国の東境（東・西プロイセンは域外）</span>
   </div>
 
   <div class="caption-box" id="captionBox">
