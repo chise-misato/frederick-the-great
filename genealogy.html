@@ -193,7 +193,8 @@ a{ color:inherit; }
 }
 .person-card::before{ top:-1px; left:-1px; border-width:1px 0 0 1px; }
 .person-card::after{ bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
-.person-card h3{ font-family:'Cormorant Garamond', serif; font-size:1.15rem; margin-bottom:.15em; }
+.person-card h3{ font-family:'Cormorant Garamond', serif; font-size:1.15rem; margin-bottom:.1em; }
+.person-card .kana{ display:block; font-size:.78rem; color:var(--ink-soft); letter-spacing:.02em; margin-bottom:.4em; }
 .person-card .years{
   display:block; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--steel);
   margin-bottom:.55em; font-variant-numeric:tabular-nums;
@@ -263,6 +264,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
     <div class="couple-row">
       <div class="person-card">
         <h3>Friedrich I.</h3>
+        <span class="kana">フリードリヒ1世</span>
         <span class="years">1657 – 1713</span>
         <p>初代プロイセン王（在位 1701–1713）。ブランデンブルク選帝侯としてはフリードリヒ3世。戴冠によりプロイセンを王国へと格上げした。</p>
       </div>
@@ -272,6 +274,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
       </div>
       <div class="person-card">
         <h3>Sophie Charlotte von Hannover</h3>
+        <span class="kana">ゾフィー・シャルロッテ・フォン・ハノーファー</span>
         <span class="years">1668 – 1705</span>
         <p>初代プロイセン王妃。ハノーファー選帝侯家出身。シャルロッテンブルク宮殿にその名を残す。</p>
       </div>
@@ -286,6 +289,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
     <div class="couple-row">
       <div class="person-card">
         <h3>Friedrich Wilhelm I.</h3>
+        <span class="kana">フリードリヒ・ヴィルヘルム1世</span>
         <span class="years">1688 – 1740</span>
         <p>第二代プロイセン王。「兵隊王」の異名で知られる軍制・財政改革者。フリードリヒ大王の父。</p>
       </div>
@@ -295,6 +299,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
       </div>
       <div class="person-card">
         <h3>Sophie Dorothea von Hannover</h3>
+        <span class="kana">ゾフィー・ドロテア・フォン・ハノーファー</span>
         <span class="years">1687 – 1757</span>
         <p>第二代プロイセン王妃。英国王ジョージ1世の娘で、後の英国王ジョージ2世の妹にあたる。</p>
       </div>
@@ -309,12 +314,14 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
     <div class="sibling-grid">
       <div class="person-card faded">
         <h3>Friedrich Ludwig</h3>
+        <span class="kana">フリードリヒ・ルートヴィヒ</span>
         <span class="years">1707 – 1708・夭逝</span>
         <p>長男。生後まもなく死去。</p>
       </div>
 
       <div class="person-card">
         <h3>Wilhelmine</h3>
+        <span class="kana">ヴィルヘルミーネ</span>
         <span class="years">1709 – 1758</span>
         <p>バイロイト辺境伯夫人。大王が生涯もっとも信頼した姉で、宮廷生活を綴った回想録で知られる。</p>
       </div>
@@ -322,6 +329,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
       <div class="person-card subject">
         <span class="subject-tag">本サイトの主人公</span>
         <h3>Friedrich II. der Große</h3>
+        <span class="kana">フリードリヒ2世（大王）</span>
         <span class="years">1712 – 1786</span>
         <p>第三代プロイセン国王。啓蒙専制と七年戦争の王。</p>
         <a class="subject-link" href="index.html">→ 大王の生涯を読む</a>
@@ -329,42 +337,49 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
 
       <div class="person-card">
         <h3>Friederike Luise</h3>
+        <span class="kana">フリーデリケ・ルイーゼ</span>
         <span class="years">1714 – 1784</span>
         <p>アンスバッハ辺境伯夫人。</p>
       </div>
 
       <div class="person-card">
         <h3>Philippine Charlotte</h3>
+        <span class="kana">フィリッピーネ・シャルロッテ</span>
         <span class="years">1716 – 1801</span>
         <p>ブラウンシュヴァイク＝ヴォルフェンビュッテル公妃。</p>
       </div>
 
       <div class="person-card">
         <h3>Luise Ulrike</h3>
+        <span class="kana">ルイーゼ・ウルリケ</span>
         <span class="years">1720 – 1782</span>
         <p>スウェーデン王妃。国王グスタフ3世の母。</p>
       </div>
 
       <div class="person-card">
         <h3>August Wilhelm</h3>
+        <span class="kana">アウグスト・ヴィルヘルム</span>
         <span class="years">1722 – 1758</span>
         <p>プロイセン王子。大王に嗣子なく、この系統から後の王位継承者が出た。</p>
       </div>
 
       <div class="person-card">
         <h3>Anna Amalie</h3>
+        <span class="kana">アンナ・アマーリエ</span>
         <span class="years">1723 – 1787</span>
         <p>クヴェートリンブルク女子修道院長。作曲家としても知られる。</p>
       </div>
 
       <div class="person-card">
         <h3>Heinrich</h3>
+        <span class="kana">ハインリヒ</span>
         <span class="years">1726 – 1802</span>
         <p>プロイセン王子。七年戦争で兄を支えた名将。</p>
       </div>
 
       <div class="person-card">
         <h3>Ferdinand</h3>
+        <span class="kana">フェルディナント</span>
         <span class="years">1730 – 1813</span>
         <p>プロイセン王子、軍人。末弟。</p>
       </div>
