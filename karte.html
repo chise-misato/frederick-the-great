@@ -274,36 +274,6 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
         <text x="128" y="197" class="region-label-ja" font-size="9">スウェーデン領</text>
       </g>
 
-      <g class="region-group status-foreign">
-        <polygon class="region-shape" points="200,380 340,400 355,495 235,520 175,460"/>
-        <text x="228" y="450" class="region-label" font-size="14">Sachsen</text>
-        <text x="228" y="466" class="region-label-ja" font-size="11">ザクセン</text>
-      </g>
-
-      <g class="region-group status-foreign">
-        <polygon class="region-shape" points="355,495 500,490 590,470 620,550 480,610 340,580"/>
-        <text x="410" y="545" class="region-label" font-size="14">Österreich</text>
-        <text x="410" y="561" class="region-label-ja" font-size="11">オーストリア（ボヘミア）</text>
-      </g>
-
-      <g class="region-group status-foreign">
-        <polygon class="region-shape" points="700,290 895,270 945,320 930,485 800,555 700,515 655,395"/>
-        <text x="750" y="410" class="region-label" font-size="14">Polen</text>
-        <text x="750" y="426" class="region-label-ja" font-size="11">ポーランド王国</text>
-      </g>
-
-      <g class="region-group status-foreign">
-        <polygon class="region-shape" points="650,148 700,150 696,178 660,182"/>
-        <text x="636" y="140" class="enclave-label" font-size="11">Danzig</text>
-        <text x="636" y="152" class="enclave-label" font-size="9">ダンツィヒ</text>
-      </g>
-
-      <g class="region-group status-foreign">
-        <polygon class="region-shape" points="628,258 668,255 665,285 630,288"/>
-        <text x="606" y="304" class="enclave-label" font-size="11">Thorn</text>
-        <text x="606" y="316" class="enclave-label" font-size="9">トルン</text>
-      </g>
-
       <!-- ===== Regions that change status by era ===== -->
 
       <!-- Vorpommern süd / Stettin: foreign -> new -> held -->
@@ -327,11 +297,35 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
         <text x="280" y="316" class="region-label-ja" font-size="11">ブランデンブルク</text>
       </g>
 
-      <!-- Schlesien: foreign -> foreign -> new -->
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="200,380 340,400 335,485 235,520 150,465"/>
+        <text x="203" y="440" class="region-label" font-size="13">Sachsen</text>
+        <text x="203" y="455" class="region-label-ja" font-size="10">ザクセン選帝侯国</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="150,465 235,520 400,490 415,565 320,615 195,610 105,545"/>
+        <text x="200" y="545" class="region-label" font-size="13">Böhmen</text>
+        <text x="200" y="560" class="region-label-ja" font-size="10">ベーメン王国</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="10,480 105,545 90,605 15,620 0,570"/>
+        <text x="6" y="545" class="region-label" font-size="11">Bayern</text>
+        <text x="6" y="558" class="region-label-ja" font-size="9">バイエルン選帝侯国</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="195,610 320,615 415,565 500,520 600,490 660,430 700,520 520,660 300,660"/>
+        <text x="395" y="600" class="region-label" font-size="13">Österreich</text>
+        <text x="395" y="615" class="region-label-ja" font-size="10">オーストリア</text>
+      </g>
+
+      <!-- Schlesien: foreign -> foreign -> new. Positioned directly below Brandenburg, right-aligned. -->
       <g class="region-group status-foreign" data-e1701="foreign" data-e1720="foreign" data-e1786="new">
-        <polygon class="region-shape" points="470,245 545,215 610,260 640,370 590,470 500,490 460,360"/>
-        <text x="510" y="345" class="region-label" font-size="14">Schlesien</text>
-        <text x="510" y="361" class="region-label-ja" font-size="11">シュレージエン</text>
+        <polygon class="region-shape" points="340,400 460,360 570,390 660,430 600,490 500,520 400,490"/>
+        <text x="463" y="428" class="region-label" font-size="14">Schlesien</text>
+        <text x="463" y="444" class="region-label-ja" font-size="11">シュレージエン</text>
       </g>
 
       <!-- Westpreußen corridor: foreign -> foreign -> new -->
@@ -341,18 +335,37 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
         <text x="592" y="232" class="region-label-ja" font-size="10">西プロイセン</text>
       </g>
 
-      <!-- Ostpreußen: held throughout (though disconnected until 1786) -->
+      <!-- Ostpreußen: held throughout (though disconnected until 1786); extended south to border Polen properly -->
       <g class="region-group status-held" data-e1701="held" data-e1720="held" data-e1786="held">
-        <polygon class="region-shape" points="700,290 705,175 800,148 900,175 895,270 800,290"/>
+        <polygon class="region-shape" points="700,290 705,175 800,148 900,175 895,270 815,340 735,335"/>
         <text x="760" y="242" class="region-label" font-size="14">Ostpreußen</text>
         <text x="760" y="258" class="region-label-ja" font-size="11">東プロイセン</text>
       </g>
 
-      <!-- Holy Roman Empire's eastern frontier: East/West Prussia always lay outside it -->
+      <!-- Polen: the area enclosed by Ostpommern, Westpreußen, Ostpreußen, Brandenburg and Schlesien -->
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="470,245 545,215 610,260 700,290 735,335 815,340 660,430 570,390 460,360"/>
+        <text x="548" y="308" class="region-label" font-size="14">Polen</text>
+        <text x="548" y="324" class="region-label-ja" font-size="11">ポーランド王国</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="650,148 700,150 696,178 660,182"/>
+        <text x="636" y="140" class="enclave-label" font-size="11">Danzig</text>
+        <text x="636" y="152" class="enclave-label" font-size="9">ダンツィヒ</text>
+      </g>
+
+      <g class="region-group status-foreign">
+        <polygon class="region-shape" points="628,258 668,255 665,285 630,288"/>
+        <text x="606" y="304" class="enclave-label" font-size="11">Thorn</text>
+        <text x="606" y="316" class="enclave-label" font-size="9">トルン</text>
+      </g>
+
+      <!-- Holy Roman Empire's eastern frontier: Brandenburg/Pommern/Schlesien lay within it; East/West Prussia and Polen lay outside it -->
       <g class="hre-boundary">
-        <path class="hre-line" d="M545,215 L610,260 L640,370 L590,470 L620,550"/>
-        <text class="hre-label" x="522" y="415">Heiliges Römisches Reich</text>
-        <text class="hre-label" x="522" y="428" font-size="10">神聖ローマ帝国の東境</text>
+        <path class="hre-line" d="M545,215 L470,245 L460,360 L570,390 L660,430"/>
+        <text class="hre-label" x="395" y="295">Heiliges Römisches Reich</text>
+        <text class="hre-label" x="395" y="308" font-size="10">神聖ローマ帝国の東境</text>
       </g>
 
       <!-- ===== Cities ===== -->
@@ -374,7 +387,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
         <circle class="town-pin" r="3.4"/>
         <text class="town-label" x="7" y="4">Stettin</text>
       </g>
-      <g transform="translate(555,395)">
+      <g transform="translate(520,455)">
         <circle class="town-pin" r="3.4"/>
         <text class="town-label" x="7" y="4">Breslau</text>
       </g>
