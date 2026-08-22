@@ -313,22 +313,25 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
         <text x="203" y="455" class="region-label-ja" font-size="10">ザクセン選帝侯国</text>
       </g>
 
+      <!-- Bayern: immediately below-left of Sachsen -->
       <g class="region-group status-foreign">
-        <polygon class="region-shape" points="150,465 235,520 400,490 415,565 320,615 195,610 105,545"/>
-        <text x="200" y="545" class="region-label" font-size="13">Böhmen</text>
-        <text x="200" y="560" class="region-label-ja" font-size="10">ベーメン王国</text>
+        <polygon class="region-shape" points="150,465 235,520 175,595 70,605 30,540"/>
+        <text x="80" y="545" class="region-label" font-size="11">Bayern</text>
+        <text x="80" y="558" class="region-label-ja" font-size="9">バイエルン選帝侯国</text>
       </g>
 
+      <!-- Böhmen: narrowed, left edge moved right; a spike to 340,400 seals the gap against Sachsen/Schlesien -->
       <g class="region-group status-foreign">
-        <polygon class="region-shape" points="10,480 105,545 90,605 15,620 0,570"/>
-        <text x="6" y="545" class="region-label" font-size="11">Bayern</text>
-        <text x="6" y="558" class="region-label-ja" font-size="9">バイエルン選帝侯国</text>
+        <polygon class="region-shape" points="235,520 335,485 340,400 400,490 420,560 320,610 175,595"/>
+        <text x="255" y="555" class="region-label" font-size="13">Böhmen</text>
+        <text x="255" y="570" class="region-label-ja" font-size="10">ベーメン王国</text>
       </g>
 
+      <!-- Österreich: right edge pulled in to Schlesien's lower-left corner -->
       <g class="region-group status-foreign">
-        <polygon class="region-shape" points="195,610 320,615 415,565 500,520 600,490 660,430 700,520 520,660 300,660"/>
-        <text x="395" y="600" class="region-label" font-size="13">Österreich</text>
-        <text x="395" y="615" class="region-label-ja" font-size="10">オーストリア</text>
+        <polygon class="region-shape" points="175,595 320,610 420,560 500,520 480,620 300,660 140,610"/>
+        <text x="270" y="605" class="region-label" font-size="13">Österreich</text>
+        <text x="270" y="620" class="region-label-ja" font-size="10">オーストリア</text>
       </g>
 
       <!-- Schlesien: foreign -> foreign -> new. Positioned directly below Brandenburg, right-aligned. -->
@@ -379,7 +382,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
       </g>
 
       <!-- ===== Cities ===== -->
-      <g transform="translate(300,318)">
+      <g transform="translate(400,335)">
         <polygon class="city-pin" points="0,-8 4,0 0,8 -4,0"/>
         <circle r="2.4" fill="var(--ink)"/>
         <text class="city-label" x="9" y="4">Berlin</text>
