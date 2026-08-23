@@ -276,7 +276,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
     <span class="legend-item"><span class="legend-fill"></span>プロイセン王国の版図（開戦時点）</span>
   </div>
 
-  <p class="map-footnote">※ 地図中の破線は各会戦の年代順のつながりを示す模式的なもので、実際の行軍路そのものを再現したものではありません。青く塗った領域は1756年開戦時点のプロイセン領のおおよその範囲で、東プロイセンは西プロイセン（1772年獲得）で結ばれる前の飛び地として描いています。地図タイル: OpenStreetMap / CARTO。</p>
+  <p class="map-footnote">※ 地図中の破線は各会戦の年代順のつながりを示す模式的なもので、実際の行軍路そのものを再現したものではありません。青く塗ったプロイセン領の境界は <a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener noreferrer">historical-basemaps</a>（GPL-3.0）の1783年時点データを使用しており、七年戦争当時（1756年）にはまだ存在しなかった西プロイセン（1772年の第一次ポーランド分割で獲得）を含んでいる点にご留意ください。また同データはシュレージエンが未分類の空白地帯になっていたため、その部分のみ別途補って着色しています。地図タイル: OpenStreetMap / CARTO。</p>
 </div>
 
 <footer>
@@ -316,28 +316,28 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
     maxZoom:18
   }).addTo(map);
 
-  // Kingdom of Prussia's approximate territory at the outbreak of the Seven Years' War (1756):
-  // Brandenburg + Pommern + Schlesien form one contiguous bloc; Ostpreußen remains a separate exclave
-  // (West Prussia would not connect the two until the 1772 partition of Poland).
-  var prussiaBrandenburgPommern = [
-    [53.43,14.55],[54.18,15.58],[54.05,16.90],[53.35,17.05],[52.90,15.75],
-    [52.35,14.55],[51.76,14.33],[52.30,13.60],[52.92,12.80],[53.45,13.10],[53.85,13.68]
-  ];
-  var prussiaSchlesien = [
+  // Kingdom of Prussia's territory, from the "historical-basemaps" open dataset
+  // (aourednik/historical-basemaps on GitHub, GPL-3.0, itself derived from Euratlas).
+  // No 1740/1756 snapshot exists in that dataset; 1783 is the closest year, so the
+  // shape here already includes West Prussia (annexed 1772, after this war) —
+  // see the on-page caveat note below the map. The source data also leaves Schlesien
+  // as an unassigned gap (a known precision issue in that dataset), so it is patched
+  // in here manually to avoid misrepresenting the war's central territorial stakes.
+  var prussianBlue = getComputedStyle(document.documentElement).getPropertyValue('--prussian').trim() || '#17395c';
+  var prussiaStyle = { color:'#000000', weight:1.5, opacity:.75, fillColor: prussianBlue, fillOpacity:.28 };
+
+  var schlesienPatch = [
     [52.00,15.00],[52.00,17.20],[50.90,18.35],[50.05,18.30],
     [50.10,16.30],[50.55,14.85],[51.20,14.75]
   ];
-  var prussiaEastPrussia = [
-    [55.30,20.90],[55.05,22.75],[54.55,22.85],[54.05,22.20],[53.90,21.00],
-    [54.15,19.65],[54.45,19.45],[54.60,19.70]
-  ];
-  var prussianBlue = getComputedStyle(document.documentElement).getPropertyValue('--prussian').trim() || '#17395c';
-  [prussiaBrandenburgPommern, prussiaSchlesien, prussiaEastPrussia].forEach(function(coords){
-    L.polygon(coords, {
-      color:'#000000', weight:1.5, opacity:.75,
-      fillColor: prussianBlue, fillOpacity:.28
-    }).addTo(map);
-  });
+  L.polygon(schlesienPatch, prussiaStyle).addTo(map);
+
+  fetch('data/prussia_1783.geojson')
+    .then(function(res){ return res.json(); })
+    .then(function(geojson){
+      L.geoJSON(geojson, { style: prussiaStyle }).addTo(map);
+    })
+    .catch(function(err){ console.error('Failed to load Prussia boundary GeoJSON:', err); });
 
   L.polyline(battles.map(function(b){ return [b.lat, b.lng]; }), {
     color: getComputedStyle(document.documentElement).getPropertyValue('--gilt').trim() || '#a9832f',
