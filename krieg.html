@@ -162,7 +162,7 @@ a{ color:inherit; }
 @media (max-width:640px){ #battleMap{ height:460px; } }
 
 /* Age the base tiles into an old-paper tone */
-.leaflet-tile-pane{ filter:sepia(.6) saturate(1.5) hue-rotate(-8deg) contrast(.92) brightness(1.1); }
+.leaflet-tile-pane{ filter:sepia(.6) saturate(1.5) hue-rotate(-8deg) contrast(1.05) brightness(.82); }
 :root[data-theme="dark"] .leaflet-tile-pane,
 :root:not([data-theme="light"]) .leaflet-tile-pane{
   @media (prefers-color-scheme: dark){
@@ -227,6 +227,7 @@ a{ color:inherit; }
 
 .legend{ display:flex; flex-wrap:wrap; gap:1.6rem; justify-content:center; margin:1.2rem auto 0; font-size:.85rem; color:var(--ink-soft); }
 .legend-item{ display:flex; align-items:center; gap:.5em; }
+.legend-fill{ width:20px; height:14px; display:inline-block; background:color-mix(in srgb, var(--prussian) 45%, transparent); border:1.5px solid #000; }
 .legend-line{ width:26px; height:0; border-top:2px dashed var(--gilt); display:inline-block; }
 .legend-dot{ width:14px; height:14px; background:var(--gilt-bright); border:1px solid var(--ink); transform:rotate(45deg); display:inline-block; }
 
@@ -272,9 +273,10 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
   <div class="legend">
     <span class="legend-item"><span class="legend-dot"></span>会戦地（クリックで詳細）</span>
     <span class="legend-item"><span class="legend-line"></span>大王の転戦ルート（模式的な順路）</span>
+    <span class="legend-item"><span class="legend-fill"></span>プロイセン王国の版図（開戦時点）</span>
   </div>
 
-  <p class="map-footnote">※ 地図中の破線は各会戦の年代順のつながりを示す模式的なもので、実際の行軍路そのものを再現したものではありません。地図タイル: OpenStreetMap / CARTO。</p>
+  <p class="map-footnote">※ 地図中の破線は各会戦の年代順のつながりを示す模式的なもので、実際の行軍路そのものを再現したものではありません。青く塗った領域は1756年開戦時点のプロイセン領のおおよその範囲で、東プロイセンは西プロイセン（1772年獲得）で結ばれる前の飛び地として描いています。地図タイル: OpenStreetMap / CARTO。</p>
 </div>
 
 <footer>
@@ -313,6 +315,29 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
     subdomains:'abcd',
     maxZoom:18
   }).addTo(map);
+
+  // Kingdom of Prussia's approximate territory at the outbreak of the Seven Years' War (1756):
+  // Brandenburg + Pommern + Schlesien form one contiguous bloc; Ostpreußen remains a separate exclave
+  // (West Prussia would not connect the two until the 1772 partition of Poland).
+  var prussiaBrandenburgPommern = [
+    [53.43,14.55],[54.18,15.58],[54.05,16.90],[53.35,17.05],[52.90,15.75],
+    [52.35,14.55],[51.76,14.33],[52.30,13.60],[52.92,12.80],[53.45,13.10],[53.85,13.68]
+  ];
+  var prussiaSchlesien = [
+    [52.00,15.00],[52.00,17.20],[50.90,18.35],[50.05,18.30],
+    [50.10,16.30],[50.55,14.85],[51.20,14.75]
+  ];
+  var prussiaEastPrussia = [
+    [55.30,20.90],[55.05,22.75],[54.55,22.85],[54.05,22.20],[53.90,21.00],
+    [54.15,19.65],[54.45,19.45],[54.60,19.70]
+  ];
+  var prussianBlue = getComputedStyle(document.documentElement).getPropertyValue('--prussian').trim() || '#17395c';
+  [prussiaBrandenburgPommern, prussiaSchlesien, prussiaEastPrussia].forEach(function(coords){
+    L.polygon(coords, {
+      color:'#000000', weight:1.5, opacity:.75,
+      fillColor: prussianBlue, fillOpacity:.28
+    }).addTo(map);
+  });
 
   L.polyline(battles.map(function(b){ return [b.lat, b.lng]; }), {
     color: getComputedStyle(document.documentElement).getPropertyValue('--gilt').trim() || '#a9832f',
