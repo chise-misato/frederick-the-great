@@ -303,7 +303,7 @@ a:focus-visible, button:focus-visible, .leuthen:focus-visible{ outline:2px solid
   <div class="kheader-mark">Leuthen</div>
   <h1 class="section-head">ロイテンの戦い ― 戦況アニメーション</h1>
   <p class="range">1757年12月5日 ・ シュレージエン、ブレスラウ西方</p>
-  <p class="lede">倍する敵を前に、フリードリヒは丘陵に隠れて全軍を南へ動かし、斜線陣（schräge Schlachtordnung）で敵左翼に全重量を叩きつけた。プロイセン軍事史の最高傑作とされる一日を、四つの時刻で辿る。下のボタンで時刻を切り替えると、各部隊が滑らかに移動・展開する。</p>
+  <p class="lede">倍する敵を前に、フリードリヒは丘陵に隠れて全軍を南へ動かし、斜線陣（schräge Schlachtordnung）で敵左翼に全重量を叩きつけた。プロイセン軍事史の最高傑作とされる一日を、六つの局面で辿る。下のボタンで時刻を切り替えると、各部隊が滑らかに移動・展開する。</p>
 </header>
 
 <section class="leuthen" tabindex="0" aria-roledescription="戦況アニメーション">
@@ -396,23 +396,43 @@ a:focus-visible, button:focus-visible, .leuthen:focus-visible{ outline:2px solid
 
       <!-- ===== movement arrows, toggled per phase ===== -->
       <g id="arrows">
+        <!-- 10:30 : Zieten's hussars demonstrate against the Austrian right -->
         <g class="phase" data-step="1">
-          <path class="arrow-mv" marker-end="url(#ahMv)" d="M182,300 C206,362 250,392 314,414"/>
-          <text class="arrow-t" x="150" y="356">側面行軍（丘陵で遮蔽）</text>
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M320,246 C386,184 456,148 512,140"/>
+          <text class="arrow-t" x="300" y="214">オーストリア右翼への威嚇攻撃</text>
         </g>
+        <!-- 11:30 : flank march south + Austrian left cavalry pulled to the right -->
         <g class="phase" data-step="2">
-          <path class="arrow-mv" marker-end="url(#ahMv)" d="M372,432 C430,412 470,400 516,392"/>
-          <path class="arrow-mv" marker-end="url(#ahMv)" d="M508,404 C518,360 518,344 514,320"/>
-          <text class="arrow-t" x="360" y="452">梯隊突撃 → 左翼を巻き上げ</text>
-          <path class="clash" d="M551,462 l4,11 l11,-3 l-8,9 l5,11 l-11,-7 l-11,7 l5,-11 l-8,-9 l11,3 z"/>
+          <path class="arrow-mv" marker-end="url(#ahMv)" d="M236,276 C250,338 300,420 372,452"/>
+          <text class="arrow-t" x="132" y="392" transform="rotate(52 132 392)">側面行軍（丘陵で遮蔽）</text>
+          <path class="arrow-au" marker-end="url(#ahMv)" d="M624,470 C660,412 660,372 648,344"/>
+          <text class="arrow-t" x="588" y="430">左翼騎兵 → 右翼支援へ</text>
         </g>
+        <!-- 14:00 : east-west line attacks the Austrian left column from the south -->
         <g class="phase" data-step="3">
-          <path class="arrow-pr" marker-end="url(#ahMv)" d="M440,214 C466,176 484,160 500,150"/>
-          <path class="arrow-au" marker-end="url(#ahMv)" d="M472,146 C452,148 440,150 428,156"/>
-          <path class="arrow-pr" marker-end="url(#ahMv)" d="M596,300 C654,300 700,300 736,300"/>
-          <text class="arrow-t" x="452" y="196">ドリーゼン反撃</text>
-          <text class="arrow-t" x="612" y="292">潰走を追撃</text>
-          <path class="clash" d="M500,150 l4,11 l11,-3 l-8,9 l5,11 l-11,-7 l-11,7 l5,-11 l-8,-9 l11,3 z"/>
+          <path class="arrow-mv" marker-end="url(#ahMv)" d="M430,486 L430,452"/>
+          <path class="arrow-mv" marker-end="url(#ahMv)" d="M480,490 L480,456"/>
+          <path class="arrow-mv" marker-end="url(#ahMv)" d="M530,492 L530,458"/>
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M628,452 C616,420 598,400 574,386"/>
+          <text class="arrow-t" x="404" y="548">横隊で南から側面攻撃</text>
+        </g>
+        <!-- 16:00 : converging assault on Leuthen and its church -->
+        <g class="phase" data-step="4">
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M498,404 C516,378 534,356 552,338"/>
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M470,318 C498,318 522,320 544,322"/>
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M556,410 C556,384 556,364 556,344"/>
+          <text class="arrow-t" x="388" y="456">ロイテン教会へ集中突撃</text>
+          <path class="clash" d="M560,322 l4,11 l11,-3 l-8,9 l5,11 l-11,-7 l-11,7 l5,-11 l-8,-9 l11,3 z"/>
+        </g>
+        <!-- 16:30 : both cavalries join at Leuthen, Austrians rout north-east -->
+        <g class="phase" data-step="5">
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M448,232 C458,210 468,202 478,194"/>
+          <path class="arrow-au" marker-end="url(#ahMv)" d="M536,150 C506,162 488,178 476,192"/>
+          <path class="arrow-au" marker-end="url(#ahMv)" d="M600,312 C660,270 716,224 766,190"/>
+          <text class="arrow-t" x="408" y="214">ドリーゼン反撃</text>
+          <text class="arrow-t" x="636" y="188">オーストリア軍 北東へ潰走</text>
+          <path class="clash" d="M476,192 l4,11 l11,-3 l-8,9 l5,11 l-11,-7 l-11,7 l5,-11 l-8,-9 l11,3 z"/>
+          <path class="clash" d="M558,320 l4,11 l11,-3 l-8,9 l5,11 l-11,-7 l-11,7 l5,-11 l-8,-9 l11,3 z"/>
         </g>
       </g>
 
@@ -444,9 +464,11 @@ a:focus-visible, button:focus-visible, .leuthen:focus-visible{ outline:2px solid
 
   <div class="lt-controls" role="group" aria-label="時刻の切り替え">
     <button class="lt-btn" type="button" data-step="0">08:00</button>
-    <button class="lt-btn" type="button" data-step="1">11:30</button>
-    <button class="lt-btn" type="button" data-step="2">14:00</button>
-    <button class="lt-btn" type="button" data-step="3">16:30</button>
+    <button class="lt-btn" type="button" data-step="1">10:30</button>
+    <button class="lt-btn" type="button" data-step="2">11:30</button>
+    <button class="lt-btn" type="button" data-step="3">14:00</button>
+    <button class="lt-btn" type="button" data-step="4">16:00</button>
+    <button class="lt-btn" type="button" data-step="5">16:30</button>
     <button class="lt-play" type="button">▶ 自動再生</button>
   </div>
   <p class="lt-hint">← → キーでも切り替えできます</p>
@@ -477,54 +499,58 @@ a:focus-visible, button:focus-visible, .leuthen:focus-visible{ outline:2px solid
   var NS = 'http://www.w3.org/2000/svg';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var TIMES  = ['08:00','11:30','14:00','16:30'];
+  var TIMES  = ['08:00','10:30','11:30','14:00','16:00','16:30'];
   var PHASES = [
-    { title:'08:00 ― 前哨戦、ボルネの騎兵戦',
-      body:'払暁、フリードリヒは約36,000のプロイセン軍をノイマルクトから東へ進めた。前衛のツィーテン騎兵が、ボルネ付近のオーストリア前衛騎兵（ノスティッツ）を急襲して蹴散らし、村を占領する。王はショーンベルクの丘から、ニッペルンからザークシュッツまで約8kmに伸びきったオーストリア軍（約66,000）の全戦列を一望した。カール・フォン・ロートリンゲン公とダウン元帥は、正面からの決戦を予期して布陣し、動かない。' },
-    { title:'11:30 ― 丘陵に隠れた側面行軍、斜線陣へ',
-      body:'王は正面攻撃を避け、全軍を右へ向け変えて南へ行進させる。低い丘陵の連なりが行軍を敵の視界から遮り、わずかに見えるプロイセン軍の縦隊は「退却」と誤認された。カール公は右翼（北）から兵を抽出しない。プロイセン軍は隊列を保ったままザークシュッツ南方に達し、右翼を前へ出して左翼を後方へ引いた斜線陣（schräge Schlachtordnung）を組む。' },
-    { title:'14:00 ― オーストリア左翼の崩壊とロイテンの死闘',
-      body:'13時頃、プロイセン軍右翼がザークシュッツのオーストリア左翼へ殺到する。守るヴュルテンベルク・バイエルンの弱兵は、梯隊で押し寄せる歩兵・側面をつく騎兵・機動砲兵の十字砲火に耐えられず潰走した。オーストリア軍はロイテン村を軸に戦線を直角に折り曲げ、新たな正面を作ろうと右翼から兵を送り込む。村の内外に歩兵が数十列の厚みで密集し、教会の墓地をめぐって凄惨な白兵戦となった。' },
-    { title:'16:30 ― 騎兵決戦、そして全面潰走',
-      body:'劣勢を挽回しようと、ルケージ伯のオーストリア騎兵がプロイセン軍左翼へ突撃する。だがラダクスドルフ背後に伏せていたドリーゼンのプロイセン騎兵が、その側面と背後へ逆襲し騎兵集団を粉砕した。支えを失ったオーストリア軍は日没とともに総崩れとなり、シュヴァイトニッツ川を越えてリッサ方面へ敗走する。損害はプロイセン軍約6,400に対し、オーストリア軍は捕虜を含め約2万。シュレージエンは奪還され、その夜、王はリッサの城館に至った。' }
+    { title:'08:00 ― 両軍の初期配置（会戦前）',
+      body:'払暁、プロイセン軍（約36,000）はノイマルクトから東進し、ボルネ付近で攻撃隊形を整え始めた。オーストリア軍（約66,000）はニッペルンからザークシュッツまで約8kmにわたり南北に長い戦列を布き、騎兵はいずれも歩兵戦列の後方に控えている。カール・フォン・ロートリンゲン公とダウン元帥は、プロイセン軍が正面から、あるいは自軍右翼に攻めかかると予想していた。まだ戦端は開かれていない。' },
+    { title:'10:30 ― ツィーテン軽騎兵によるオーストリア右翼への威嚇攻撃',
+      body:'フリードリヒは前衛のツィーテン軽騎兵を北へ走らせ、ニッペルン付近のオーストリア軍右翼へ示威的な攻撃をかけさせた。オーストリア軍はこれに応じて前衛騎兵とルケージ伯の騎兵を右翼へ前進させ、主攻正面は自軍右翼にありと確信する。プロイセン軍主力は、その間もボルネ後方で静かに隊形を整えていた。' },
+    { title:'11:30 ― 丘陵に隠れた側面行軍、オーストリア左翼騎兵は右翼へ',
+      body:'一部の騎兵を右翼正面に残したまま、プロイセン軍主力は右へ向きを変え、低い丘陵（ショーンベルク）に隠れて南へ行進を始めた。丘に遮られて縦隊はオーストリア軍の視界から消え、「プロイセン軍は退却した」との誤報すら流れる。同じころ、オーストリア軍は手薄な右翼を案じ、左翼を守る騎兵の一部を右翼支援へ北上させた。ただでさえ弱い左翼が、さらに騎兵の傘を失う。' },
+    { title:'14:00 ― 横隊での南からの側面攻撃',
+      body:'プロイセン軍はオーストリア軍左翼の完全に南側へ回り込み、東西に長い横隊を展開した。西端ショーンベルク上にドリーゼンの騎兵、東端にツィーテンの軽騎兵、その間を歩兵と機動砲兵が埋める。南北に細長い縦隊で立つオーストリア軍左翼に対し、プロイセン軍は横隊の全火力を側面から浴びせつつ北へ前進する。ザークシュッツを守るヴュルテンベルクの弱兵は、たちまち押し崩されていく。' },
+    { title:'16:00 ― ロイテン村・教会をめぐる白兵戦、そして教会の突破',
+      body:'崩れた左翼を見て、オーストリア軍はロイテン村を軸に戦線を直角に折り曲げ、村の内外に歩兵を数十列の厚みで詰め込んだ。プロイセン軍の擲弾兵と近衛は、南と西から村へ殺到する。石垣をめぐらせた教会と墓地が最後の抵抗拠点となり、一進一退の白兵戦が続いたが、16時頃、プロイセン軍はついに教会を突破した。オーストリア軍の新戦線は決定的に破られる。' },
+    { title:'16:30 ― 両軍騎兵の投入、オーストリア軍の北東への潰走',
+      body:'勝敗を分けたのは騎兵だった。プロイセン軍左翼へ突入したルケージ伯の騎兵を、ラダクスドルフ背後に伏せていたドリーゼンの騎兵が側面から粉砕。東からはツィーテンの軽騎兵も突入し、ロイテンの戦闘へ両軍の騎兵がなだれ込む。支えを失ったオーストリア軍は総崩れとなり、シュヴァイトニッツ川とリッサへ向けて北東へ敗走した。損害はプロイセン軍約6,400に対し、オーストリア軍は捕虜を含め約2万。シュレージエンは奪還された。' }
   ];
 
-  // states: [08:00, 11:30, 14:00, 16:30]  a=facing(deg, +CW), o=opacity(optional)
+  // states: [08:00, 10:30, 11:30, 14:00, 16:00, 16:30]  a=facing(deg, +CW), o=opacity(optional)
   var UNITS = [
-    // ---- Prussian (blue) ----  north(refused left) -> south(advanced right)
+    // ---- Prussian (blue) ----
     { id:'p6', side:'pr', type:'cav', label:'ドリーゼン騎兵', states:[
-      {x:150,y:410,a:5},{x:238,y:200,a:18},{x:438,y:206,a:0,o:.55},{x:506,y:166,a:-20}] },
-    { id:'p5', side:'pr', type:'inf', label:'左翼（後退）', states:[
-      {x:122,y:380,a:5},{x:252,y:250,a:38},{x:476,y:276,a:12},{x:566,y:270,a:25}] },
-    { id:'p4', side:'pr', type:'inf', label:'近衛・中央', states:[
-      {x:132,y:346,a:5},{x:286,y:296,a:44},{x:498,y:330,a:24},{x:612,y:330,a:44}] },
+      {x:170,y:396,a:5},{x:205,y:388,a:5},{x:238,y:200,a:15},{x:375,y:408,a:-55},{x:452,y:246,a:0},{x:496,y:236,a:10}] },
+    { id:'p5', side:'pr', type:'inf', label:'左翼歩兵', states:[
+      {x:150,y:362,a:5},{x:192,y:358,a:5},{x:252,y:250,a:38},{x:432,y:466,a:-82},{x:474,y:312,a:-45},{x:536,y:286,a:-40}] },
+    { id:'p4', side:'pr', type:'inf', label:'近衛歩兵', states:[
+      {x:162,y:332,a:5},{x:202,y:328,a:5},{x:286,y:296,a:44},{x:480,y:484,a:-88},{x:508,y:340,a:-62},{x:560,y:314,a:-48}] },
     { id:'p7', side:'pr', type:'hq', label:'国王本営', states:[
-      {x:226,y:212,a:0},{x:312,y:338,a:0},{x:474,y:362,a:0},{x:604,y:372,a:0}] },
-    { id:'p3', side:'pr', type:'inf', label:'突撃右翼', states:[
-      {x:156,y:314,a:5},{x:338,y:380,a:46},{x:486,y:388,a:34},{x:624,y:408,a:56}] },
+      {x:235,y:215,a:0},{x:250,y:225,a:0},{x:312,y:338,a:0},{x:498,y:536,a:0},{x:486,y:448,a:0},{x:582,y:366,a:0}] },
+    { id:'p3', side:'pr', type:'inf', label:'擲弾兵', states:[
+      {x:178,y:302,a:5},{x:216,y:300,a:5},{x:338,y:380,a:46},{x:528,y:490,a:-90},{x:536,y:366,a:-80},{x:586,y:300,a:-58}] },
     { id:'p8', side:'pr', type:'art', label:'重砲', states:[
-      {x:168,y:340,a:0},{x:360,y:410,a:0},{x:452,y:420,a:0},{x:588,y:442,a:0}] },
+      {x:192,y:342,a:0},{x:226,y:340,a:0},{x:360,y:410,a:0},{x:556,y:506,a:0},{x:512,y:430,a:0},{x:602,y:392,a:0}] },
     { id:'p2', side:'pr', type:'inf', label:'前衛歩兵', states:[
-      {x:196,y:280,a:5},{x:386,y:438,a:44},{x:472,y:442,a:34},{x:612,y:470,a:56}] },
-    { id:'p1', side:'pr', type:'cav', label:'ツィーテン前衛', states:[
-      {x:262,y:236,a:0},{x:350,y:470,a:34},{x:452,y:478,a:30},{x:600,y:516,a:50}] },
-    // ---- Austrian (red) ----
+      {x:210,y:275,a:5},{x:238,y:272,a:5},{x:386,y:438,a:44},{x:582,y:482,a:-92},{x:556,y:398,a:-84},{x:596,y:344,a:-56}] },
+    { id:'p1', side:'pr', type:'cav', label:'ツィーテン軽騎兵', states:[
+      {x:305,y:240,a:0},{x:500,y:126,a:-24},{x:398,y:112,a:-10},{x:632,y:462,a:-70},{x:648,y:392,a:-58},{x:632,y:340,a:15}] },
+    // ---- Austrian (red) ----  cavalry deployed behind the infantry line at 08:00
     { id:'a1', side:'au', type:'cav', label:'前衛騎兵', states:[
-      {x:330,y:250,a:0},{x:636,y:132,a:0},{x:648,y:150,a:15},{x:792,y:104,a:40,o:.35}] },
+      {x:642,y:182,a:0},{x:566,y:158,a:0},{x:562,y:158,a:0},{x:558,y:140,a:0},{x:612,y:226,a:22},{x:724,y:182,a:40,o:.35}] },
     { id:'a2', side:'au', type:'inf', label:'右翼歩兵', states:[
-      {x:598,y:150,a:0},{x:598,y:150,a:0},{x:588,y:182,a:20},{x:720,y:150,a:70,o:.5}] },
+      {x:586,y:150,a:0},{x:588,y:150,a:0},{x:588,y:150,a:0},{x:588,y:150,a:0},{x:604,y:182,a:42},{x:694,y:192,a:80,o:.5}] },
     { id:'a3', side:'au', type:'inf', label:'中央歩兵', states:[
-      {x:582,y:252,a:0},{x:582,y:252,a:0},{x:566,y:236,a:30},{x:700,y:236,a:80,o:.5}] },
+      {x:575,y:250,a:0},{x:575,y:250,a:0},{x:578,y:252,a:0},{x:566,y:286,a:15},{x:572,y:270,a:72},{x:660,y:232,a:70,o:.45}] },
     { id:'a4', side:'au', type:'inf', label:'ロイテン守備', states:[
-      {x:576,y:322,a:0},{x:576,y:322,a:0},{x:558,y:320,a:45},{x:672,y:332,a:85,o:.55}] },
+      {x:584,y:322,a:0},{x:584,y:322,a:0},{x:584,y:322,a:0},{x:566,y:324,a:10},{x:560,y:322,a:90},{x:640,y:272,a:60,o:.5}] },
     { id:'a4b', side:'au', type:'inf', label:'増援（ロイテン）', states:[
-      {x:576,y:362,a:0,o:0},{x:576,y:362,a:0,o:0},{x:544,y:296,a:50,o:1},{x:664,y:306,a:85,o:.5}] },
+      {x:584,y:382,a:0,o:0},{x:584,y:382,a:0,o:0},{x:584,y:382,a:0,o:0},{x:548,y:304,a:10,o:1},{x:552,y:296,a:90,o:1},{x:650,y:250,a:60,o:.4}] },
     { id:'a5', side:'au', type:'inf', label:'左翼（弱兵）', states:[
-      {x:560,y:452,a:0},{x:560,y:452,a:0},{x:584,y:502,a:70,o:.7},{x:748,y:556,a:95,o:.25}] },
+      {x:555,y:450,a:0},{x:555,y:450,a:0},{x:558,y:452,a:0},{x:560,y:458,a:20,o:.9},{x:600,y:362,a:110,o:.5},{x:700,y:322,a:90,o:.2}] },
     { id:'a6', side:'au', type:'cav', label:'左翼騎兵', states:[
-      {x:614,y:510,a:0},{x:614,y:510,a:0},{x:650,y:542,a:55},{x:812,y:540,a:95,o:.3}] },
+      {x:620,y:478,a:0},{x:620,y:478,a:0},{x:648,y:332,a:0},{x:650,y:322,a:0},{x:628,y:300,a:0},{x:702,y:262,a:30,o:.4}] },
     { id:'a7', side:'au', type:'cav', label:'ルケージ騎兵', states:[
-      {x:656,y:120,a:0},{x:656,y:120,a:0},{x:600,y:116,a:-10},{x:500,y:150,a:-25,o:.3}] }
+      {x:652,y:120,a:0},{x:610,y:104,a:0},{x:610,y:104,a:0},{x:606,y:112,a:0},{x:600,y:138,a:0},{x:466,y:192,a:-30,o:.3}] }
   ];
 
   function el(name, attrs){
@@ -635,14 +661,14 @@ a:focus-visible, button:focus-visible, .leuthen:focus-visible{ outline:2px solid
     playBtn.classList.add('on');
     playBtn.textContent = '❚❚ 停止';
     timer = setInterval(function(){
-      var nx = (step + 1) % 4;
+      var nx = (step + 1) % TIMES.length;
       apply(nx);
-      if(nx === 3) stopPlay();
+      if(nx === TIMES.length - 1) stopPlay();
     }, 2800);
   }
   playBtn.addEventListener('click', function(){
     if(timer){ stopPlay(); return; }
-    if(step === 3){ apply(0); setTimeout(startPlay, 80); }
+    if(step === TIMES.length - 1){ apply(0); setTimeout(startPlay, 80); }
     else startPlay();
   });
 
@@ -651,7 +677,7 @@ a:focus-visible, button:focus-visible, .leuthen:focus-visible{ outline:2px solid
     b.addEventListener('click', function(){ stopPlay(); apply(+b.dataset.step); });
   });
   wrap.addEventListener('keydown', function(e){
-    if(e.key === 'ArrowRight'){ stopPlay(); apply(Math.min(3, step + 1)); e.preventDefault(); }
+    if(e.key === 'ArrowRight'){ stopPlay(); apply(Math.min(TIMES.length - 1, step + 1)); e.preventDefault(); }
     else if(e.key === 'ArrowLeft'){ stopPlay(); apply(Math.max(0, step - 1)); e.preventDefault(); }
   });
 
