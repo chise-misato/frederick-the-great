@@ -1,0 +1,660 @@
+<meta charset="UTF-8">
+<title>ロイテンの戦い ― 戦況アニメーション</title>
+<meta name="description" content="1757年12月5日、フリードリヒ大王がシュレージエンを奪還したロイテンの戦い。斜線陣による側面行軍から、左翼の崩壊、ロイテン村の死闘、騎兵決戦までを、08:00・11:30・14:00・16:30の4局面でSVGアニメーション表示する戦況図。">
+<meta property="og:site_name" content="鷲とフルート">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ロイテンの戦い ― 戦況アニメーション">
+<meta property="og:description" content="斜線陣による側面行軍から騎兵決戦まで、ロイテンの戦いを4局面のSVGアニメーションで辿る戦況図。">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9TPYR9F9T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9TPYR9F9T');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%85%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== Design tokens (shared with index.html) ===================== */
+:root{
+  --ink:#1c2b39;
+  --ink-soft:#2f4256;
+  --prussian:#17395c;
+  --prussian-bright:#3f6f9e;
+  --parchment:#f4ecdb;
+  --parchment-dim:#e8dcc2;
+  --parchment-line:#d8c9a6;
+  --sanssouci:#6f8c68;
+  --sanssouci-soft:#e4e9de;
+  --gilt:#a9832f;
+  --gilt-bright:#c79a3d;
+  --steel:#8b95a0;
+  --panel-dark:#132132;
+  --panel-dark-2:#0f1a29;
+  --text-on-dark:#e9e1c9;
+  --text-on-dark-dim:#aeb9c4;
+  --shadow: 0 18px 40px -20px rgba(20,30,42,.35);
+  color-scheme: light;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --ink:#e9e1c9;
+    --ink-soft:#cdbf9c;
+    --prussian:#5f93c4;
+    --prussian-bright:#8fb8de;
+    --parchment:#12181f;
+    --parchment-dim:#171f28;
+    --parchment-line:#31404c;
+    --sanssouci:#9db794;
+    --sanssouci-soft:#1a231c;
+    --gilt:#d8b25a;
+    --gilt-bright:#e9c877;
+    --steel:#7f8b96;
+    --panel-dark:#0a1119;
+    --panel-dark-2:#070d13;
+    --text-on-dark:#e9e1c9;
+    --text-on-dark-dim:#93a0ab;
+    --shadow: 0 18px 40px -20px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e9e1c9;
+  --ink-soft:#cdbf9c;
+  --prussian:#5f93c4;
+  --prussian-bright:#8fb8de;
+  --parchment:#12181f;
+  --parchment-dim:#171f28;
+  --parchment-line:#31404c;
+  --sanssouci:#9db794;
+  --sanssouci-soft:#1a231c;
+  --gilt:#d8b25a;
+  --gilt-bright:#e9c877;
+  --steel:#7f8b96;
+  --panel-dark:#0a1119;
+  --panel-dark-2:#070d13;
+  --text-on-dark:#e9e1c9;
+  --text-on-dark-dim:#93a0ab;
+  --shadow: 0 18px 40px -20px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+}
+
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'EB Garamond', Georgia, 'Noto Serif JP', serif;
+  font-size:18px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{ text-wrap:balance; margin:0; font-weight:600; }
+p{ margin:0 0 1em; }
+a{ color:inherit; }
+::selection{ background:var(--gilt); color:var(--panel-dark-2); }
+
+.section-head{ font-family:'Cormorant Garamond', serif; font-size:clamp(2rem, 4.2vw, 3rem); letter-spacing:.01em; }
+
+/* ===================== Nav (shared) ===================== */
+.topnav{
+  position:fixed; top:0; left:0; right:0; z-index:1200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.9rem clamp(1.2rem,4vw,3rem);
+  background:color-mix(in srgb, var(--parchment) 88%, transparent);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--parchment-line);
+}
+.brandmark{
+  font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.05rem; letter-spacing:.06em;
+  display:flex; align-items:baseline; gap:.5em; text-decoration:none;
+}
+.brandmark small{ font-size:.65rem; letter-spacing:.18em; color:var(--steel); font-style:italic; }
+.navlinks{ display:flex; gap:1.5rem; list-style:none; margin:0; padding:0; flex-wrap:wrap; justify-content:flex-end; }
+.navlinks a{
+  text-decoration:none; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-soft); position:relative; padding-bottom:.3em;
+}
+.navlinks a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--gilt);
+  transition:right .3s ease;
+}
+.navlinks a:hover::after{ right:0; }
+.navlinks .current{ font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--prussian); border-bottom:1px solid var(--gilt); padding-bottom:.3em; }
+
+/* ===================== Header ===================== */
+.kheader{
+  padding:8.5rem 1.4rem 2.4rem; text-align:center;
+  background:radial-gradient(ellipse 80% 55% at 50% 0%, color-mix(in srgb, var(--prussian) 12%, transparent), transparent 60%), var(--parchment);
+}
+.kheader-mark{ font-family:'UnifrakturMaguntia', serif; font-size:clamp(2.2rem,5vw,3rem); color:var(--prussian); margin-bottom:.2em; line-height:1; }
+.kheader .range{ font-size:.85rem; letter-spacing:.24em; text-transform:uppercase; color:var(--steel); margin:1rem 0 1.4rem; }
+.kheader p.lede{ max-width:62ch; margin:0 auto; color:var(--ink-soft); font-size:1.02rem; }
+
+/* ===================== Battle widget ===================== */
+.leuthen{
+  --land:#d9e5c6; --land-dark:#c6d7a7; --contour:#9bb277;
+  --water:#a8c6dc; --water-hi:#d3e4ef;
+  --road:#c9b389; --road-hi:#efe3c8;
+  --wood:#8aa76f; --marsh:#c2d4c4;
+  --bldg:#ece3cb; --bldg-line:#8a7a55;
+  --paper:#f4ecdb;
+  --pr:#2f5c9e; --pr-line:#132a49;
+  --au:#b23b3b; --au-line:#4d1616;
+  --sym:#f6efe0; --front:#c79a3d;
+  --mink:#243342; --halo:#f4ecdb; --frame:#b9a97f;
+
+  max-width:1120px; margin:0 auto; padding:0 clamp(1rem,4vw,1.6rem) 1rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .leuthen{
+    --land:#26301f; --land-dark:#313d25; --contour:#5c6f43;
+    --water:#2c4657; --water-hi:#436678;
+    --road:#5a4f39; --road-hi:#847451;
+    --wood:#40562f; --marsh:#2c3a30;
+    --bldg:#2a3340; --bldg-line:#b7a479;
+    --paper:#161d15;
+    --pr:#5f93c4; --pr-line:#0b1626;
+    --au:#d06a5f; --au-line:#361010;
+    --sym:#0d130c; --front:#e0b95f;
+    --mink:#e7e0cb; --halo:#131a12; --frame:#4a4634;
+  }
+}
+:root[data-theme="dark"] .leuthen{
+  --land:#26301f; --land-dark:#313d25; --contour:#5c6f43;
+  --water:#2c4657; --water-hi:#436678;
+  --road:#5a4f39; --road-hi:#847451;
+  --wood:#40562f; --marsh:#2c3a30;
+  --bldg:#2a3340; --bldg-line:#b7a479;
+  --paper:#161d15;
+  --pr:#5f93c4; --pr-line:#0b1626;
+  --au:#d06a5f; --au-line:#361010;
+  --sym:#0d130c; --front:#e0b95f;
+  --mink:#e7e0cb; --halo:#131a12; --frame:#4a4634;
+}
+
+.lt-stage{
+  border:1px solid var(--parchment-line); box-shadow:var(--shadow);
+  background:var(--land); overflow:hidden;
+}
+.lt-stage svg{ display:block; width:100%; height:auto; }
+
+/* --- static terrain --- */
+.lt-water-main{ fill:none; stroke:var(--water); stroke-width:11; stroke-linecap:round; opacity:.9; }
+.lt-water-hi{ fill:none; stroke:var(--water-hi); stroke-width:3; stroke-linecap:round; opacity:.85; }
+.lt-road{ fill:none; stroke:var(--road); stroke-linecap:round; }
+.lt-road-hi{ fill:none; stroke:var(--road-hi); stroke-width:2; stroke-dasharray:2 6; stroke-linecap:round; }
+.lt-high{ fill:var(--land-dark); }
+.lt-contour{ fill:none; stroke:var(--contour); stroke-width:1; stroke-dasharray:3 4; opacity:.7; }
+.lt-wood{ fill:var(--wood); opacity:.82; }
+.lt-terr-name{ font:italic 11px 'Cormorant Garamond', serif; fill:var(--mink); opacity:.75;
+  paint-order:stroke; stroke:var(--halo); stroke-width:3px; }
+.vil rect{ fill:var(--bldg); stroke:var(--bldg-line); stroke-width:.6; }
+.vil .cross{ stroke:var(--mink); stroke-width:1.3; }
+.vil .flag{ fill:var(--front); }
+.vil-name{ font:italic 11.5px 'Cormorant Garamond', serif; fill:var(--mink); text-anchor:middle;
+  paint-order:stroke; stroke:var(--halo); stroke-width:3.2px; }
+.compass circle{ fill:var(--paper); stroke:var(--mink); stroke-width:1; }
+.compass path{ fill:var(--mink); }
+.compass text{ font:600 10px 'EB Garamond',serif; fill:var(--mink); text-anchor:middle; }
+.scale text{ font:600 10px 'EB Garamond',serif; fill:var(--mink); }
+.lt-frame{ fill:none; stroke:var(--frame); stroke-width:2; }
+.lt-clock rect{ fill:color-mix(in srgb, var(--paper) 96%, transparent); stroke:var(--frame); stroke-width:1; }
+.lt-clock text{ font:600 13px 'Cormorant Garamond',serif; fill:var(--mink); text-anchor:middle; letter-spacing:.04em; }
+
+/* --- movement arrows (per phase) --- */
+.phase{ opacity:0; transition:opacity .7s ease; }
+.phase.on{ opacity:.95; }
+.arrow-mv{ fill:none; stroke:var(--gilt); stroke-width:4; stroke-linecap:round; }
+.arrow-pr{ fill:none; stroke:var(--pr); stroke-width:4; stroke-linecap:round; }
+.arrow-au{ fill:none; stroke:var(--au); stroke-width:4; stroke-linecap:round; }
+.arrow-t{ font:italic 11px 'Cormorant Garamond',serif; fill:var(--mink);
+  paint-order:stroke; stroke:var(--halo); stroke-width:3px; }
+.clash{ fill:var(--gilt-bright); stroke:var(--mink); stroke-width:.6; }
+
+/* --- units --- */
+.unit{ transition: all 1s ease-in-out; transform-box: fill-box; transform-origin: 0 0; }
+.unit-body{ transition: all 1s ease-in-out; transform-box: fill-box; transform-origin: center; }
+.unit.pr .u-box{ fill:var(--pr); stroke:var(--pr-line); stroke-width:1.2; }
+.unit.au .u-box{ fill:var(--au); stroke:var(--au-line); stroke-width:1.2; }
+.u-sym{ fill:none; stroke:var(--sym); stroke-width:2; stroke-linecap:round; }
+.u-sym-fill{ fill:var(--sym); }
+.u-flag{ fill:var(--front); }
+.u-front{ stroke:var(--front); stroke-width:3; }
+.unit-label{ transition: all 1s ease-in-out; transform-box: fill-box;
+  font:600 11px/1 'EB Garamond', serif; fill:var(--mink); text-anchor:middle;
+  paint-order:stroke; stroke:var(--halo); stroke-width:3px; }
+
+.leuthen.instant .unit,
+.leuthen.instant .unit-body,
+.leuthen.instant .unit-label,
+.leuthen.instant .phase{ transition:none !important; }
+@media (prefers-reduced-motion: reduce){
+  .unit,.unit-body,.unit-label,.phase{ transition:none !important; }
+}
+
+/* --- controls --- */
+.lt-controls{
+  display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center;
+  margin:1.1rem 0 .4rem;
+}
+.lt-btn, .lt-play{
+  font-family:'Cormorant Garamond', serif; font-size:1rem; letter-spacing:.06em;
+  padding:.5rem 1.1rem; cursor:pointer;
+  background:var(--parchment-dim); color:var(--ink);
+  border:1px solid var(--parchment-line); border-radius:2px;
+  transition:background .2s ease, color .2s ease, border-color .2s ease;
+}
+.lt-btn:hover, .lt-play:hover{ border-color:var(--gilt); }
+.lt-btn.active{ background:var(--prussian); color:var(--parchment); border-color:var(--prussian); }
+.lt-play.on{ background:var(--gilt); color:var(--panel-dark-2); border-color:var(--gilt); }
+
+/* --- panel --- */
+.lt-panel{
+  max-width:74ch; margin:1.1rem auto 0; padding:1.2rem 1.4rem;
+  border:1px solid var(--parchment-line); background:var(--parchment-dim); box-shadow:var(--shadow);
+}
+.lt-legend{
+  display:flex; flex-wrap:wrap; gap:.4rem 1.3rem; align-items:center;
+  font-size:.82rem; color:var(--ink-soft); margin-bottom:.9rem;
+  padding-bottom:.8rem; border-bottom:1px solid var(--parchment-line);
+}
+.sw{ display:inline-block; width:15px; height:10px; vertical-align:middle; margin-right:.45em; border:1px solid var(--ink); }
+.sw.pr{ background:#2f5c9e; } .sw.au{ background:#b23b3b; }
+.lt-title{ font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:var(--prussian); margin-bottom:.35em; }
+.lt-body{ margin:0; font-size:1rem; color:var(--ink); }
+.lt-note{ max-width:74ch; margin:1rem auto 0; text-align:center; font-size:.78rem; color:var(--steel); }
+.lt-hint{ text-align:center; font-size:.76rem; color:var(--steel); margin:.2rem 0 0; }
+
+footer{
+  padding:2.4rem 1.4rem; text-align:center; font-size:.78rem; letter-spacing:.08em;
+  background:var(--panel-dark-2); color:var(--text-on-dark-dim); margin-top:3rem;
+}
+footer a{ color:var(--gilt-bright); text-decoration:none; border-bottom:1px solid currentColor; margin:0 .6em; }
+
+a:focus-visible, button:focus-visible, .leuthen:focus-visible{ outline:2px solid var(--gilt); outline-offset:2px; }
+</style>
+
+<nav class="topnav">
+  <a class="brandmark" href="index.html">FR <small>· König von Preußen</small></a>
+  <ul class="navlinks">
+    <li><a href="index.html">大王の生涯</a></li>
+    <li><a href="genealogy.html">家系図</a></li>
+    <li><a href="karte.html">版図の変遷</a></li>
+    <li><a href="krieg.html">七年戦争</a></li>
+    <li><span class="current">ロイテンの戦い</span></li>
+    <li><a href="archiv.html">史料翻訳</a></li>
+  </ul>
+</nav>
+
+<header class="kheader">
+  <div class="kheader-mark">Leuthen</div>
+  <h1 class="section-head">ロイテンの戦い ― 戦況アニメーション</h1>
+  <p class="range">1757年12月5日 ・ シュレージエン、ブレスラウ西方</p>
+  <p class="lede">倍する敵を前に、フリードリヒは丘陵に隠れて全軍を南へ動かし、斜線陣（schräge Schlachtordnung）で敵左翼に全重量を叩きつけた。プロイセン軍事史の最高傑作とされる一日を、四つの時刻で辿る。下のボタンで時刻を切り替えると、各部隊が滑らかに移動・展開する。</p>
+</header>
+
+<section class="leuthen" tabindex="0" aria-roledescription="戦況アニメーション">
+  <div class="lt-stage">
+    <svg id="mapsvg" viewBox="0 0 960 620" role="img" aria-label="ロイテンの戦いの戦況図">
+      <defs>
+        <pattern id="marshHatch" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+          <rect width="8" height="8" fill="var(--marsh)"/>
+          <line x1="0" y1="0" x2="0" y2="8" stroke="var(--water)" stroke-width="1.3" opacity=".55"/>
+        </pattern>
+        <marker id="ahMv" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
+        </marker>
+      </defs>
+
+      <!-- ===== terrain ===== -->
+      <rect x="0" y="0" width="960" height="620" fill="var(--land)"/>
+
+      <!-- rolling / high ground -->
+      <ellipse class="lt-high" cx="445" cy="130" rx="80" ry="38" opacity=".7"/>
+      <text class="lt-terr-name" x="445" y="132" text-anchor="middle">ゾンネンベルク</text>
+      <path class="lt-high" opacity=".78"
+        d="M292,286 q40,-34 96,-18 q70,26 108,120 q26,86 -34,116 q-58,20 -104,-30 q-58,-72 -66,-134 q-6,-40 0,-54 z"/>
+      <path class="lt-contour"
+        d="M292,286 q40,-34 96,-18 q70,26 108,120 q26,86 -34,116 q-58,20 -104,-30 q-58,-72 -66,-134 q-6,-40 0,-54 z"/>
+      <text class="lt-terr-name" x="300" y="508" transform="rotate(50 300 508)">低い丘陵（ショーンベルク）</text>
+
+      <!-- marsh north of Nippern -->
+      <rect x="546" y="24" width="120" height="84" fill="url(#marshHatch)" opacity=".9"/>
+      <text class="lt-terr-name" x="606" y="20" text-anchor="middle">湿地</text>
+
+      <!-- woods by Sagschütz -->
+      <path class="lt-wood"
+        d="M430,506 q30,-20 72,-14 q46,6 78,20 q16,26 -6,40 q-62,20 -112,4 q-40,-16 -32,-50 z"/>
+      <text class="lt-terr-name" x="502" y="540" text-anchor="middle">松林</text>
+
+      <!-- Schweidnitzer Wasser -->
+      <path class="lt-water-main" d="M772,14 C752,110 742,196 756,290 C770,388 748,506 782,614"/>
+      <path class="lt-water-hi"   d="M772,14 C752,110 742,196 756,290 C770,388 748,506 782,614"/>
+      <text class="lt-terr-name" x="792" y="130" transform="rotate(78 792 130)">シュヴァイトニッツ川</text>
+
+      <!-- roads -->
+      <path class="lt-road" style="stroke-width:7"
+        d="M0,242 C120,238 190,252 250,252 C360,252 470,206 560,200 C660,195 742,236 822,250 C880,258 930,254 960,250"/>
+      <path class="lt-road-hi"
+        d="M0,242 C120,238 190,252 250,252 C360,252 470,206 560,200 C660,195 742,236 822,250 C880,258 930,254 960,250"/>
+      <path class="lt-road" style="stroke-width:4.5"
+        d="M250,252 C330,300 420,362 470,424 C498,458 520,474 542,486"/>
+      <text class="lt-terr-name" x="40" y="236">← ノイマルクト / ブレスラウ街道</text>
+
+      <!-- villages -->
+      <g class="vil" transform="translate(250,256)">
+        <rect x="-9" y="-6" width="7" height="7"/><rect x="-1" y="-8" width="8" height="8"/>
+        <rect x="-7" y="2" width="7" height="6"/><rect x="2" y="1" width="7" height="7"/>
+        <text class="vil-name" x="0" y="21">ボルネ</text>
+      </g>
+      <g class="vil" transform="translate(455,150)">
+        <rect x="-8" y="-5" width="7" height="6"/><rect x="0" y="-7" width="7" height="7"/>
+        <rect x="-5" y="2" width="7" height="6"/>
+        <text class="vil-name" x="0" y="20">ラダクスドルフ</text>
+      </g>
+      <g class="vil" transform="translate(592,94)">
+        <rect x="-8" y="-5" width="7" height="6"/><rect x="0" y="-7" width="7" height="7"/>
+        <rect x="-5" y="2" width="7" height="6"/>
+        <text class="vil-name" x="0" y="20">ニッペルン</text>
+      </g>
+      <g class="vil" transform="translate(560,200)">
+        <rect x="-9" y="-5" width="7" height="6"/><rect x="-1" y="-7" width="8" height="7"/>
+        <rect x="-6" y="2" width="7" height="6"/><rect x="3" y="1" width="6" height="6"/>
+        <text class="vil-name" x="0" y="21">フローベルヴィッツ</text>
+      </g>
+      <g class="vil" transform="translate(560,322)">
+        <rect x="-13" y="-7" width="8" height="8"/><rect x="-3" y="-10" width="9" height="10"/>
+        <rect x="-11" y="3" width="8" height="7"/><rect x="4" y="1" width="8" height="8"/>
+        <rect x="9" y="-6" width="6" height="12"/>
+        <path class="cross" d="M12,-6 L12,-14 M9,-11 L15,-11"/>
+        <text class="vil-name" x="0" y="24">ロイテン</text>
+      </g>
+      <g class="vil" transform="translate(540,486)">
+        <rect x="-8" y="-5" width="7" height="6"/><rect x="0" y="-7" width="7" height="7"/>
+        <rect x="-5" y="2" width="7" height="6"/><rect x="3" y="1" width="6" height="6"/>
+        <text class="vil-name" x="0" y="20">ザークシュッツ</text>
+      </g>
+      <g class="vil" transform="translate(824,250)">
+        <rect x="-11" y="-8" width="22" height="13"/>
+        <rect x="-13" y="-8" width="4" height="13"/><rect x="9" y="-8" width="4" height="13"/>
+        <path class="flag" d="M-7,-8 L-7,-16 L-1,-13 L-7,-11 Z"/>
+        <text class="vil-name" x="0" y="20">リッサ（城館）</text>
+      </g>
+
+      <!-- ===== movement arrows, toggled per phase ===== -->
+      <g id="arrows">
+        <g class="phase" data-step="1">
+          <path class="arrow-mv" marker-end="url(#ahMv)" d="M182,300 C206,362 250,392 314,414"/>
+          <text class="arrow-t" x="150" y="356">側面行軍（丘陵で遮蔽）</text>
+        </g>
+        <g class="phase" data-step="2">
+          <path class="arrow-mv" marker-end="url(#ahMv)" d="M372,432 C430,412 470,400 516,392"/>
+          <path class="arrow-mv" marker-end="url(#ahMv)" d="M508,404 C518,360 518,344 514,320"/>
+          <text class="arrow-t" x="360" y="452">梯隊突撃 → 左翼を巻き上げ</text>
+          <path class="clash" d="M551,462 l4,11 l11,-3 l-8,9 l5,11 l-11,-7 l-11,7 l5,-11 l-8,-9 l11,3 z"/>
+        </g>
+        <g class="phase" data-step="3">
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M440,214 C466,176 484,160 500,150"/>
+          <path class="arrow-au" marker-end="url(#ahMv)" d="M472,146 C452,148 440,150 428,156"/>
+          <path class="arrow-pr" marker-end="url(#ahMv)" d="M596,300 C654,300 700,300 736,300"/>
+          <text class="arrow-t" x="452" y="196">ドリーゼン反撃</text>
+          <text class="arrow-t" x="612" y="292">潰走を追撃</text>
+          <path class="clash" d="M500,150 l4,11 l11,-3 l-8,9 l5,11 l-11,-7 l-11,7 l5,-11 l-8,-9 l11,3 z"/>
+        </g>
+      </g>
+
+      <!-- ===== units + labels (built by JS) ===== -->
+      <g id="units"></g>
+      <g id="labels"></g>
+
+      <!-- ===== overlays ===== -->
+      <g class="compass" transform="translate(50,58)">
+        <circle r="18"/>
+        <path d="M0,-14 L5,5 L0,0 L-5,5 Z"/>
+        <text x="0" y="-21">N</text>
+      </g>
+      <g class="scale" transform="translate(40,592)">
+        <rect x="0" y="0" width="114" height="5" fill="var(--mink)"/>
+        <rect x="0" y="0" width="57" height="5" fill="var(--paper)" stroke="var(--mink)" stroke-width="1"/>
+        <rect x="57" y="0" width="57" height="5" fill="var(--mink)" stroke="var(--mink)" stroke-width="1"/>
+        <text x="0" y="-4">0</text>
+        <text x="114" y="-4" text-anchor="end">約 2 km</text>
+      </g>
+      <g class="lt-clock" transform="translate(792,596)">
+        <rect x="-92" y="-15" width="184" height="26" rx="2"/>
+        <text id="svgClock" x="0" y="4">1757年12月5日  08:00</text>
+      </g>
+
+      <rect class="lt-frame" x="1" y="1" width="958" height="618"/>
+    </svg>
+  </div>
+
+  <div class="lt-controls" role="group" aria-label="時刻の切り替え">
+    <button class="lt-btn" type="button" data-step="0">08:00</button>
+    <button class="lt-btn" type="button" data-step="1">11:30</button>
+    <button class="lt-btn" type="button" data-step="2">14:00</button>
+    <button class="lt-btn" type="button" data-step="3">16:30</button>
+    <button class="lt-play" type="button">▶ 自動再生</button>
+  </div>
+  <p class="lt-hint">← → キーでも切り替えできます</p>
+
+  <div class="lt-panel">
+    <div class="lt-legend">
+      <span><i class="sw pr"></i>プロイセン軍（青）・約 36,000</span>
+      <span><i class="sw au"></i>オーストリア軍（赤）・約 66,000</span>
+      <span>記号：✕ 歩兵 ／ 騎兵 ● 砲兵 ▲ 司令部　金色の縁＝正面</span>
+    </div>
+    <h3 class="lt-title" aria-live="polite"></h3>
+    <p class="lt-body" aria-live="polite"></p>
+  </div>
+
+  <p class="lt-note">※ 部隊の位置・規模・向き・時刻はおおまかな模式図です。地形は概略で、方位は上が北。史料により配置・時刻には諸説があります。</p>
+</section>
+
+<footer>
+  Schlacht bei Leuthen · 5. Dezember 1757
+  <a href="krieg.html">七年戦争へ</a>
+  <a href="karte.html">版図の変遷へ</a>
+  <a href="index.html">大王の生涯へ</a>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var TIMES  = ['08:00','11:30','14:00','16:30'];
+  var PHASES = [
+    { title:'08:00 ― 前哨戦、ボルネの騎兵戦',
+      body:'払暁、フリードリヒは約36,000のプロイセン軍をノイマルクトから東へ進めた。前衛のツィーテン騎兵が、ボルネ付近のオーストリア前衛騎兵（ノスティッツ）を急襲して蹴散らし、村を占領する。王はショーンベルクの丘から、ニッペルンからザークシュッツまで約8kmに伸びきったオーストリア軍（約66,000）の全戦列を一望した。カール・フォン・ロートリンゲン公とダウン元帥は、正面からの決戦を予期して布陣し、動かない。' },
+    { title:'11:30 ― 丘陵に隠れた側面行軍、斜線陣へ',
+      body:'王は正面攻撃を避け、全軍を右へ向け変えて南へ行進させる。低い丘陵の連なりが行軍を敵の視界から遮り、わずかに見えるプロイセン軍の縦隊は「退却」と誤認された。カール公は右翼（北）から兵を抽出しない。プロイセン軍は隊列を保ったままザークシュッツ南方に達し、右翼を前へ出して左翼を後方へ引いた斜線陣（schräge Schlachtordnung）を組む。' },
+    { title:'14:00 ― オーストリア左翼の崩壊とロイテンの死闘',
+      body:'13時頃、プロイセン軍右翼がザークシュッツのオーストリア左翼へ殺到する。守るヴュルテンベルク・バイエルンの弱兵は、梯隊で押し寄せる歩兵・側面をつく騎兵・機動砲兵の十字砲火に耐えられず潰走した。オーストリア軍はロイテン村を軸に戦線を直角に折り曲げ、新たな正面を作ろうと右翼から兵を送り込む。村の内外に歩兵が数十列の厚みで密集し、教会の墓地をめぐって凄惨な白兵戦となった。' },
+    { title:'16:30 ― 騎兵決戦、そして全面潰走',
+      body:'劣勢を挽回しようと、ルケージ伯のオーストリア騎兵がプロイセン軍左翼へ突撃する。だがラダクスドルフ背後に伏せていたドリーゼンのプロイセン騎兵が、その側面と背後へ逆襲し騎兵集団を粉砕した。支えを失ったオーストリア軍は日没とともに総崩れとなり、シュヴァイトニッツ川を越えてリッサ方面へ敗走する。損害はプロイセン軍約6,400に対し、オーストリア軍は捕虜を含め約2万。シュレージエンは奪還され、その夜、王はリッサの城館に至った。' }
+  ];
+
+  // states: [08:00, 11:30, 14:00, 16:30]  a=facing(deg, +CW), o=opacity(optional)
+  var UNITS = [
+    // ---- Prussian (blue) ----  north(refused left) -> south(advanced right)
+    { id:'p6', side:'pr', type:'cav', label:'ドリーゼン騎兵', states:[
+      {x:150,y:410,a:5},{x:238,y:200,a:18},{x:438,y:206,a:0,o:.55},{x:506,y:166,a:-20}] },
+    { id:'p5', side:'pr', type:'inf', label:'左翼（後退）', states:[
+      {x:122,y:380,a:5},{x:252,y:250,a:38},{x:476,y:276,a:12},{x:566,y:270,a:25}] },
+    { id:'p4', side:'pr', type:'inf', label:'近衛・中央', states:[
+      {x:132,y:346,a:5},{x:286,y:296,a:44},{x:498,y:330,a:24},{x:612,y:330,a:44}] },
+    { id:'p7', side:'pr', type:'hq', label:'国王本営', states:[
+      {x:226,y:212,a:0},{x:312,y:338,a:0},{x:474,y:362,a:0},{x:604,y:372,a:0}] },
+    { id:'p3', side:'pr', type:'inf', label:'突撃右翼', states:[
+      {x:156,y:314,a:5},{x:338,y:380,a:46},{x:486,y:388,a:34},{x:624,y:408,a:56}] },
+    { id:'p8', side:'pr', type:'art', label:'重砲', states:[
+      {x:168,y:340,a:0},{x:360,y:410,a:0},{x:452,y:420,a:0},{x:588,y:442,a:0}] },
+    { id:'p2', side:'pr', type:'inf', label:'前衛歩兵', states:[
+      {x:196,y:280,a:5},{x:386,y:438,a:44},{x:472,y:442,a:34},{x:612,y:470,a:56}] },
+    { id:'p1', side:'pr', type:'cav', label:'ツィーテン前衛', states:[
+      {x:262,y:236,a:0},{x:350,y:470,a:34},{x:452,y:478,a:30},{x:600,y:516,a:50}] },
+    // ---- Austrian (red) ----
+    { id:'a1', side:'au', type:'cav', label:'前衛騎兵', states:[
+      {x:330,y:250,a:0},{x:636,y:132,a:0},{x:648,y:150,a:15},{x:792,y:104,a:40,o:.35}] },
+    { id:'a2', side:'au', type:'inf', label:'右翼歩兵', states:[
+      {x:598,y:150,a:0},{x:598,y:150,a:0},{x:588,y:182,a:20},{x:720,y:150,a:70,o:.5}] },
+    { id:'a3', side:'au', type:'inf', label:'中央歩兵', states:[
+      {x:582,y:252,a:0},{x:582,y:252,a:0},{x:566,y:236,a:30},{x:700,y:236,a:80,o:.5}] },
+    { id:'a4', side:'au', type:'inf', label:'ロイテン守備', states:[
+      {x:576,y:322,a:0},{x:576,y:322,a:0},{x:558,y:320,a:45},{x:672,y:332,a:85,o:.55}] },
+    { id:'a4b', side:'au', type:'inf', label:'増援（ロイテン）', states:[
+      {x:576,y:362,a:0,o:0},{x:576,y:362,a:0,o:0},{x:544,y:296,a:50,o:1},{x:664,y:306,a:85,o:.5}] },
+    { id:'a5', side:'au', type:'inf', label:'左翼（弱兵）', states:[
+      {x:560,y:452,a:0},{x:560,y:452,a:0},{x:584,y:502,a:70,o:.7},{x:748,y:556,a:95,o:.25}] },
+    { id:'a6', side:'au', type:'cav', label:'左翼騎兵', states:[
+      {x:614,y:510,a:0},{x:614,y:510,a:0},{x:650,y:542,a:55},{x:812,y:540,a:95,o:.3}] },
+    { id:'a7', side:'au', type:'cav', label:'ルケージ騎兵', states:[
+      {x:656,y:120,a:0},{x:656,y:120,a:0},{x:600,y:116,a:-10},{x:500,y:150,a:-25,o:.3}] }
+  ];
+
+  function el(name, attrs){
+    var e = document.createElementNS(NS, name);
+    if(attrs) for(var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function dims(type){
+    if(type==='inf') return [46,18];
+    if(type==='cav') return [44,14];
+    if(type==='art') return [24,14];
+    return [18,18]; // hq
+  }
+
+  function buildBody(u){
+    var g = el('g', {'class':'unit-body'});
+    var d = dims(u.type), w = d[0], h = d[1];
+    g.appendChild(el('rect', {x:-w/2, y:-h/2, width:w, height:h, rx:1.5, 'class':'u-box'}));
+    if(u.type==='inf'){
+      g.appendChild(el('path', {d:'M'+(-w/2)+','+(-h/2)+' L'+(w/2)+','+(h/2)+
+                                 ' M'+(-w/2)+','+(h/2)+' L'+(w/2)+','+(-h/2), 'class':'u-sym'}));
+    } else if(u.type==='cav'){
+      g.appendChild(el('path', {d:'M'+(-w/2+3)+','+(h/2-2)+' L'+(w/2-3)+','+(-h/2+2), 'class':'u-sym'}));
+    } else if(u.type==='art'){
+      g.appendChild(el('circle', {r:3.4, 'class':'u-sym-fill'}));
+    } else { // hq: staff + pennant
+      g.appendChild(el('path', {d:'M0,'+(-h/2)+' L0,'+(h/2), 'class':'u-sym'}));
+      g.appendChild(el('path', {d:'M0,'+(-h/2)+' L'+(w/2+6)+','+(-h/2+3)+' L0,'+(-h/2+7)+' Z', 'class':'u-flag'}));
+    }
+    if(u.type==='inf' || u.type==='cav'){
+      var fx = (u.side==='pr') ? w/2 : -w/2;          // Prussians face east, Austrians face west
+      g.appendChild(el('line', {x1:fx, y1:-h/2, x2:fx, y2:h/2, 'class':'u-front'}));
+    }
+    var t = el('title'); t.textContent = u.label; g.appendChild(t);
+    return g;
+  }
+
+  var svg      = document.getElementById('mapsvg');
+  var wrap     = document.querySelector('.leuthen');
+  var unitsL   = document.getElementById('units');
+  var labelsL  = document.getElementById('labels');
+  var clockEl  = document.getElementById('svgClock');
+  var titleEl  = document.querySelector('.lt-title');
+  var bodyEl   = document.querySelector('.lt-body');
+  var btns     = Array.prototype.slice.call(document.querySelectorAll('.lt-btn'));
+  var playBtn  = document.querySelector('.lt-play');
+  var phaseGs  = Array.prototype.slice.call(document.querySelectorAll('.phase'));
+
+  var reg = {};
+  UNITS.forEach(function(u){
+    var g = el('g', {'class':'unit ' + (u.side==='pr' ? 'pr' : 'au'), 'data-id':u.id});
+    g.appendChild(buildBody(u));
+    unitsL.appendChild(g);
+    var lab = el('text', {'class':'unit-label'});
+    lab.textContent = u.label;
+    labelsL.appendChild(lab);
+    reg[u.id] = { g:g, body:g.firstChild, lab:lab, u:u };
+  });
+
+  var step = 0;
+
+  function apply(n, instant){
+    step = n;
+    if(instant) wrap.classList.add('instant');
+
+    UNITS.forEach(function(u){
+      var s = u.states[n];
+      var r = reg[u.id];
+      var o = (s.o == null) ? 1 : s.o;
+      r.g.style.transform = 'translate(' + s.x + 'px, ' + s.y + 'px)';
+      r.body.style.transform = 'rotate(' + (s.a || 0) + 'deg)';
+      r.g.style.opacity = o;
+      var ly = (u.type==='inf') ? 18 : 14;
+      r.lab.style.transform = 'translate(' + s.x + 'px, ' + (s.y + ly/2 + 12) + 'px)';
+      r.lab.style.opacity = (o < 0.4) ? 0.3 : 0.9;
+    });
+
+    clockEl.textContent = '1757年12月5日  ' + TIMES[n];
+    titleEl.textContent = PHASES[n].title;
+    bodyEl.textContent  = PHASES[n].body;
+    svg.setAttribute('aria-label', 'ロイテンの戦い、' + PHASES[n].title + '。' + PHASES[n].body);
+
+    btns.forEach(function(b, i){
+      var on = (i === n);
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    phaseGs.forEach(function(p){ p.classList.toggle('on', (+p.dataset.step) === n); });
+
+    if(instant){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ wrap.classList.remove('instant'); });
+      });
+    }
+  }
+
+  // ---- autoplay ----
+  var timer = null;
+  function stopPlay(){
+    if(timer){ clearInterval(timer); timer = null; }
+    playBtn.classList.remove('on');
+    playBtn.textContent = '▶ 自動再生';
+  }
+  function startPlay(){
+    if(reduceMotion) return;
+    stopPlay();
+    playBtn.classList.add('on');
+    playBtn.textContent = '❚❚ 停止';
+    timer = setInterval(function(){
+      var nx = (step + 1) % 4;
+      apply(nx);
+      if(nx === 3) stopPlay();
+    }, 2800);
+  }
+  playBtn.addEventListener('click', function(){
+    if(timer){ stopPlay(); return; }
+    if(step === 3){ apply(0); setTimeout(startPlay, 80); }
+    else startPlay();
+  });
+
+  // ---- manual controls ----
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ stopPlay(); apply(+b.dataset.step); });
+  });
+  wrap.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight'){ stopPlay(); apply(Math.min(3, step + 1)); e.preventDefault(); }
+    else if(e.key === 'ArrowLeft'){ stopPlay(); apply(Math.max(0, step - 1)); e.preventDefault(); }
+  });
+
+  apply(0, true);
+})();
+</script>
