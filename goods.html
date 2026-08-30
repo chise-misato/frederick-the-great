@@ -264,6 +264,18 @@ footer{
   background:var(--panel-dark-2); color:var(--text-on-dark-dim); margin-top:3rem;
 }
 footer a{ color:var(--gilt-bright); text-decoration:none; border-bottom:1px solid currentColor; margin:0 .6em; }
+.footer-legal{
+  margin-top:1.5rem; padding-top:1.1rem;
+  border-top:1px solid color-mix(in srgb, var(--text-on-dark-dim) 22%, transparent);
+  font-size:.72rem; letter-spacing:.1em;
+}
+.footer-legal a{
+  color:var(--text-on-dark-dim); border-bottom:0; margin:0 .5em; text-decoration:none;
+  transition:color .2s ease;
+}
+.footer-legal a:hover{ color:var(--gilt-bright); }
+.footer-legal a[aria-current="page"]{ color:var(--gilt-bright); }
+.footer-legal span{ opacity:.45; }
 
 a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-offset:2px; }
 </style>
@@ -336,6 +348,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
   Waren ・ 鷲とフルート
   <a href="index.html">大王の生涯へ</a>
   <a href="archiv.html">史料翻訳へ</a>
+  <div class="footer-legal"><a href="about.html">プロフィール・お問い合わせ</a><span aria-hidden="true">・</span><a href="privacy.html">プライバシーポリシー</a></div>
 </footer>
 
 <script>
