@@ -114,31 +114,98 @@ a{ color:inherit; }
 .eyebrow::before, .eyebrow::after{ content:""; width:2.2em; height:1px; background:currentColor; opacity:.6; display:inline-block; }
 .section-head{ font-family:'Cormorant Garamond', serif; font-size:clamp(2rem, 4.2vw, 3rem); letter-spacing:.01em; }
 
-/* ===================== Nav (shared) ===================== */
+/* ===================== Nav (dropdown) ===================== */
 .topnav{
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:.9rem clamp(1.2rem,4vw,3rem);
-  background:color-mix(in srgb, var(--parchment) 88%, transparent);
+  position:fixed; top:0; left:0; right:0; z-index:1200;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:.7rem clamp(1.1rem,4vw,3rem);
+  background:color-mix(in srgb, var(--parchment) 92%, transparent);
   backdrop-filter:blur(10px);
   box-shadow:0 1px 0 var(--parchment-line);
 }
 .brandmark{
   font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.05rem; letter-spacing:.06em;
-  display:flex; align-items:baseline; gap:.5em; text-decoration:none;
+  display:flex; align-items:baseline; gap:.5em; text-decoration:none; color:inherit; flex-shrink:0;
 }
 .brandmark small{ font-size:.65rem; letter-spacing:.18em; color:var(--steel); font-style:italic; }
-.navlinks{ display:flex; gap:2rem; list-style:none; margin:0; padding:0; }
-.navlinks a{
-  text-decoration:none; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink-soft); position:relative; padding-bottom:.3em;
+
+.mainnav{ display:flex; align-items:center; gap:.2rem; list-style:none; margin:0; padding:0; }
+.navitem{ position:relative; }
+.navitem > a, .navparent{
+  display:inline-flex; align-items:center; gap:.4em;
+  font-family:'EB Garamond', Georgia, serif; font-weight:500;
+  font-size:.75rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-soft); text-decoration:none; white-space:nowrap;
+  background:none; border:0; cursor:pointer;
+  padding:.55em .7em; border-radius:2px; line-height:1;
+  transition:color .2s ease, background .2s ease;
 }
-.navlinks a::after{
-  content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--gilt);
-  transition:right .3s ease;
+.navitem > a:hover, .navparent:hover, .navparent:focus-visible{
+  color:var(--prussian); background:color-mix(in srgb, var(--gilt) 12%, transparent);
 }
-.navlinks a:hover::after{ right:0; }
-.navlinks .current{ font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--prussian); border-bottom:1px solid var(--gilt); padding-bottom:.3em; }
+.navitem > a[aria-current="page"]{ color:var(--prussian); box-shadow:inset 0 -1px 0 var(--gilt); }
+.navparent.is-current{ color:var(--prussian); }
+.navparent::after{
+  content:""; width:.4em; height:.4em; flex-shrink:0;
+  border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor;
+  transform:translateY(-.15em) rotate(45deg); transition:transform .25s ease;
+}
+.navitem.open > .navparent{ color:var(--prussian); background:color-mix(in srgb, var(--gilt) 12%, transparent); }
+.navitem.open > .navparent::after{ transform:translateY(.1em) rotate(-135deg); }
+
+.dropdown{
+  list-style:none; margin:0; padding:.35rem;
+  position:absolute; top:calc(100% + .3rem); left:0; min-width:11rem;
+  background:var(--parchment); border:1px solid var(--parchment-line);
+  box-shadow:var(--shadow); border-radius:3px;
+  opacity:0; visibility:hidden; transform:translateY(-6px);
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.navitem.open > .dropdown{ opacity:1; visibility:visible; transform:translateY(0); }
+.dropdown a{
+  display:block; padding:.5em .85em; border-radius:2px;
+  font-family:'EB Garamond', Georgia, serif; font-size:.82rem; letter-spacing:.04em; text-transform:none;
+  color:var(--ink-soft); text-decoration:none; white-space:nowrap;
+  transition:color .16s ease, background .16s ease;
+}
+.dropdown a:hover, .dropdown a:focus-visible, .dropdown a.active{
+  color:var(--prussian); background:color-mix(in srgb, var(--gilt) 14%, transparent);
+}
+.dropdown a[aria-current="page"]{ color:var(--prussian); font-weight:600; }
+
+.navtoggle{
+  display:none; width:40px; height:34px; flex-shrink:0; padding:0;
+  background:none; border:1px solid var(--parchment-line); border-radius:2px; cursor:pointer; position:relative;
+}
+.navtoggle span, .navtoggle span::before, .navtoggle span::after{
+  content:""; position:absolute; left:9px; right:9px; height:1.5px; background:var(--ink); top:50%;
+  transition:transform .3s ease, background .2s ease;
+}
+.navtoggle span::before{ top:-6px; }
+.navtoggle span::after{ top:6px; }
+.navtoggle[aria-expanded="true"] span{ background:transparent; }
+.navtoggle[aria-expanded="true"] span::before{ transform:translateY(6px) rotate(45deg); }
+.navtoggle[aria-expanded="true"] span::after{ transform:translateY(-6px) rotate(-45deg); }
+
+@media (max-width:820px){
+  .topnav{ flex-wrap:wrap; }
+  .navtoggle{ display:block; }
+  .mainnav{
+    order:3; flex-basis:100%; flex-direction:column; align-items:stretch; gap:0;
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+  }
+  .mainnav.open{ max-height:82vh; overflow-y:auto; margin-top:.6rem; }
+  .navitem{ border-top:1px solid var(--parchment-line); }
+  .navitem:first-child{ border-top:0; }
+  .navitem > a, .navparent{ width:100%; justify-content:space-between; padding:1em .3em; font-size:.8rem; }
+  .navitem > a[aria-current="page"]{ box-shadow:none; }
+  .dropdown{
+    position:static; display:none; opacity:1; visibility:visible; transform:none;
+    box-shadow:none; border:0; border-radius:0; min-width:0; padding:0 0 .5rem .9rem; background:none;
+  }
+  .navitem.open > .dropdown{ display:block; }
+  .dropdown a{ white-space:normal; padding:.7em .3em; }
+}
 
 /* ===================== Header ===================== */
 .mheader{
@@ -231,14 +298,31 @@ footer a{ color:var(--gilt-bright); text-decoration:none; border-bottom:1px soli
 a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-offset:2px; }
 </style>
 
-<nav class="topnav">
+<nav class="topnav" id="topnav">
   <a class="brandmark" href="index.html">FR <small>· König von Preußen</small></a>
-  <ul class="navlinks">
-    <li><a href="index.html">大王の生涯</a></li>
-    <li><a href="genealogy.html">家系図</a></li>
-    <li><span class="current">版図の変遷</span></li>
-    <li><a href="krieg.html">七年戦争</a></li>
-    <li><a href="archiv.html">史料翻訳</a></li>
+  <button class="navtoggle" id="navtoggle" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="mainnav"><span></span></button>
+  <ul class="mainnav" id="mainnav">
+    <li class="navitem has-drop">
+      <button type="button" class="navparent" aria-expanded="false">フリードリヒ大王とは</button>
+      <ul class="dropdown">
+        <li><a href="index.html#life">生涯</a></li>
+        <li><a href="index.html#wars">戦争</a></li>
+        <li><a href="index.html#rule">統治</a></li>
+        <li><a href="index.html#culture">文化</a></li>
+        <li><a href="index.html#quotes">名言</a></li>
+        <li><a href="index.html#legacy">遺産</a></li>
+      </ul>
+    </li>
+    <li class="navitem"><a href="genealogy.html">家系図</a></li>
+    <li class="navitem"><a href="karte.html" aria-current="page">版図の変遷</a></li>
+    <li class="navitem has-drop">
+      <button type="button" class="navparent" aria-expanded="false">七年戦争</button>
+      <ul class="dropdown">
+        <li><a href="krieg.html">戦場地図</a></li>
+        <li><a href="leuthen.html">ロイテンの戦い</a></li>
+      </ul>
+    </li>
+    <li class="navitem"><a href="archiv.html">史料翻訳</a></li>
   </ul>
 </nav>
 
@@ -479,5 +563,44 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gilt); outline-of
   });
 
   setEra('1701');
+})();
+</script>
+
+<script>
+(function(){
+  var topnav = document.getElementById('topnav');
+  var toggle = document.getElementById('navtoggle');
+  var mainnav = document.getElementById('mainnav');
+  if(!topnav || !mainnav) return;
+  var parents = Array.prototype.slice.call(topnav.querySelectorAll('.navparent'));
+  function closeDrops(){
+    parents.forEach(function(b){ b.parentNode.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
+  }
+  function closeNav(){ mainnav.classList.remove('open'); if(toggle) toggle.setAttribute('aria-expanded','false'); }
+  parents.forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var li = btn.parentNode, willOpen = !li.classList.contains('open');
+      closeDrops();
+      if(willOpen){ li.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+  if(toggle){
+    toggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = mainnav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(!open) closeDrops();
+    });
+  }
+  Array.prototype.forEach.call(mainnav.querySelectorAll('a'), function(a){
+    a.addEventListener('click', function(){ closeDrops(); closeNav(); });
+  });
+  document.addEventListener('click', function(e){
+    if(!topnav.contains(e.target)){ closeDrops(); closeNav(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeDrops(); closeNav(); }
+  });
 })();
 </script>
