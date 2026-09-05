@@ -324,6 +324,12 @@
         if (!u || u.partners.length !== 1 || u.partners[0].personId !== personId) return;
         u.childIds.forEach(function (cid) {
           if (shifted.has(cid)) return;
+          // A child with their own layoutHint is independently positioned
+          // by applyPinBeside below - dragging them along here would fight
+          // that explicit placement (e.g. one sibling manually relocated to
+          // sit beside their in-laws' house while another sibling who
+          // stayed with the birth family must NOT be dragged along too).
+          if (state.peopleById.get(cid).layoutHint) return;
           g.node('p:' + cid).x += dx;
           shifted.add(cid);
           shiftDescendants(cid, dx);
@@ -357,7 +363,7 @@
     // spouse instead of leaving them wherever dagre's global crossing
     // minimization happened to drop them.
     data.people.forEach(function (person) {
-      if (person.birthUnionId || shifted.has(person.id)) return;
+      if (person.layoutHint || person.birthUnionId || shifted.has(person.id)) return;
       var uids = person.unionIds || [];
       if (uids.length !== 1) return;
       var u = state.unionsById.get(uids[0]);
@@ -375,6 +381,42 @@
       shifted.add(person.id);
       shiftDescendants(person.id, dx);
     });
+
+    // Optional manual override: pin a person immediately beside a named
+    // anchor person (left/right of them, same rank), overriding wherever
+    // dagre/the passes above put their own birth-family branch. Opt-in via
+    // data (layoutHint) rather than automatic, since it's only needed when a
+    // person's default placement crosses far from where they read best -
+    // e.g. their birth family sits far from their marital family and the
+    // parent-child edge crosses large unrelated parts of the graph, or a
+    // whole side-branch (an in-law's own ancestry) drifted behind an
+    // unrelated house purely because of how dagre minimized crossings.
+    // Called twice: once before the single-child centering pass below (so a
+    // hinted person's OWN single-child union centers on their corrected
+    // position) and once after it (so a hint that targets someone else's
+    // now-final centered position reads it correctly). Idempotent, so the
+    // second call is a no-op for anyone already settled by the first.
+    // `gap` optionally overrides the default card-width spacing: when the
+    // anchor's neighbor on that side is already exactly one gap away (no
+    // free slot), a smaller gap deliberately lands short of that neighbor so
+    // the final overlap safety net below pushes the *neighbor* further out
+    // instead of ping-ponging back onto the anchor itself.
+    function applyPinBeside() {
+      data.people.forEach(function (person) {
+        if (!person.layoutHint || !person.layoutHint.pinBeside) return;
+        var anchor = state.peopleById.get(person.layoutHint.pinBeside);
+        if (!anchor) return;
+        var pn = g.node('p:' + person.id), an = g.node('p:' + anchor.id);
+        var gap = person.layoutHint.gap != null ? person.layoutHint.gap : PW + 40;
+        var targetX = person.layoutHint.side === 'right' ? an.x + gap : an.x - gap;
+        var dx = targetX - pn.x;
+        pn.x = targetX;
+        pn.y = an.y;
+        shifted.add(person.id);
+        if (Math.abs(dx) >= 1) shiftDescendants(person.id, dx);
+      });
+    }
+    applyPinBeside();
 
     // A union with exactly one child (regardless of partner count) should
     // hang that child directly beneath its parent(s)' now-final midpoint,
@@ -396,28 +438,7 @@
       if (dx) shiftDescendants(cid, dx);
     });
 
-    // Optional manual override: pin a person immediately beside a named
-    // spouse (left/right of them), overriding wherever dagre/the passes
-    // above put their own birth-family branch. Opt-in via data (layoutHint)
-    // rather than automatic, since it's only needed when a person's birth
-    // family sits far from their marital family and the default placement
-    // makes their parent-child edge cross large unrelated parts of the graph.
-    // Runs after the centering passes above (so it reads spouses' final x)
-    // and before the overlap safety net below (so any new collision it
-    // creates still gets pushed clear).
-    data.people.forEach(function (person) {
-      if (!person.layoutHint || !person.layoutHint.pinBesideSpouse) return;
-      var spouse = state.peopleById.get(person.layoutHint.pinBesideSpouse);
-      if (!spouse) return;
-      var pn = g.node('p:' + person.id), sn = g.node('p:' + spouse.id);
-      var gap = PW + 40;
-      var targetX = person.layoutHint.side === 'right' ? sn.x + gap : sn.x - gap;
-      var dx = targetX - pn.x;
-      if (Math.abs(dx) < 1) return;
-      pn.x = targetX;
-      shifted.add(person.id);
-      shiftDescendants(person.id, dx);
-    });
+    applyPinBeside();
 
     // Final safety net: the passes above reposition branches without global
     // knowledge of each other, so an unrelated branch can end up overlapping
@@ -446,10 +467,18 @@
 
     // Union markers are purely a visual junction between partners - recompute
     // fresh from final partner positions rather than tracking every shift.
+    // An optional dotOffset then nudges just the marker (and the partner
+    // lines drawn to it, which read this same node each render) clear of an
+    // unrelated union whose marker happens to land on the same spot - e.g.
+    // two same-generation couples whose partner x's average out identically.
     data.unions.forEach(function (u) {
       var un = g.node('u:' + u.id);
       var xs = u.partners.map(function (par) { return g.node('p:' + par.personId).x; });
       un.x = xs.reduce(function (a, b) { return a + b; }, 0) / xs.length;
+      if (u.dotOffset) {
+        un.x += u.dotOffset.dx || 0;
+        un.y += u.dotOffset.dy || 0;
+      }
     });
 
     return g;

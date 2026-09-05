@@ -66,7 +66,7 @@
       "sex": "f", "birth": { "year": 1687 }, "death": { "year": 1757 }, "houseId": "hannover",
       "titles": [{ "ja": "第二代プロイセン王妃", "de": "Königin in Preußen" }],
       "birthUnionId": "u-gi-sd", "unionIds": ["u-fw1-sd"],
-      "layoutHint": { "pinBesideSpouse": "friedrich-wilhelm-i", "side": "left" }
+      "layoutHint": { "pinBeside": "friedrich-wilhelm-i", "side": "left" }
     },
     {
       "id": "george-i",
@@ -257,7 +257,8 @@
       "displayName": "Johann Georg II. von Anhalt-Dessau", "displayNameJa": "ヨハン・ゲオルク2世（アンハルト＝デッサウ侯）",
       "sex": "m", "birth": { "year": 1627 }, "death": { "year": 1693 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau" }],
-      "birthUnionId": "u-jc-jgii", "unionIds": ["u-jgii-children"]
+      "birthUnionId": "u-jc-jgii", "unionIds": ["u-jgii-children"],
+      "layoutHint": { "pinBeside": "johann-ludwig-i-anhalt-zerbst", "side": "right" }
     },
     {
       "id": "leopold-i-anhalt-dessau",
@@ -266,7 +267,8 @@
       "sex": "m", "birth": { "year": 1676 }, "death": { "year": 1747 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯、プロイセン元帥", "de": "Fürst von Anhalt-Dessau" }],
       "birthUnionId": "u-jgii-children", "unionIds": ["u-li-lii"],
-      "memoir": { "appears": true, "notes": "回想録中の「アンハルト侯」はこの人物。フリードリヒ・ヴィルヘルム1世側近の軍人・宮廷人として描かれる。" }
+      "memoir": { "appears": true, "notes": "回想録中の「アンハルト侯」はこの人物。フリードリヒ・ヴィルヘルム1世側近の軍人・宮廷人として描かれる。" },
+      "layoutHint": { "pinBeside": "johanna-charlotte-anhalt-dessau", "side": "right", "gap": 100 }
     },
     {
       "id": "johanna-charlotte-anhalt-dessau",
@@ -274,7 +276,8 @@
       "displayName": "Johanna Charlotte von Anhalt-Dessau", "displayNameJa": "ヨハンナ・シャルロッテ・フォン・アンハルト＝デッサウ",
       "sex": "f", "birth": { "year": 1682 }, "death": { "year": 1750 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "ブランデンブルク＝シュヴェット辺境伯夫人" }],
-      "birthUnionId": "u-jgii-children", "unionIds": ["u-pw-jc"]
+      "birthUnionId": "u-jgii-children", "unionIds": ["u-pw-jc"],
+      "layoutHint": { "lock": true }
     },
 
     {
@@ -300,7 +303,8 @@
       "displayName": "Johann Georg I. von Anhalt-Dessau", "displayNameJa": "ヨハン・ゲオルク1世（アンハルト＝デッサウ侯・初代）",
       "sex": "m", "birth": { "year": 1567 }, "death": { "year": 1618 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯（初代）", "de": "Fürst von Anhalt-Dessau" }],
-      "birthUnionId": "u-je-children", "unionIds": ["u-jgi-jc"]
+      "birthUnionId": "u-je-children", "unionIds": ["u-jgi-jc"],
+      "layoutHint": { "pinBeside": "rudolf-anhalt-zerbst", "side": "right" }
     },
     {
       "id": "johann-casimir-anhalt-dessau",
@@ -308,7 +312,8 @@
       "displayName": "Johann Casimir von Anhalt-Dessau", "displayNameJa": "ヨハン・カジミール（アンハルト＝デッサウ侯）",
       "sex": "m", "birth": { "year": 1596 }, "death": { "year": 1660 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau" }],
-      "birthUnionId": "u-jgi-jc", "unionIds": ["u-jc-jgii"]
+      "birthUnionId": "u-jgi-jc", "unionIds": ["u-jc-jgii"],
+      "layoutHint": { "pinBeside": "johann-anhalt-zerbst", "side": "right" }
     },
     {
       "id": "leopold-ii-anhalt-dessau",
@@ -316,7 +321,8 @@
       "displayName": "Leopold II. von Anhalt-Dessau", "displayNameJa": "レオポルト2世（アンハルト＝デッサウ侯）",
       "sex": "m", "birth": { "year": 1700 }, "death": { "year": 1751 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau", "from": 1747, "to": 1751 }],
-      "birthUnionId": "u-li-lii", "unionIds": []
+      "birthUnionId": "u-li-lii", "unionIds": [],
+      "layoutHint": { "pinBeside": "catherine-ii-russia", "side": "left" }
     },
     {
       "id": "rudolf-anhalt-zerbst",
@@ -371,7 +377,8 @@
       "id": "u-gek-sd",
       "partners": [{ "personId": "friedrich-wilhelm-grosser-kurfuerst", "role": "father" }, { "personId": "sophie-dorothea-holstein", "role": "mother" }],
       "type": "marriage", "status": "married", "start": { "year": 1668 },
-      "childIds": ["philipp-wilhelm-schwedt"]
+      "childIds": ["philipp-wilhelm-schwedt"],
+      "dotOffset": { "dx": -150 }
     },
     {
       "id": "u-f1-sc",
@@ -427,7 +434,8 @@
       "partners": [{ "personId": "friedrich-ii", "role": "father" }, { "personId": "amelia-britain", "role": "mother" }],
       "type": "betrothal", "status": "broken", "start": { "year": 1723 }, "end": { "year": 1730 },
       "childIds": [],
-      "notes": "英普二重婚姻計画のもう一方（ヴィルヘルミーネ⇄フレデリック・ルイスと対になる縁組）。フリードリヒ・ヴィルヘルム1世の反対等により破談。"
+      "notes": "英普二重婚姻計画のもう一方（ヴィルヘルミーネ⇄フレデリック・ルイスと対になる縁組）。フリードリヒ・ヴィルヘルム1世の反対等により破談。",
+      "dotOffset": { "dx": 110 }
     },
     {
       "id": "u-wilhelmine-bayreuth",
