@@ -41,7 +41,8 @@
       "displayName": "Friedrich I.", "displayNameJa": "フリードリヒ1世",
       "sex": "m", "birth": { "year": 1657 }, "death": { "year": 1713 }, "houseId": "hohenzollern",
       "titles": [{ "ja": "初代プロイセン王", "de": "König in Preußen", "from": 1701, "to": 1713 }],
-      "birthUnionId": "u-gek-lh", "unionIds": ["u-f1-sc"]
+      "birthUnionId": "u-gek-lh", "unionIds": ["u-f1-sc"],
+      "layoutHint": { "swapWith": "sophie-dorothea-holstein" }
     },
     {
       "id": "sophie-charlotte-hannover",
@@ -377,8 +378,7 @@
       "id": "u-gek-sd",
       "partners": [{ "personId": "friedrich-wilhelm-grosser-kurfuerst", "role": "father" }, { "personId": "sophie-dorothea-holstein", "role": "mother" }],
       "type": "marriage", "status": "married", "start": { "year": 1668 },
-      "childIds": ["philipp-wilhelm-schwedt"],
-      "dotOffset": { "dx": -150 }
+      "childIds": ["philipp-wilhelm-schwedt"]
     },
     {
       "id": "u-f1-sc",

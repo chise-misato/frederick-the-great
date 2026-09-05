@@ -440,6 +440,22 @@
 
     applyPinBeside();
 
+    // Optional manual override: exchange final x with another person at the
+    // same rank - for two people who aren't a couple (so pinBeside's rank
+    // sync would be wrong) but who'd simply read more naturally in the
+    // opposite left-right order once dagre/the passes above settle them
+    // side by side. Declared on only one side of the pair.
+    data.people.forEach(function (person) {
+      if (!person.layoutHint || !person.layoutHint.swapWith) return;
+      var other = state.peopleById.get(person.layoutHint.swapWith);
+      if (!other) return;
+      var pn = g.node('p:' + person.id), on = g.node('p:' + other.id);
+      if (Math.abs(pn.y - on.y) > 1) return;
+      var px = pn.x;
+      pn.x = on.x;
+      on.x = px;
+    });
+
     // Final safety net: the passes above reposition branches without global
     // knowledge of each other, so an unrelated branch can end up overlapping
     // another. Walk each rank left-to-right and push anything overlapping
@@ -516,6 +532,20 @@
   function renderAll() {
     var g = state.layout;
     var graphBox = g.graph();
+    // dagre's own graph.width/height reflect its layout BEFORE the manual
+    // layoutHint passes ran; a hint can cascade a branch further out than
+    // that, so re-measure the actual final extent of every person node and
+    // grow the box to fit - otherwise the SVG (which clips to its own
+    // width/height/viewBox regardless of any parent's overflow) silently
+    // cuts off edges beyond the stale bound while the plain HTML cards,
+    // unaffected by that clipping, still render fine.
+    var maxX = graphBox.width, maxY = graphBox.height;
+    state.data.people.forEach(function (p) {
+      var n = g.node('p:' + p.id);
+      maxX = Math.max(maxX, n.x + PW / 2 + 60);
+      maxY = Math.max(maxY, n.y + PH / 2 + 60);
+    });
+    graphBox = { width: maxX, height: maxY };
     els.inner.style.width = graphBox.width + 'px';
     els.inner.style.height = graphBox.height + 'px';
     els.edges.setAttribute('width', graphBox.width);
@@ -531,34 +561,64 @@
 
   function renderHouses(graphBox) {
     els.houses.innerHTML = '';
+    var pad = 26;
     state.housesById.forEach(function (house) {
       var members = state.data.people.filter(function (p) { return p.houseId === house.id; });
       if (!members.length) return;
-      var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+
+      // One rectangle per occupied rank (generation) rather than a single
+      // box spanning the house's full min/max - a house whose column
+      // drifts sideways across generations (e.g. squeezed between two
+      // other houses that themselves shift per rank) would otherwise get
+      // one big box wide enough to cover the whole drift, which then
+      // uselessly overlaps a neighboring house's own equally-drifting
+      // column in the middle generations where neither actually has a
+      // card there. Adjacent rank-boxes are stretched to touch (using
+      // half the gap to the next occupied rank) so the result still reads
+      // as one continuous outline instead of disconnected fragments.
+      var byRank = new Map();
       members.forEach(function (p) {
         var n = state.layout.node('p:' + p.id);
-        minX = Math.min(minX, n.x - PW / 2);
-        maxX = Math.max(maxX, n.x + PW / 2);
-        minY = Math.min(minY, n.y - PH / 2);
-        maxY = Math.max(maxY, n.y + PH / 2);
+        var key = Math.round(n.y);
+        if (!byRank.has(key)) byRank.set(key, []);
+        byRank.get(key).push(n);
       });
-      var pad = 26;
-      var panel = document.createElement('div');
-      panel.className = 'house-panel';
-      panel.style.left = (minX - pad) + 'px';
-      panel.style.top = (minY - pad - 30) + 'px';
-      panel.style.width = (maxX - minX + pad * 2) + 'px';
-      panel.style.height = (maxY - minY + pad * 2 + 30) + 'px';
-      panel.style.borderColor = house.color;
-      panel.style.background = 'color-mix(in srgb, ' + house.color + ' 7%, transparent)';
-      els.houses.appendChild(panel);
+      var ranks = Array.from(byRank.keys()).sort(function (a, b) { return a - b; });
+
+      var overallMinX = Infinity, topRankY = ranks[0];
+      ranks.forEach(function (rankY, i) {
+        var nodes = byRank.get(rankY);
+        var minX = Infinity, maxX = -Infinity;
+        nodes.forEach(function (n) { minX = Math.min(minX, n.x - PW / 2); maxX = Math.max(maxX, n.x + PW / 2); });
+        overallMinX = Math.min(overallMinX, minX);
+
+        // Cap the touch-extension so a house with a skipped generation (a
+        // large gap to its next occupied rank) doesn't stretch one box far
+        // down into empty territory just to "connect" to a distant rank.
+        var gapAbove = i > 0 ? Math.min((rankY - ranks[i - 1]) / 2, 160) : pad;
+        var gapBelow = i < ranks.length - 1 ? Math.min((ranks[i + 1] - rankY) / 2, 160) : pad;
+        var top = rankY - PH / 2 - gapAbove;
+        var bottom = rankY + PH / 2 + gapBelow;
+        var isTopRank = rankY === topRankY;
+
+        var panel = document.createElement('div');
+        panel.className = 'house-panel';
+        panel.style.left = (minX - pad) + 'px';
+        panel.style.top = (top - (isTopRank ? 30 : 0)) + 'px';
+        panel.style.width = (maxX - minX + pad * 2) + 'px';
+        panel.style.height = (bottom - top + (isTopRank ? 30 : 0)) + 'px';
+        panel.style.borderColor = house.color;
+        panel.style.background = 'color-mix(in srgb, ' + house.color + ' 7%, transparent)';
+        els.houses.appendChild(panel);
+      });
 
       var offset = house.labelOffset || {};
+      var labelTop = topRankY - PH / 2 - pad - 30;
       var label = document.createElement('button');
       label.type = 'button';
       label.className = 'house-label';
-      label.style.left = (minX - pad + (offset.dx || 0)) + 'px';
-      label.style.top = (minY - pad - 30 + (offset.dy || 0)) + 'px';
+      label.style.left = (overallMinX - pad + (offset.dx || 0)) + 'px';
+      label.style.top = (labelTop + (offset.dy || 0)) + 'px';
       label.style.color = house.color;
       label.style.borderColor = house.color;
       label.textContent = (state.collapsedHouses.has(house.id) ? '▸ ' : '▾ ') + house.name.ja;
