@@ -1,0 +1,511 @@
+{
+  "houses": [
+    { "id": "hohenzollern", "name": { "ja": "ホーエンツォレルン家（プロイセン王家）", "de": "Haus Hohenzollern" }, "color": "#17395c" },
+    { "id": "hohenzollern-bayreuth", "name": { "ja": "ブランデンブルク＝バイロイト辺境伯家", "de": "Haus Hohenzollern-Bayreuth" }, "color": "#6f8c68" },
+    { "id": "hohenzollern-schwedt", "name": { "ja": "ブランデンブルク＝シュヴェット辺境伯家", "de": "Haus Hohenzollern-Schwedt" }, "color": "#8a5a3b" },
+    { "id": "hannover", "name": { "ja": "ハノーファー家（英国王家）", "de": "Haus Hannover" }, "color": "#8b95a0" },
+    { "id": "anhalt-dessau", "name": { "ja": "アンハルト＝デッサウ侯家", "de": "Haus Anhalt-Dessau" }, "color": "#5c3f6e" },
+    { "id": "anhalt-zerbst", "name": { "ja": "アンハルト＝ツェルプスト侯家", "de": "Haus Anhalt-Zerbst" }, "color": "#3f6e6e" },
+    { "id": "anhalt", "name": { "ja": "アンハルト侯家（分割前）", "de": "Fürstentum Anhalt" }, "color": "#7a7a5c" },
+    { "id": "hohenzollern-ansbach", "name": { "ja": "ブランデンブルク＝アンスバッハ辺境伯家", "de": "Haus Hohenzollern-Ansbach" }, "color": "#b08b3f", "labelOffset": { "dy": 32 } }
+  ],
+
+  "people": [
+    {
+      "id": "friedrich-wilhelm-grosser-kurfuerst",
+      "names": { "ja": ["フリードリヒ・ヴィルヘルム", "大選帝侯"], "de": ["Friedrich Wilhelm", "Der Große Kurfürst"], "en": ["Frederick William, Elector of Brandenburg", "the Great Elector"] },
+      "displayName": "Friedrich Wilhelm, der Große Kurfürst", "displayNameJa": "フリードリヒ・ヴィルヘルム（大選帝侯）",
+      "sex": "m", "birth": { "year": 1620 }, "death": { "year": 1688 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "ブランデンブルク選帝侯（大選帝侯）", "de": "Kurfürst von Brandenburg", "from": 1640, "to": 1688 }],
+      "unionIds": ["u-gek-lh", "u-gek-sd"]
+    },
+    {
+      "id": "luise-henriette-nassau",
+      "names": { "ja": ["ルイーゼ・ヘンリエッテ・フォン・オラニエン"], "de": ["Luise Henriette von Oranien-Nassau"], "en": ["Louise Henriette of Nassau"] },
+      "displayName": "Luise Henriette von Oranien-Nassau", "displayNameJa": "ルイーゼ・ヘンリエッテ・フォン・オラニエン",
+      "sex": "f", "birth": { "year": 1627 }, "death": { "year": 1667 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "大選帝侯の最初の妃", "de": "Kurfürstin von Brandenburg" }],
+      "unionIds": ["u-gek-lh"]
+    },
+    {
+      "id": "sophie-dorothea-holstein",
+      "names": { "ja": ["ゾフィー・ドロテア・フォン・ホルシュタイン＝グリュックスブルク"], "de": ["Sophie Dorothea von Schleswig-Holstein-Sonderburg-Glücksburg"], "en": ["Sophia Dorothea of Holstein-Glücksburg"] },
+      "displayName": "Sophie Dorothea von Holstein-Glücksburg", "displayNameJa": "ゾフィー・ドロテア・フォン・ホルシュタイン＝グリュックスブルク",
+      "sex": "f", "birth": { "year": 1636 }, "death": { "year": 1689 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "大選帝侯の後妃", "de": "Kurfürstin von Brandenburg" }],
+      "unionIds": ["u-gek-sd"]
+    },
+    {
+      "id": "friedrich-i",
+      "names": { "ja": ["フリードリヒ1世"], "de": ["Friedrich I."], "en": ["Frederick I"] },
+      "displayName": "Friedrich I.", "displayNameJa": "フリードリヒ1世",
+      "sex": "m", "birth": { "year": 1657 }, "death": { "year": 1713 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "初代プロイセン王", "de": "König in Preußen", "from": 1701, "to": 1713 }],
+      "birthUnionId": "u-gek-lh", "unionIds": ["u-f1-sc"]
+    },
+    {
+      "id": "sophie-charlotte-hannover",
+      "names": { "ja": ["ゾフィー・シャルロッテ・フォン・ハノーファー"], "de": ["Sophie Charlotte von Hannover"], "en": ["Sophia Charlotte of Hanover"] },
+      "displayName": "Sophie Charlotte von Hannover", "displayNameJa": "ゾフィー・シャルロッテ・フォン・ハノーファー",
+      "sex": "f", "birth": { "year": 1668 }, "death": { "year": 1705 }, "houseId": "hannover",
+      "titles": [{ "ja": "初代プロイセン王妃", "de": "Königin in Preußen" }],
+      "unionIds": ["u-f1-sc"]
+    },
+    {
+      "id": "friedrich-wilhelm-i",
+      "names": { "ja": ["フリードリヒ・ヴィルヘルム1世", "兵隊王"], "de": ["Friedrich Wilhelm I."], "en": ["Frederick William I"] },
+      "displayName": "Friedrich Wilhelm I.", "displayNameJa": "フリードリヒ・ヴィルヘルム1世",
+      "sex": "m", "birth": { "year": 1688 }, "death": { "year": 1740 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "第二代プロイセン王（通称「兵隊王」）", "de": "König in Preußen", "from": 1713, "to": 1740 }],
+      "birthUnionId": "u-f1-sc", "unionIds": ["u-fw1-sd"]
+    },
+    {
+      "id": "sophie-dorothea-hannover",
+      "names": { "ja": ["ゾフィー・ドロテア・フォン・ハノーファー"], "de": ["Sophie Dorothea von Hannover"], "en": ["Sophia Dorothea of Hanover"] },
+      "displayName": "Sophie Dorothea von Hannover", "displayNameJa": "ゾフィー・ドロテア・フォン・ハノーファー",
+      "sex": "f", "birth": { "year": 1687 }, "death": { "year": 1757 }, "houseId": "hannover",
+      "titles": [{ "ja": "第二代プロイセン王妃", "de": "Königin in Preußen" }],
+      "birthUnionId": "u-gi-sd", "unionIds": ["u-fw1-sd"],
+      "layoutHint": { "pinBesideSpouse": "friedrich-wilhelm-i", "side": "left" }
+    },
+    {
+      "id": "george-i",
+      "names": { "ja": ["ジョージ1世"], "de": ["Georg I."], "en": ["George I"] },
+      "displayName": "George I.", "displayNameJa": "ジョージ1世",
+      "sex": "m", "birth": { "year": 1660 }, "death": { "year": 1727 }, "houseId": "hannover",
+      "titles": [{ "ja": "グレートブリテン国王", "de": "King of Great Britain", "from": 1714, "to": 1727 }],
+      "unionIds": ["u-gi-sd"]
+    },
+    {
+      "id": "george-ii",
+      "names": { "ja": ["ジョージ2世"], "de": ["Georg II."], "en": ["George II"] },
+      "displayName": "George II.", "displayNameJa": "ジョージ2世",
+      "sex": "m", "birth": { "year": 1683 }, "death": { "year": 1760 }, "houseId": "hannover",
+      "titles": [{ "ja": "グレートブリテン国王", "de": "King of Great Britain", "from": 1727, "to": 1760 }],
+      "birthUnionId": "u-gi-sd", "unionIds": ["u-gii-children"]
+    },
+    {
+      "id": "friedrich-ludwig",
+      "names": { "ja": ["フレデリック・ルイス", "フリードリヒ・ルートヴィヒ"], "de": ["Friedrich Ludwig von Hannover"], "en": ["Frederick, Prince of Wales", "Frederick Louis"] },
+      "displayName": "Frederick, Prince of Wales", "displayNameJa": "フレデリック・ルイス（プリンス・オブ・ウェールズ）",
+      "sex": "m", "birth": { "year": 1707 }, "death": { "year": 1751 }, "houseId": "hannover",
+      "titles": [{ "ja": "プリンス・オブ・ウェールズ", "de": "Prince of Wales" }],
+      "birthUnionId": "u-gii-children", "unionIds": ["u-wilhelmine-fritz-betrothal"],
+      "memoir": { "appears": true, "notes": "ヴィルヘルミーネとの婚姻が計画された「二重婚姻計画」の相手方。" }
+    },
+    {
+      "id": "amelia-britain",
+      "names": { "ja": ["アミーリア王女"], "de": ["Amelia von Hannover"], "en": ["Princess Amelia of Great Britain"] },
+      "displayName": "Princess Amelia", "displayNameJa": "アミーリア王女",
+      "sex": "f", "birth": { "year": 1711 }, "death": { "year": 1786 }, "houseId": "hannover",
+      "titles": [{ "ja": "イギリス王女" }],
+      "birthUnionId": "u-gii-children", "unionIds": ["u-amelia-friedrich-betrothal"]
+    },
+    {
+      "id": "johann-friedrich-ansbach",
+      "names": { "ja": ["ヨハン・フリードリヒ"], "de": ["Johann Friedrich von Brandenburg-Ansbach"], "en": ["John Frederick, Margrave of Brandenburg-Ansbach"] },
+      "displayName": "Johann Friedrich von Brandenburg-Ansbach", "displayNameJa": "ヨハン・フリードリヒ（アンスバッハ辺境伯）",
+      "sex": "m", "birth": { "year": 1654 }, "death": { "year": 1686 }, "houseId": "hohenzollern-ansbach",
+      "titles": [{ "ja": "ブランデンブルク＝アンスバッハ辺境伯", "de": "Markgraf von Brandenburg-Ansbach" }],
+      "unionIds": ["u-jfa-children"]
+    },
+    {
+      "id": "caroline-ansbach",
+      "names": { "ja": ["キャロライン・オブ・アンズバック", "ヴィルヘルミーネ・カロリーネ"], "de": ["Wilhelmine Karoline von Brandenburg-Ansbach"], "en": ["Caroline of Ansbach"] },
+      "displayName": "Caroline of Ansbach", "displayNameJa": "キャロライン・オブ・アンズバック",
+      "sex": "f", "birth": { "year": 1683 }, "death": { "year": 1737 }, "houseId": "hohenzollern-ansbach",
+      "titles": [{ "ja": "グレートブリテン王妃", "de": "Queen of Great Britain" }],
+      "birthUnionId": "u-jfa-children", "unionIds": ["u-gii-children"]
+    },
+    {
+      "id": "wilhelm-friedrich-ansbach",
+      "names": { "ja": ["ヴィルヘルム・フリードリヒ"], "de": ["Wilhelm Friedrich von Brandenburg-Ansbach"], "en": ["William Frederick, Margrave of Brandenburg-Ansbach"] },
+      "displayName": "Wilhelm Friedrich von Brandenburg-Ansbach", "displayNameJa": "ヴィルヘルム・フリードリヒ（アンスバッハ辺境伯）",
+      "sex": "m", "birth": { "year": 1685 }, "death": { "year": 1723 }, "houseId": "hohenzollern-ansbach",
+      "titles": [{ "ja": "ブランデンブルク＝アンスバッハ辺境伯", "de": "Markgraf von Brandenburg-Ansbach", "from": 1703, "to": 1723 }],
+      "birthUnionId": "u-jfa-children", "unionIds": ["u-wfa-children"]
+    },
+    {
+      "id": "karl-wilhelm-friedrich-ansbach",
+      "names": { "ja": ["カール・ヴィルヘルム・フリードリヒ", "野生辺境伯"], "de": ["Carl Wilhelm Friedrich von Brandenburg-Ansbach", "der Wilde Markgraf"], "en": ["Charles William Frederick, Margrave of Brandenburg-Ansbach"] },
+      "displayName": "Carl Wilhelm Friedrich von Brandenburg-Ansbach", "displayNameJa": "カール・ヴィルヘルム・フリードリヒ（通称「野生辺境伯」）",
+      "sex": "m", "birth": { "year": 1712 }, "death": { "year": 1757 }, "houseId": "hohenzollern-ansbach",
+      "titles": [{ "ja": "ブランデンブルク＝アンスバッハ辺境伯", "de": "Markgraf von Brandenburg-Ansbach", "from": 1723, "to": 1757 }],
+      "birthUnionId": "u-wfa-children", "unionIds": ["u-kwfa-fl"]
+    },
+
+    {
+      "id": "wilhelmine",
+      "names": { "ja": ["ヴィルヘルミーネ", "ヴィルヘルミーネ・フォン・プロイセン"], "de": ["Wilhelmine von Preußen", "Markgräfin von Bayreuth"], "en": ["Wilhelmine of Prussia"] },
+      "displayName": "Wilhelmine", "displayNameJa": "ヴィルヘルミーネ",
+      "sex": "f", "birth": { "year": 1709 }, "death": { "year": 1758 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "バイロイト辺境伯夫人", "de": "Markgräfin von Bayreuth" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": ["u-wilhelmine-bayreuth", "u-wilhelmine-fritz-betrothal"],
+      "memoir": { "appears": true, "notes": "回想録の著者本人。" }
+    },
+    {
+      "id": "friedrich-ii",
+      "names": { "ja": ["フリードリヒ2世", "フリードリヒ大王"], "de": ["Friedrich II.", "Friedrich der Große"], "en": ["Frederick II", "Frederick the Great"] },
+      "displayName": "Friedrich II. der Große", "displayNameJa": "フリードリヒ2世（大王）",
+      "sex": "m", "birth": { "year": 1712 }, "death": { "year": 1786 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "第三代プロイセン国王（通称大王）", "de": "König von Preußen", "from": 1740, "to": 1786 }],
+      "birthUnionId": "u-fw1-sd", "unionIds": ["u-amelia-friedrich-betrothal"],
+      "memoir": { "appears": true }
+    },
+    {
+      "id": "friederike-luise",
+      "names": { "ja": ["フリーデリケ・ルイーゼ"], "de": ["Friederike Luise von Preußen"], "en": [] },
+      "displayName": "Friederike Luise", "displayNameJa": "フリーデリケ・ルイーゼ",
+      "sex": "f", "birth": { "year": 1714 }, "death": { "year": 1784 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "アンスバッハ辺境伯夫人" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": ["u-kwfa-fl"]
+    },
+    {
+      "id": "philippine-charlotte",
+      "names": { "ja": ["フィリッピーネ・シャルロッテ"], "de": ["Philippine Charlotte von Preußen"], "en": [] },
+      "displayName": "Philippine Charlotte", "displayNameJa": "フィリッピーネ・シャルロッテ",
+      "sex": "f", "birth": { "year": 1716 }, "death": { "year": 1801 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "ブラウンシュヴァイク＝ヴォルフェンビュッテル公妃" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": []
+    },
+    {
+      "id": "sophie-dorothea-marie",
+      "names": { "ja": ["ゾフィー・ドロテア・マリー"], "de": ["Sophie Dorothea Marie von Preußen"], "en": [] },
+      "displayName": "Sophie Dorothea Marie", "displayNameJa": "ゾフィー・ドロテア・マリー",
+      "sex": "f", "birth": { "year": 1719 }, "death": { "year": 1765 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "ブランデンブルク＝シュヴェット辺境伯夫人" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": ["u-fws-sdm"]
+    },
+    {
+      "id": "luise-ulrike",
+      "names": { "ja": ["ルイーゼ・ウルリケ"], "de": ["Luise Ulrike von Preußen"], "en": ["Louisa Ulrika of Prussia"] },
+      "displayName": "Luise Ulrike", "displayNameJa": "ルイーゼ・ウルリケ",
+      "sex": "f", "birth": { "year": 1720 }, "death": { "year": 1782 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "スウェーデン王妃" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": []
+    },
+    {
+      "id": "august-wilhelm",
+      "names": { "ja": ["アウグスト・ヴィルヘルム"], "de": ["August Wilhelm von Preußen"], "en": [] },
+      "displayName": "August Wilhelm", "displayNameJa": "アウグスト・ヴィルヘルム",
+      "sex": "m", "birth": { "year": 1722 }, "death": { "year": 1758 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "プロイセン王子" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": ["u-augustw-fw2"]
+    },
+    {
+      "id": "anna-amalie",
+      "names": { "ja": ["アンナ・アマーリエ"], "de": ["Anna Amalie von Preußen"], "en": [] },
+      "displayName": "Anna Amalie", "displayNameJa": "アンナ・アマーリエ",
+      "sex": "f", "birth": { "year": 1723 }, "death": { "year": 1787 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "クヴェートリンブルク女子修道院長" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": []
+    },
+    {
+      "id": "heinrich",
+      "names": { "ja": ["ハインリヒ"], "de": ["Heinrich von Preußen"], "en": [] },
+      "displayName": "Heinrich", "displayNameJa": "ハインリヒ",
+      "sex": "m", "birth": { "year": 1726 }, "death": { "year": 1802 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "プロイセン王子、七年戦争の名将" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": []
+    },
+    {
+      "id": "ferdinand",
+      "names": { "ja": ["フェルディナント"], "de": ["Ferdinand von Preußen"], "en": [] },
+      "displayName": "Ferdinand", "displayNameJa": "フェルディナント",
+      "sex": "m", "birth": { "year": 1730 }, "death": { "year": 1813 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "プロイセン王子、軍人" }],
+      "birthUnionId": "u-fw1-sd", "unionIds": []
+    },
+
+    {
+      "id": "markgraf-friedrich-bayreuth",
+      "names": { "ja": ["フリードリヒ（バイロイト辺境伯）"], "de": ["Friedrich, Markgraf von Brandenburg-Bayreuth"], "en": [] },
+      "displayName": "Friedrich von Brandenburg-Bayreuth", "displayNameJa": "フリードリヒ・フォン・ブランデンブルク＝バイロイト",
+      "sex": "m", "birth": { "year": 1711 }, "death": { "year": 1763 }, "houseId": "hohenzollern-bayreuth",
+      "titles": [{ "ja": "ブランデンブルク＝バイロイト辺境伯", "de": "Markgraf von Brandenburg-Bayreuth", "from": 1735, "to": 1763 }],
+      "unionIds": ["u-wilhelmine-bayreuth"]
+    },
+    {
+      "id": "friederike-sophie-wilhelmine-bayreuth",
+      "names": { "ja": ["フリーデリケ・ゾフィー・ヴィルヘルミーネ"], "de": ["Friederike Sophie Wilhelmine von Bayreuth"], "en": [] },
+      "displayName": "Friederike Sophie Wilhelmine", "displayNameJa": "フリーデリケ・ゾフィー・ヴィルヘルミーネ",
+      "sex": "f", "birth": { "year": 1732 }, "death": { "year": 1780 }, "houseId": "hohenzollern-bayreuth",
+      "titles": [{ "ja": "ヴュルテンベルク公妃" }],
+      "birthUnionId": "u-wilhelmine-bayreuth", "unionIds": []
+    },
+
+    {
+      "id": "philipp-wilhelm-schwedt",
+      "names": { "ja": ["フィリップ・ヴィルヘルム"], "de": ["Philipp Wilhelm von Brandenburg-Schwedt"], "en": ["Philip William, Margrave of Brandenburg-Schwedt"] },
+      "displayName": "Philipp Wilhelm von Brandenburg-Schwedt", "displayNameJa": "フィリップ・ヴィルヘルム（シュヴェット辺境伯）",
+      "sex": "m", "birth": { "year": 1669 }, "death": { "year": 1711 }, "houseId": "hohenzollern-schwedt",
+      "titles": [{ "ja": "初代ブランデンブルク＝シュヴェット辺境伯", "de": "Markgraf von Brandenburg-Schwedt" }],
+      "birthUnionId": "u-gek-sd", "unionIds": ["u-pw-jc"]
+    },
+    {
+      "id": "friedrich-wilhelm-schwedt",
+      "names": { "ja": ["フリードリヒ・ヴィルヘルム（シュヴェット辺境伯）"], "de": ["Friedrich Wilhelm von Brandenburg-Schwedt"], "en": ["Frederick William, Margrave of Brandenburg-Schwedt"] },
+      "displayName": "Friedrich Wilhelm von Brandenburg-Schwedt", "displayNameJa": "フリードリヒ・ヴィルヘルム（シュヴェット辺境伯）",
+      "sex": "m", "birth": { "year": 1700 }, "death": { "year": 1771 }, "houseId": "hohenzollern-schwedt",
+      "titles": [{ "ja": "第2代ブランデンブルク＝シュヴェット辺境伯", "de": "Markgraf von Brandenburg-Schwedt" }],
+      "birthUnionId": "u-pw-jc", "unionIds": ["u-fws-sdm"]
+    },
+
+    {
+      "id": "johann-georg-ii-anhalt-dessau",
+      "names": { "ja": ["ヨハン・ゲオルク2世"], "de": ["Johann Georg II. von Anhalt-Dessau"], "en": ["John George II, Prince of Anhalt-Dessau"] },
+      "displayName": "Johann Georg II. von Anhalt-Dessau", "displayNameJa": "ヨハン・ゲオルク2世（アンハルト＝デッサウ侯）",
+      "sex": "m", "birth": { "year": 1627 }, "death": { "year": 1693 }, "houseId": "anhalt-dessau",
+      "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau" }],
+      "birthUnionId": "u-jc-jgii", "unionIds": ["u-jgii-children"]
+    },
+    {
+      "id": "leopold-i-anhalt-dessau",
+      "names": { "ja": ["レオポルト1世", "老デッサウ侯"], "de": ["Leopold I. von Anhalt-Dessau", "der alte Dessauer"], "en": ["Leopold I, Prince of Anhalt-Dessau", "the Old Dessauer"] },
+      "displayName": "Leopold I. von Anhalt-Dessau", "displayNameJa": "レオポルト1世（老デッサウ侯）",
+      "sex": "m", "birth": { "year": 1676 }, "death": { "year": 1747 }, "houseId": "anhalt-dessau",
+      "titles": [{ "ja": "アンハルト＝デッサウ侯、プロイセン元帥", "de": "Fürst von Anhalt-Dessau" }],
+      "birthUnionId": "u-jgii-children", "unionIds": ["u-li-lii"],
+      "memoir": { "appears": true, "notes": "回想録中の「アンハルト侯」はこの人物。フリードリヒ・ヴィルヘルム1世側近の軍人・宮廷人として描かれる。" }
+    },
+    {
+      "id": "johanna-charlotte-anhalt-dessau",
+      "names": { "ja": ["ヨハンナ・シャルロッテ・フォン・アンハルト＝デッサウ"], "de": ["Johanna Charlotte von Anhalt-Dessau"], "en": ["Johanna Charlotte of Anhalt-Dessau"] },
+      "displayName": "Johanna Charlotte von Anhalt-Dessau", "displayNameJa": "ヨハンナ・シャルロッテ・フォン・アンハルト＝デッサウ",
+      "sex": "f", "birth": { "year": 1682 }, "death": { "year": 1750 }, "houseId": "anhalt-dessau",
+      "titles": [{ "ja": "ブランデンブルク＝シュヴェット辺境伯夫人" }],
+      "birthUnionId": "u-jgii-children", "unionIds": ["u-pw-jc"]
+    },
+
+    {
+      "id": "friedrich-wilhelm-ii",
+      "names": { "ja": ["フリードリヒ・ヴィルヘルム2世"], "de": ["Friedrich Wilhelm II."], "en": ["Frederick William II"] },
+      "displayName": "Friedrich Wilhelm II.", "displayNameJa": "フリードリヒ・ヴィルヘルム2世",
+      "sex": "m", "birth": { "year": 1744 }, "death": { "year": 1797 }, "houseId": "hohenzollern",
+      "titles": [{ "ja": "第四代プロイセン国王", "de": "König von Preußen", "from": 1786, "to": 1797 }],
+      "birthUnionId": "u-augustw-fw2", "unionIds": []
+    },
+
+    {
+      "id": "joachim-ernst-anhalt",
+      "names": { "ja": ["ヨアヒム・エルンスト"], "de": ["Joachim Ernst von Anhalt"], "en": ["Joachim Ernst, Prince of Anhalt"] },
+      "displayName": "Joachim Ernst von Anhalt", "displayNameJa": "ヨアヒム・エルンスト（アンハルト侯）",
+      "sex": "m", "birth": { "year": 1536 }, "death": { "year": 1586 }, "houseId": "anhalt",
+      "titles": [{ "ja": "アンハルト侯（分割前）", "de": "Fürst von Anhalt" }],
+      "unionIds": ["u-je-children"]
+    },
+    {
+      "id": "johann-georg-i-anhalt-dessau",
+      "names": { "ja": ["ヨハン・ゲオルク1世"], "de": ["Johann Georg I. von Anhalt-Dessau"], "en": ["John George I, Prince of Anhalt-Dessau"] },
+      "displayName": "Johann Georg I. von Anhalt-Dessau", "displayNameJa": "ヨハン・ゲオルク1世（アンハルト＝デッサウ侯・初代）",
+      "sex": "m", "birth": { "year": 1567 }, "death": { "year": 1618 }, "houseId": "anhalt-dessau",
+      "titles": [{ "ja": "アンハルト＝デッサウ侯（初代）", "de": "Fürst von Anhalt-Dessau" }],
+      "birthUnionId": "u-je-children", "unionIds": ["u-jgi-jc"]
+    },
+    {
+      "id": "johann-casimir-anhalt-dessau",
+      "names": { "ja": ["ヨハン・カジミール"], "de": ["Johann Casimir von Anhalt-Dessau"], "en": ["John Casimir, Prince of Anhalt-Dessau"] },
+      "displayName": "Johann Casimir von Anhalt-Dessau", "displayNameJa": "ヨハン・カジミール（アンハルト＝デッサウ侯）",
+      "sex": "m", "birth": { "year": 1596 }, "death": { "year": 1660 }, "houseId": "anhalt-dessau",
+      "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau" }],
+      "birthUnionId": "u-jgi-jc", "unionIds": ["u-jc-jgii"]
+    },
+    {
+      "id": "leopold-ii-anhalt-dessau",
+      "names": { "ja": ["レオポルト2世"], "de": ["Leopold II. von Anhalt-Dessau"], "en": ["Leopold II, Prince of Anhalt-Dessau"] },
+      "displayName": "Leopold II. von Anhalt-Dessau", "displayNameJa": "レオポルト2世（アンハルト＝デッサウ侯）",
+      "sex": "m", "birth": { "year": 1700 }, "death": { "year": 1751 }, "houseId": "anhalt-dessau",
+      "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau", "from": 1747, "to": 1751 }],
+      "birthUnionId": "u-li-lii", "unionIds": []
+    },
+    {
+      "id": "rudolf-anhalt-zerbst",
+      "names": { "ja": ["ルドルフ"], "de": ["Rudolf von Anhalt-Zerbst"], "en": ["Rudolf, Prince of Anhalt-Zerbst"] },
+      "displayName": "Rudolf von Anhalt-Zerbst", "displayNameJa": "ルドルフ（アンハルト＝ツェルプスト侯・初代）",
+      "sex": "m", "birth": { "year": 1576 }, "death": { "year": 1621 }, "houseId": "anhalt-zerbst",
+      "titles": [{ "ja": "アンハルト＝ツェルプスト侯（初代）", "de": "Fürst von Anhalt-Zerbst" }],
+      "birthUnionId": "u-je-children", "unionIds": ["u-rz-johann"]
+    },
+    {
+      "id": "johann-anhalt-zerbst",
+      "names": { "ja": ["ヨハン"], "de": ["Johann von Anhalt-Zerbst"], "en": ["Johann, Prince of Anhalt-Zerbst"] },
+      "displayName": "Johann von Anhalt-Zerbst", "displayNameJa": "ヨハン（アンハルト＝ツェルプスト侯）",
+      "sex": "m", "birth": { "year": 1621 }, "death": { "year": 1667 }, "houseId": "anhalt-zerbst",
+      "titles": [{ "ja": "アンハルト＝ツェルプスト侯", "de": "Fürst von Anhalt-Zerbst" }],
+      "birthUnionId": "u-rz-johann", "unionIds": ["u-johann-jl1"]
+    },
+    {
+      "id": "johann-ludwig-i-anhalt-zerbst",
+      "names": { "ja": ["ヨハン・ルートヴィヒ1世"], "de": ["Johann Ludwig I. von Anhalt-Zerbst"], "en": ["John Louis I, Prince of Anhalt-Zerbst"] },
+      "displayName": "Johann Ludwig I. von Anhalt-Zerbst", "displayNameJa": "ヨハン・ルートヴィヒ1世（アンハルト＝ツェルプスト侯）",
+      "sex": "m", "birth": { "year": 1656 }, "death": { "year": 1704 }, "houseId": "anhalt-zerbst",
+      "titles": [{ "ja": "アンハルト＝ツェルプスト侯", "de": "Fürst von Anhalt-Zerbst" }],
+      "birthUnionId": "u-johann-jl1", "unionIds": ["u-jl1-ca"]
+    },
+    {
+      "id": "christian-august-anhalt-zerbst",
+      "names": { "ja": ["クリスティアン・アウグスト"], "de": ["Christian August von Anhalt-Zerbst"], "en": ["Christian Augustus, Prince of Anhalt-Zerbst"] },
+      "displayName": "Christian August von Anhalt-Zerbst", "displayNameJa": "クリスティアン・アウグスト（アンハルト＝ツェルプスト侯）",
+      "sex": "m", "birth": { "year": 1690 }, "death": { "year": 1747 }, "houseId": "anhalt-zerbst",
+      "titles": [{ "ja": "アンハルト＝ツェルプスト侯、プロイセン元帥", "de": "Fürst von Anhalt-Zerbst" }],
+      "birthUnionId": "u-jl1-ca", "unionIds": ["u-ca-catherine"]
+    },
+    {
+      "id": "catherine-ii-russia",
+      "names": { "ja": ["エカチェリーナ2世", "ゾフィー・アウグステ・フリーデリケ"], "de": ["Sophie Auguste Friederike von Anhalt-Zerbst", "Katharina II."], "en": ["Catherine the Great", "Sophie of Anhalt-Zerbst"] },
+      "displayName": "Katharina II. (geb. Sophie von Anhalt-Zerbst)", "displayNameJa": "エカチェリーナ2世（旧名ゾフィー・アウグステ・フリーデリケ）",
+      "sex": "f", "birth": { "year": 1729 }, "death": { "year": 1796 }, "houseId": "anhalt-zerbst",
+      "titles": [{ "ja": "ロシア皇帝", "de": "Kaiserin von Russland", "from": 1762, "to": 1796 }],
+      "birthUnionId": "u-ca-catherine", "unionIds": []
+    }
+  ],
+
+  "unions": [
+    {
+      "id": "u-gek-lh",
+      "partners": [{ "personId": "friedrich-wilhelm-grosser-kurfuerst", "role": "father" }, { "personId": "luise-henriette-nassau", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1646 }, "end": { "year": 1667 },
+      "childIds": ["friedrich-i"]
+    },
+    {
+      "id": "u-gek-sd",
+      "partners": [{ "personId": "friedrich-wilhelm-grosser-kurfuerst", "role": "father" }, { "personId": "sophie-dorothea-holstein", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1668 },
+      "childIds": ["philipp-wilhelm-schwedt"]
+    },
+    {
+      "id": "u-f1-sc",
+      "partners": [{ "personId": "friedrich-i", "role": "father" }, { "personId": "sophie-charlotte-hannover", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1684 },
+      "childIds": ["friedrich-wilhelm-i"]
+    },
+    {
+      "id": "u-gi-sd",
+      "partners": [{ "personId": "george-i", "role": "father" }],
+      "type": "marriage", "status": "married", "start": { "year": 1682 },
+      "childIds": ["sophie-dorothea-hannover", "george-ii"]
+    },
+    {
+      "id": "u-gii-children",
+      "partners": [{ "personId": "george-ii", "role": "father" }, { "personId": "caroline-ansbach", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1705 },
+      "childIds": ["friedrich-ludwig", "amelia-britain"]
+    },
+    {
+      "id": "u-jfa-children",
+      "partners": [{ "personId": "johann-friedrich-ansbach", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["caroline-ansbach", "wilhelm-friedrich-ansbach"]
+    },
+    {
+      "id": "u-wfa-children",
+      "partners": [{ "personId": "wilhelm-friedrich-ansbach", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["karl-wilhelm-friedrich-ansbach"]
+    },
+    {
+      "id": "u-kwfa-fl",
+      "partners": [{ "personId": "karl-wilhelm-friedrich-ansbach", "role": "father" }, { "personId": "friederike-luise", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1729 },
+      "childIds": []
+    },
+    {
+      "id": "u-fw1-sd",
+      "partners": [{ "personId": "friedrich-wilhelm-i", "role": "father" }, { "personId": "sophie-dorothea-hannover", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1706 },
+      "childIds": ["wilhelmine", "friedrich-ii", "friederike-luise", "philippine-charlotte", "sophie-dorothea-marie", "luise-ulrike", "august-wilhelm", "anna-amalie", "heinrich", "ferdinand"]
+    },
+    {
+      "id": "u-wilhelmine-fritz-betrothal",
+      "partners": [{ "personId": "friedrich-ludwig", "role": "father" }, { "personId": "wilhelmine", "role": "mother" }],
+      "type": "betrothal", "status": "broken", "start": { "year": 1723 }, "end": { "year": 1730 },
+      "childIds": [],
+      "notes": "英普二重婚姻計画（ヴィルヘルミーネ⇄フレデリック・ルイス、フリードリヒ2世⇄英王女）。フリードリヒ・ヴィルヘルム1世の反対等により破談。"
+    },
+    {
+      "id": "u-amelia-friedrich-betrothal",
+      "partners": [{ "personId": "friedrich-ii", "role": "father" }, { "personId": "amelia-britain", "role": "mother" }],
+      "type": "betrothal", "status": "broken", "start": { "year": 1723 }, "end": { "year": 1730 },
+      "childIds": [],
+      "notes": "英普二重婚姻計画のもう一方（ヴィルヘルミーネ⇄フレデリック・ルイスと対になる縁組）。フリードリヒ・ヴィルヘルム1世の反対等により破談。"
+    },
+    {
+      "id": "u-wilhelmine-bayreuth",
+      "partners": [{ "personId": "markgraf-friedrich-bayreuth", "role": "father" }, { "personId": "wilhelmine", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1731 },
+      "childIds": ["friederike-sophie-wilhelmine-bayreuth"]
+    },
+    {
+      "id": "u-augustw-fw2",
+      "partners": [{ "personId": "august-wilhelm", "role": "father" }],
+      "type": "marriage", "status": "married", "start": { "year": 1742 },
+      "childIds": ["friedrich-wilhelm-ii"]
+    },
+    {
+      "id": "u-pw-jc",
+      "partners": [{ "personId": "philipp-wilhelm-schwedt", "role": "father" }, { "personId": "johanna-charlotte-anhalt-dessau", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1699 },
+      "childIds": ["friedrich-wilhelm-schwedt"]
+    },
+    {
+      "id": "u-fws-sdm",
+      "partners": [{ "personId": "friedrich-wilhelm-schwedt", "role": "father" }, { "personId": "sophie-dorothea-marie", "role": "mother" }],
+      "type": "marriage", "status": "married", "start": { "year": 1734 },
+      "childIds": []
+    },
+    {
+      "id": "u-jgii-children",
+      "partners": [{ "personId": "johann-georg-ii-anhalt-dessau", "role": "father" }],
+      "type": "marriage", "status": "married", "start": { "year": 1659 },
+      "childIds": ["leopold-i-anhalt-dessau", "johanna-charlotte-anhalt-dessau"]
+    },
+    {
+      "id": "u-je-children",
+      "partners": [{ "personId": "joachim-ernst-anhalt", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["johann-georg-i-anhalt-dessau", "rudolf-anhalt-zerbst"]
+    },
+    {
+      "id": "u-jgi-jc",
+      "partners": [{ "personId": "johann-georg-i-anhalt-dessau", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["johann-casimir-anhalt-dessau"]
+    },
+    {
+      "id": "u-jc-jgii",
+      "partners": [{ "personId": "johann-casimir-anhalt-dessau", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["johann-georg-ii-anhalt-dessau"]
+    },
+    {
+      "id": "u-li-lii",
+      "partners": [{ "personId": "leopold-i-anhalt-dessau", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["leopold-ii-anhalt-dessau"]
+    },
+    {
+      "id": "u-rz-johann",
+      "partners": [{ "personId": "rudolf-anhalt-zerbst", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["johann-anhalt-zerbst"]
+    },
+    {
+      "id": "u-johann-jl1",
+      "partners": [{ "personId": "johann-anhalt-zerbst", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["johann-ludwig-i-anhalt-zerbst"]
+    },
+    {
+      "id": "u-jl1-ca",
+      "partners": [{ "personId": "johann-ludwig-i-anhalt-zerbst", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["christian-august-anhalt-zerbst"]
+    },
+    {
+      "id": "u-ca-catherine",
+      "partners": [{ "personId": "christian-august-anhalt-zerbst", "role": "father" }],
+      "type": "marriage", "status": "married",
+      "childIds": ["catherine-ii-russia"]
+    }
+  ]
+}
