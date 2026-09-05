@@ -562,63 +562,51 @@
   function renderHouses(graphBox) {
     els.houses.innerHTML = '';
     var pad = 26;
+    // A card counts as "in" the house's horizontal range once at least 2/3
+    // of its width overlaps the box, not only when it's fully inside. This
+    // lets the box sit narrower than the strict min/max of every member's
+    // left edge - which matters for a house whose column drifts sideways
+    // across generations (e.g. squeezed between two other houses that
+    // themselves shift per rank): the strict box would be wide enough to
+    // cover the whole drift and uselessly overlap a neighbor's equally
+    // drifting column, while still letting an outlier card poke out by its
+    // outer third rather than being fully enclosed.
+    var minOverlap = PW * 2 / 3;
     state.housesById.forEach(function (house) {
       var members = state.data.people.filter(function (p) { return p.houseId === house.id; });
       if (!members.length) return;
-
-      // One rectangle per occupied rank (generation) rather than a single
-      // box spanning the house's full min/max - a house whose column
-      // drifts sideways across generations (e.g. squeezed between two
-      // other houses that themselves shift per rank) would otherwise get
-      // one big box wide enough to cover the whole drift, which then
-      // uselessly overlaps a neighboring house's own equally-drifting
-      // column in the middle generations where neither actually has a
-      // card there. Adjacent rank-boxes are stretched to touch (using
-      // half the gap to the next occupied rank) so the result still reads
-      // as one continuous outline instead of disconnected fragments.
-      var byRank = new Map();
+      var minLeft = Infinity, maxLeft = -Infinity, minY = Infinity, maxY = -Infinity;
       members.forEach(function (p) {
         var n = state.layout.node('p:' + p.id);
-        var key = Math.round(n.y);
-        if (!byRank.has(key)) byRank.set(key, []);
-        byRank.get(key).push(n);
+        minLeft = Math.min(minLeft, n.x - PW / 2);
+        maxLeft = Math.max(maxLeft, n.x - PW / 2);
+        minY = Math.min(minY, n.y - PH / 2);
+        maxY = Math.max(maxY, n.y + PH / 2);
       });
-      var ranks = Array.from(byRank.keys()).sort(function (a, b) { return a - b; });
+      var minX = minLeft + PW - minOverlap;
+      var maxX = maxLeft + minOverlap;
+      if (maxX - minX < minOverlap) {
+        var midX = (minX + maxX) / 2;
+        minX = midX - minOverlap / 2;
+        maxX = midX + minOverlap / 2;
+      }
 
-      var overallMinX = Infinity, topRankY = ranks[0];
-      ranks.forEach(function (rankY, i) {
-        var nodes = byRank.get(rankY);
-        var minX = Infinity, maxX = -Infinity;
-        nodes.forEach(function (n) { minX = Math.min(minX, n.x - PW / 2); maxX = Math.max(maxX, n.x + PW / 2); });
-        overallMinX = Math.min(overallMinX, minX);
-
-        // Cap the touch-extension so a house with a skipped generation (a
-        // large gap to its next occupied rank) doesn't stretch one box far
-        // down into empty territory just to "connect" to a distant rank.
-        var gapAbove = i > 0 ? Math.min((rankY - ranks[i - 1]) / 2, 160) : pad;
-        var gapBelow = i < ranks.length - 1 ? Math.min((ranks[i + 1] - rankY) / 2, 160) : pad;
-        var top = rankY - PH / 2 - gapAbove;
-        var bottom = rankY + PH / 2 + gapBelow;
-        var isTopRank = rankY === topRankY;
-
-        var panel = document.createElement('div');
-        panel.className = 'house-panel';
-        panel.style.left = (minX - pad) + 'px';
-        panel.style.top = (top - (isTopRank ? 30 : 0)) + 'px';
-        panel.style.width = (maxX - minX + pad * 2) + 'px';
-        panel.style.height = (bottom - top + (isTopRank ? 30 : 0)) + 'px';
-        panel.style.borderColor = house.color;
-        panel.style.background = 'color-mix(in srgb, ' + house.color + ' 7%, transparent)';
-        els.houses.appendChild(panel);
-      });
+      var panel = document.createElement('div');
+      panel.className = 'house-panel';
+      panel.style.left = (minX - pad) + 'px';
+      panel.style.top = (minY - pad - 30) + 'px';
+      panel.style.width = (maxX - minX + pad * 2) + 'px';
+      panel.style.height = (maxY - minY + pad * 2 + 30) + 'px';
+      panel.style.borderColor = house.color;
+      panel.style.background = 'color-mix(in srgb, ' + house.color + ' 7%, transparent)';
+      els.houses.appendChild(panel);
 
       var offset = house.labelOffset || {};
-      var labelTop = topRankY - PH / 2 - pad - 30;
       var label = document.createElement('button');
       label.type = 'button';
       label.className = 'house-label';
-      label.style.left = (overallMinX - pad + (offset.dx || 0)) + 'px';
-      label.style.top = (labelTop + (offset.dy || 0)) + 'px';
+      label.style.left = (minX - pad + (offset.dx || 0)) + 'px';
+      label.style.top = (minY - pad - 30 + (offset.dy || 0)) + 'px';
       label.style.color = house.color;
       label.style.borderColor = house.color;
       label.textContent = (state.collapsedHouses.has(house.id) ? '▸ ' : '▾ ') + house.name.ja;
