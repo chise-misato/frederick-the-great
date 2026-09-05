@@ -258,7 +258,7 @@
       "sex": "m", "birth": { "year": 1627 }, "death": { "year": 1693 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau" }],
       "birthUnionId": "u-jc-jgii", "unionIds": ["u-jgii-children"],
-      "layoutHint": { "pinBeside": "johann-ludwig-i-anhalt-zerbst", "side": "right" }
+      "layoutHint": { "pinBeside": "johann-ludwig-i-anhalt-zerbst", "side": "left", "gap": 100 }
     },
     {
       "id": "leopold-i-anhalt-dessau",
@@ -304,7 +304,7 @@
       "sex": "m", "birth": { "year": 1567 }, "death": { "year": 1618 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯（初代）", "de": "Fürst von Anhalt-Dessau" }],
       "birthUnionId": "u-je-children", "unionIds": ["u-jgi-jc"],
-      "layoutHint": { "pinBeside": "rudolf-anhalt-zerbst", "side": "right" }
+      "layoutHint": { "pinBeside": "rudolf-anhalt-zerbst", "side": "left", "gap": 100 }
     },
     {
       "id": "johann-casimir-anhalt-dessau",
@@ -313,7 +313,7 @@
       "sex": "m", "birth": { "year": 1596 }, "death": { "year": 1660 }, "houseId": "anhalt-dessau",
       "titles": [{ "ja": "アンハルト＝デッサウ侯", "de": "Fürst von Anhalt-Dessau" }],
       "birthUnionId": "u-jgi-jc", "unionIds": ["u-jc-jgii"],
-      "layoutHint": { "pinBeside": "johann-anhalt-zerbst", "side": "right" }
+      "layoutHint": { "pinBeside": "johann-anhalt-zerbst", "side": "left", "gap": 100 }
     },
     {
       "id": "leopold-ii-anhalt-dessau",
