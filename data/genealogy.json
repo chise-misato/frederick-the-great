@@ -96,8 +96,8 @@
     },
     {
       "id": "amelia-britain",
-      "names": { "ja": ["アミーリア王女"], "de": ["Amelia von Hannover"], "en": ["Princess Amelia of Great Britain"] },
-      "displayName": "Princess Amelia", "displayNameJa": "アミーリア王女",
+      "names": { "ja": ["アメリア王女"], "de": ["Amelia von Hannover"], "en": ["Princess Amelia of Great Britain"] },
+      "displayName": "Princess Amelia", "displayNameJa": "アメリア王女",
       "sex": "f", "birth": { "year": 1711 }, "death": { "year": 1786 }, "houseId": "hannover",
       "titles": [{ "ja": "イギリス王女" }],
       "birthUnionId": "u-gii-children", "unionIds": ["u-amelia-friedrich-betrothal"]
