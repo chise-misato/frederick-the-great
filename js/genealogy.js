@@ -38,6 +38,10 @@
           addEdge(par.personId, c, { type: 'child', role: par.role, unionId: u.id });
         });
       });
+      // Betrothals (esp. broken ones) are not real family ties, so they must
+      // not feed relation-to-root / path-finding logic - only shown in the
+      // person's own 婚約者 field and as a dashed line in the diagram.
+      if (u.type === 'betrothal') return;
       for (var i = 0; i < u.partners.length; i++) {
         for (var j = i + 1; j < u.partners.length; j++) {
           addEdge(u.partners[i].personId, u.partners[j].personId, { type: 'spouse', unionId: u.id });
