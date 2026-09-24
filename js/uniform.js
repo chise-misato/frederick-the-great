@@ -92,6 +92,20 @@
   var elInfo      = document.getElementById('infoPanels');
   var elFritz     = document.getElementById('fritzPanel');
   var elFritzText = document.getElementById('fritzText');
+  var elPanel     = document.getElementById('chooserPanel');
+  var elToggle    = document.getElementById('chooserToggle');
+  var elFigure    = document.querySelector('.figure');
+  var mqNarrow    = window.matchMedia('(max-width:820px)');   // CSS の折りたたみと同じ幅
+
+  /* ---------- スマホ幅でのボタン一覧の開閉 ---------- */
+  function setChooserOpen(open) {
+    elPanel.classList.toggle('open', open);
+    elToggle.setAttribute('aria-expanded', String(open));
+    elToggle.textContent = open ? '一覧を閉じる' : '一覧を開く';
+  }
+  elToggle.addEventListener('click', function () {
+    setChooserOpen(!elPanel.classList.contains('open'));
+  });
 
   var activeCat   = null;   // 現在の CATEGORIES エントリ
   var headers     = [];     // 列インデックス -> パーツ名／テキスト列名
@@ -101,6 +115,7 @@
   var current     = -1;     // 選択中の行インデックス（-1 = 未選択）
   var loadToken   = 0;      // 兵科切替の競合防止
   var renderToken = 0;      // 行切替（非同期の画像差し替え）の競合防止
+  var slotsReady  = false;  // パーツ読み込み完了前に押されたボタンは、完了後にまとめて描画する
 
   /* ---------- CSV ---------- */
   function parseCSV(text) {
@@ -463,7 +478,13 @@
     for (k = 0; k < bs.length; k++) {
       bs[k].setAttribute('aria-pressed', String(k === current));
     }
-    render(current);
+    if (slotsReady) render(current);
+
+    // スマホ幅では一覧を閉じて、着せ替え結果の位置まで移動する
+    if (mqNarrow.matches) {
+      setChooserOpen(false);
+      elFigure.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   /* ---------- 兵科の切替・読み込み ---------- */
@@ -471,6 +492,7 @@
     var token = ++loadToken;
     activeCat = cat;
     current = -1;
+    slotsReady = false;
     headers = [];
     rows = [];
     slots = [];
@@ -516,7 +538,8 @@
 
       return buildSlots(cat.dir).then(function () {
         if (token !== loadToken) return;
-        render(-1);
+        slotsReady = true;
+        render(current);   // 読み込み中に選ばれた部隊があればそれを表示
       });
     }).catch(function (err) {
       if (token !== loadToken) return;

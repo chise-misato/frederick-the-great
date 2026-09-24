@@ -97,7 +97,7 @@ body{
 }
 
 .cols{display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;align-items:start}
-@media (max-width:820px){ .cols{grid-template-columns:1fr;gap:1.4rem} }
+@media (max-width:820px){ .cols{grid-template-columns:minmax(0,1fr);gap:1.4rem} }
 
 /* ---- 部隊ボタン ---- */
 .panel{
@@ -115,6 +115,30 @@ body{
   max-height:60vh;overflow-y:auto;
 }
 @media (max-width:820px){ #buttons{max-height:none} }
+
+/* スマホ幅ではボタン一覧を折りたたみ、選択後に着せ替え結果がすぐ見えるようにする */
+.chooser-toggle{display:none}
+@media (max-width:820px){
+  .panel{padding:.75rem 1rem}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+  .panel-head h2{margin:0}
+  .chooser-toggle{
+    display:inline-flex;align-items:center;gap:.45em;flex-shrink:0;
+    font:inherit;font-size:.85rem;line-height:1.2;
+    padding:.45rem .8rem;
+    border:1px solid var(--parchment-line);border-radius:6px;
+    background:var(--parchment);color:var(--prussian);cursor:pointer;
+  }
+  .chooser-toggle::after{
+    content:"";width:.42em;height:.42em;
+    border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+    transform:translateY(-.15em) rotate(45deg);transition:transform .2s ease;
+  }
+  .chooser-toggle[aria-expanded="true"]::after{transform:translateY(.1em) rotate(-135deg)}
+  #chooserPanel:not(.open) #buttons{display:none}
+  #chooserPanel.open #buttons{margin-top:.7rem}
+  .figure{scroll-margin-top:5.6rem}
+}
 #buttons button{
   font:inherit;font-size:.9rem;line-height:1.2;
   padding:.42rem .7rem;
@@ -358,8 +382,11 @@ body{ padding-top:5.2rem; }
 
   <div class="cols">
 
-    <section class="panel">
-      <h2 id="chooserLabel">部隊を選ぶ</h2>
+    <section class="panel" id="chooserPanel">
+      <div class="panel-head">
+        <h2 id="chooserLabel">部隊を選ぶ</h2>
+        <button type="button" class="chooser-toggle" id="chooserToggle" aria-expanded="false" aria-controls="buttons">一覧を開く</button>
+      </div>
       <div id="buttons"></div>
     </section>
 
