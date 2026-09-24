@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="3000"
+   height="4000"
+   viewBox="0 0 3000 4000"
+   sodipodi:docname="S_cuffs_lace_fill.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.21275"
+     inkscape:cx="1499.4125"
+     inkscape:cy="2000"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <path
+       style="fill:#000000"
+       d="m 1999.9429,2010.0278 c -2.6966,-1.5782 -20.937,-4.8795 -34.0508,-6.1628 l -12.608,-1.2338 -0.5737,-44.0656 -0.5738,-44.0656 5.2477,-5 c 2.8863,-2.75 9.9388,-9.1481 15.6723,-14.218 l 10.4246,-9.218 3.8847,3.718 c 6.5535,6.2724 15.3151,17.8211 18.5362,24.4329 l 3.062,6.2851 -1.9601,43.5 c -1.0781,23.925 -1.97,44.2875 -1.9821,45.25 -0.024,1.8909 -2.5232,2.2737 -5.079,0.7778 z m -1036.96481,-1.6612 c -0.012,-1.0266 -0.90398,-21.4416 -1.98206,-45.3666 l -1.96015,-43.5 3.06198,-6.2851 c 3.22116,-6.6118 11.98272,-18.1605 18.53629,-24.4329 l 3.88466,-3.718 10.42458,9.218 c 5.73351,5.0699 12.78601,11.468 15.67231,14.218 l 5.2477,5 -0.5733,44.0198 -0.5732,44.0198 -15.60845,1.7237 c -8.58465,0.948 -19.20845,2.6516 -23.60845,3.7857 -4.4,1.1341 -9.0125,2.3145 -10.25,2.6231 -1.72601,0.4304 -2.2551,0.1264 -2.27191,-1.3055 z"
+       id="path1" />
+  </g>
+</svg>
