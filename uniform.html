@@ -18,7 +18,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%85%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -30,6 +30,7 @@
   --parchment-dim:#e8dcc2;
   --parchment-line:#d8c9a6;
   --gilt:#a9832f;
+  --steel:#8b95a0;
   --shadow:0 18px 40px -20px rgba(20,30,42,.35);
   color-scheme:light;
 }
@@ -43,6 +44,7 @@
     --parchment-dim:#171f28;
     --parchment-line:#31404c;
     --gilt:#d8b25a;
+    --steel:#7f8b96;
     color-scheme:dark;
   }
 }
@@ -60,13 +62,16 @@ body{
 }
 .wrap{max-width:1180px;margin:0 auto}
 
-header.page{border-bottom:1px solid var(--parchment-line);padding-bottom:1.1rem;margin-bottom:1.2rem}
-header.page .mark{
-  font-family:"Cormorant Garamond",serif;font-style:italic;
-  letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;color:var(--gilt);margin:0 0 .25rem
+/* ---- ページ見出し（他ページの見出しと同じ体裁。body の余白を打ち消して全幅に広げる） ---- */
+.uheader{
+  margin:-5.2rem -20px 1.6rem;
+  padding:8.5rem 1.4rem 2.6rem; text-align:center;
+  background:radial-gradient(ellipse 80% 55% at 50% 0%, color-mix(in srgb, var(--prussian) 12%, transparent), transparent 60%), var(--parchment);
 }
-header.page h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.85rem;margin:0;letter-spacing:.02em}
-header.page p{margin:.5rem 0 0;color:var(--ink-soft);font-size:.95rem}
+.uheader-mark{ font-family:'UnifrakturMaguntia', serif; font-size:clamp(2.2rem,5vw,3rem); color:var(--prussian); margin-bottom:.2em; line-height:1; }
+.uheader .section-head{ font-family:'Cormorant Garamond', serif; font-size:clamp(2rem, 4.2vw, 3rem); letter-spacing:.01em; font-weight:600; margin:0; text-wrap:balance; line-height:1.4; }
+.uheader .range{ font-size:.85rem; letter-spacing:.24em; text-transform:uppercase; color:var(--steel); margin:1rem 0 1.4rem; }
+.uheader p.lede{ max-width:56ch; margin:0 auto; color:var(--ink-soft); font-size:1.02rem; line-height:1.8; }
 
 /* ---- 兵科タブ（歩兵・騎兵…／今後の追加を見越した構造） ---- */
 #categoryTabs{
@@ -340,13 +345,14 @@ body{ padding-top:5.2rem; }
   </ul>
 </nav>
 
-<div class="wrap">
+<header class="uheader">
+  <div class="uheader-mark">Militäruniform</div>
+  <h1 class="section-head" id="pageTitle">プロイセン軍の連隊別軍服</h1>
+  <p class="range">Uniformen der Regimenter ・ 連隊ごとの軍服の意匠</p>
+  <p class="lede" id="pageLede">フリードリヒ大王時代のプロイセン軍では、連隊ごとに襟やカフス、ボタン、レースなどの軍服の意匠が異なっていました。連隊を選択すると、軍服の配色、ボタン、レースなどの違いを着せ替えて比較できます。もう一度押すと素体に戻ります。</p>
+</header>
 
-  <header class="page">
-    <p class="mark">Uniformen der Armee</p>
-    <h1 id="pageTitle">プロイセン軍の連隊別軍服</h1>
-    <p id="pageLede">フリードリヒ大王時代のプロイセン軍では、連隊ごとに襟やカフス、ボタン、レースなどの軍服の意匠が異なっていました。連隊を選択すると、軍服の配色、ボタン、レースなどの違いを着せ替えて比較できます。もう一度押すと素体に戻ります。</p>
-  </header>
+<div class="wrap">
 
   <nav id="categoryTabs" aria-label="兵科を選ぶ"></nav>
 
@@ -368,7 +374,7 @@ body{ padding-top:5.2rem; }
         <p class="bubble" id="fritzText"></p>
       </div>
 
-      <details class="log">
+      <details class="log" hidden>
         <summary id="logSummary">読み込みログ</summary>
         <div id="log"></div>
       </details>
