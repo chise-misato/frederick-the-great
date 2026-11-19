@@ -1,0 +1,56 @@
+{
+  "people": [
+    {
+      "id": "friedrich-ii",
+      "genealogyId": "friedrich-ii",
+      "nameJa": "フリードリヒ2世",
+      "nameShort": "フリードリヒ",
+      "nameDe": "Friedrich II.",
+      "group": "brother",
+      "order": 10,
+      "birth": { "year": 1712, "month": 1, "day": 24 },
+      "death": { "year": 1786, "month": 8, "day": 17 },
+      "defaultVisible": true,
+      "residences": []
+    },
+    {
+      "id": "august-wilhelm",
+      "genealogyId": "august-wilhelm",
+      "nameJa": "アウグスト・ヴィルヘルム",
+      "nameShort": "A・ヴィルヘルム",
+      "nameDe": "August Wilhelm",
+      "group": "brother",
+      "order": 20,
+      "birth": { "year": 1722, "month": 8, "day": 9 },
+      "death": { "year": 1758, "month": 6, "day": 12 },
+      "defaultVisible": true,
+      "residences": []
+    },
+    {
+      "id": "heinrich",
+      "genealogyId": "heinrich",
+      "nameJa": "ハインリヒ",
+      "nameShort": "ハインリヒ",
+      "nameDe": "Heinrich",
+      "group": "brother",
+      "order": 30,
+      "birth": { "year": 1726, "month": 1, "day": 18 },
+      "death": { "year": 1802, "month": 8, "day": 3 },
+      "defaultVisible": true,
+      "residences": []
+    },
+    {
+      "id": "ferdinand",
+      "genealogyId": "ferdinand",
+      "nameJa": "フェルディナント",
+      "nameShort": "フェルディナント",
+      "nameDe": "Ferdinand",
+      "group": "brother",
+      "order": 40,
+      "birth": { "year": 1730, "month": 5, "day": 23 },
+      "death": { "year": 1813, "month": 5, "day": 2 },
+      "defaultVisible": true,
+      "residences": []
+    }
+  ]
+}

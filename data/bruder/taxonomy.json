@@ -1,0 +1,27 @@
+{
+  "view": { "centerYear": 1752, "pxPerYear": 26 },
+
+  "eventCategories": [
+    { "id": "letter",      "label": "書簡・通信",           "color": "#3f6f9e", "colorDark": "#8fb8de" },
+    { "id": "cooperation", "label": "軍事・政治上の協力",   "color": "#5f7f58", "colorDark": "#9db794" },
+    { "id": "conflict",    "label": "軍事・政治上の対立",   "color": "#9a4a3c", "colorDark": "#d98f7e" },
+    { "id": "family",      "label": "家族内の出来事",       "color": "#a9832f", "colorDark": "#e0bd6a" },
+    { "id": "testimony",   "label": "第三者による証言・逸話", "color": "#6e5a8a", "colorDark": "#b6a2d4" },
+    { "id": "other",       "label": "その他",               "color": "#7d8790", "colorDark": "#a3adb7" }
+  ],
+
+  "sourceTypes": [
+    { "id": "letter",    "label": "書簡" },
+    { "id": "memoir",    "label": "回想録・日記" },
+    { "id": "document",  "label": "公文書・命令書" },
+    { "id": "anecdote",  "label": "逸話集・同時代人の証言" },
+    { "id": "secondary", "label": "研究書・二次文献" },
+    { "id": "other",     "label": "その他" }
+  ],
+
+  "contextLayers": [
+    { "id": "war",       "label": "戦争",       "color": "#9a4a3c", "colorDark": "#d98f7e" },
+    { "id": "diplomacy", "label": "外交・条約", "color": "#3f6f9e", "colorDark": "#8fb8de" },
+    { "id": "dynasty",   "label": "王家・統治", "color": "#a9832f", "colorDark": "#e0bd6a" }
+  ]
+}

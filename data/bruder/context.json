@@ -1,0 +1,70 @@
+{
+  "context": [
+    {
+      "id": "ctx-reign-friedrich",
+      "layer": "dynasty",
+      "title": "フリードリヒ2世の在位",
+      "start": { "year": 1740 },
+      "end": { "year": 1786 },
+      "band": false,
+      "description": "年のみ登録。出典未登録（要確認）。"
+    },
+    {
+      "id": "ctx-death-fw1",
+      "layer": "dynasty",
+      "title": "フリードリヒ・ヴィルヘルム1世死去",
+      "start": { "year": 1740 },
+      "description": "年のみ登録。出典未登録（要確認）。"
+    },
+    {
+      "id": "ctx-silesian-1",
+      "layer": "war",
+      "title": "第一次シュレージエン戦争",
+      "start": { "year": 1740 },
+      "end": { "year": 1742 },
+      "band": true,
+      "description": "年のみ登録。出典未登録（要確認）。"
+    },
+    {
+      "id": "ctx-silesian-2",
+      "layer": "war",
+      "title": "第二次シュレージエン戦争",
+      "start": { "year": 1744 },
+      "end": { "year": 1745 },
+      "band": true,
+      "description": "年のみ登録。出典未登録（要確認）。"
+    },
+    {
+      "id": "ctx-seven-years",
+      "layer": "war",
+      "title": "七年戦争",
+      "start": { "year": 1756 },
+      "end": { "year": 1763 },
+      "band": true,
+      "description": "年のみ登録。出典未登録（要確認）。"
+    },
+    {
+      "id": "ctx-hubertusburg",
+      "layer": "diplomacy",
+      "title": "フベルトゥスブルク条約",
+      "start": { "year": 1763 },
+      "description": "年のみ登録。出典未登録（要確認）。"
+    },
+    {
+      "id": "ctx-partition-1",
+      "layer": "diplomacy",
+      "title": "第一次ポーランド分割",
+      "start": { "year": 1772 },
+      "description": "年のみ登録。出典未登録（要確認）。"
+    },
+    {
+      "id": "ctx-bavarian",
+      "layer": "war",
+      "title": "バイエルン継承戦争",
+      "start": { "year": 1778 },
+      "end": { "year": 1779 },
+      "band": true,
+      "description": "年のみ登録。出典未登録（要確認）。"
+    }
+  ]
+}

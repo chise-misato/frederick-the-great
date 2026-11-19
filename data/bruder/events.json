@@ -1,0 +1,32 @@
+{
+  "events": [
+    {
+      "id": "e-1755-11-03-oranienburg-cooking",
+      "date": { "year": 1755, "month": 11, "day": 3 },
+      "title": "オラーニエンブルクの料理会：牡蠣の腸詰めとスープになったパイ",
+      "shortTitle": "牡蠣の腸詰めとスープ状のパイ",
+      "people": ["august-wilhelm", "heinrich"],
+      "relatedPeople": [
+        { "name": "プロイセン王子妃", "identity": "ルイーゼ・アマーリエ" },
+        { "name": "ゾフィー・ドロテア", "role": "シュヴェット辺境伯夫人" },
+        { "name": "フェルディナント王子妃", "role": "ゾフィー・ドロテアの娘", "identity": "アンナ・エリーザベト・ルイーゼ" },
+        { "name": "アマーリエ王女" }
+      ],
+      "categories": ["family", "testimony"],
+      "place": "オラーニエンブルク",
+      "summary": "オラーニエンブルクに王族たちが集まって料理を作った。ハインリヒは牡蠣の腸詰めを作り、アウグスト・ヴィルヘルムのパイは分量を守らなかったためスープのようになった。",
+      "sources": [
+        { "id": "s-lehndorff-diary", "locator": "P.223", "date": { "year": 1755, "month": 11, "day": 3 } }
+      ],
+      "facts": [
+        { "text": "レーンドルフは日記に、オラーニエンブルクに王族たちが集まって料理を作ったと記している。", "sources": ["s-lehndorff-diary"] },
+        { "text": "同日記は主な参加者として、プロイセン王子（アウグスト・ヴィルヘルム）、プロイセン王子妃、ハインリヒ王子、シュヴェット辺境伯夫人（ゾフィー・ドロテア）、フェルディナント王子妃（ゾフィー・ドロテアの娘）、アマーリエ王女を挙げている。", "sources": ["s-lehndorff-diary"] },
+        { "text": "同日記によれば、ハインリヒは牡蠣の腸詰めを作った。", "sources": ["s-lehndorff-diary"] },
+        { "text": "同日記によれば、アウグスト・ヴィルヘルムはパイを作ろうとしたが、材料の分量を守らなかったためスープのようになった。", "sources": ["s-lehndorff-diary"] }
+      ],
+      "interpretations": [],
+      "notes": "",
+      "contextIds": []
+    }
+  ]
+}
