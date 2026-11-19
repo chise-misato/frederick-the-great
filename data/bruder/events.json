@@ -27,6 +27,30 @@
       "interpretations": [],
       "notes": "",
       "contextIds": []
+    },
+    {
+      "id": "e-1756-02-09-bertram-dispute",
+      "date": { "year": 1756, "month": 2, "day": 9 },
+      "dateEnd": { "year": 1756, "month": 2, "day": 11 },
+      "title": "幾何学者ベルトラム争奪戦：涙の和解と夏冬交代制",
+      "shortTitle": "ベルトラム争奪戦と涙の和解",
+      "people": ["august-wilhelm", "heinrich"],
+      "relatedPeople": [
+        { "name": "ベルトラム", "role": "若い幾何学者" }
+      ],
+      "categories": ["family", "testimony"],
+      "summary": "若い幾何学者ベルトラムを巡ってアウグスト・ヴィルヘルムとハインリヒが争った。二日後に二人は涙を流して抱き合って和解し、ベルトラムは夏と冬で交互に手元に置くことになった。",
+      "sources": [
+        { "id": "s-lehndorff-diary", "locator": "PP.248-249（1756年2月9日〜2月11日の記述）" }
+      ],
+      "facts": [
+        { "text": "レーンドルフは日記に、若い幾何学者ベルトラムを巡ってアウグスト・ヴィルヘルムとハインリヒの間で争いが生まれたと記している。", "sources": ["s-lehndorff-diary"] },
+        { "text": "同日記によれば、二日後に二人の間で和解が成立し、二人は涙を流して抱き合った。", "sources": ["s-lehndorff-diary"] },
+        { "text": "同日記によれば、結局、ベルトラムを夏と冬で交互に手元に置くこととなった。", "sources": ["s-lehndorff-diary"] }
+      ],
+      "interpretations": [],
+      "notes": "",
+      "contextIds": []
     }
   ]
 }
