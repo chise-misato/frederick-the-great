@@ -51,6 +51,28 @@
       "interpretations": [],
       "notes": "",
       "contextIds": []
+    },
+    {
+      "id": "e-1757-05-12-prague-bridge-reunion",
+      "date": { "year": 1757, "month": 5, "day": 12 },
+      "title": "お忍びの兄弟見舞い：プラハの橋で涙の再会",
+      "shortTitle": "プラハの橋で涙の再会",
+      "people": ["august-wilhelm", "heinrich", "ferdinand"],
+      "categories": ["family"],
+      "place": "プラハ",
+      "summary": "右翼にいて会戦に参加しなかったアウグスト・ヴィルヘルムとフェルディナントは、危険な状況で武勲を上げたハインリヒの身を案じ、会戦後お忍びで国王軍の彼に会いに行った。橋で再会し、喜びの涙を流して抱き合った。",
+      "sources": [
+        { "id": "s-berner-volz-1908-august-wilhelm-1757-05-13" },
+        { "id": "s-berner-volz-1908-ferdinand-1757-05-12" }
+      ],
+      "facts": [
+        { "text": "書簡によれば、右翼にいて会戦に参加しなかったアウグスト・ヴィルヘルムとフェルディナントは、会戦に参加し、危険な状況で武勲を上げたハインリヒの様子を確認した。", "sources": ["s-berner-volz-1908-august-wilhelm-1757-05-13", "s-berner-volz-1908-ferdinand-1757-05-12"] },
+        { "text": "書簡によれば、会戦後、ハインリヒの身を案じたアウグスト・ヴィルヘルムとフェルディナントは、お忍びで国王軍にいるハインリヒに会いに行った。", "sources": ["s-berner-volz-1908-august-wilhelm-1757-05-13", "s-berner-volz-1908-ferdinand-1757-05-12"] },
+        { "text": "書簡によれば、橋で再会し、再会できた喜びに涙して抱き合った。", "sources": ["s-berner-volz-1908-august-wilhelm-1757-05-13", "s-berner-volz-1908-ferdinand-1757-05-12"] }
+      ],
+      "interpretations": [],
+      "notes": "当事者であるアウグスト・ヴィルヘルムとフェルディナントがハインリヒ王子妃に宛てた書簡2通による。各記述がどちらの書簡に基づくかは区別していない。",
+      "contextIds": ["ctx-seven-years"]
     }
   ]
 }

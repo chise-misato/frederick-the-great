@@ -71,7 +71,8 @@
 
 ## 史料（sources.json）
 
-`id, type, author, recipient, title, date, volume, pages, url, quote, summary, note, needsCheck` を記入できます（空欄は表示されません）。
+`id, type, author, recipient, place, title, date, publication, volume, pages, url, quote, summary, note, needsCheck` を記入できます（空欄は表示されません）。
+`place` は書簡の差出地、`publication` は書簡集など収録文献の書誌情報です（書簡集の個々の書簡を別々の史料として登録する場合に使います）。
 `type` は `taxonomy.json` の `sourceTypes` の id です。`quote` は原文が提供された場合のみ記入し、それ以外は `summary` に要約を書きます。
 出典が未確定の場合は `"needsCheck": true` を付け、`note` に未確定の内容を書きます。
 

@@ -11,6 +11,36 @@
       "quote": "",
       "summary": "",
       "note": "レーンドルフ伯爵の日記。"
+    },
+    {
+      "id": "s-berner-volz-1908-august-wilhelm-1757-05-13",
+      "type": "letter",
+      "author": "プロイセン王子アウグスト・ヴィルヘルム",
+      "recipient": "プロイセンのハインリヒ王子妃",
+      "place": "プラハの陣営",
+      "title": "アウグスト・ヴィルヘルムよりハインリヒ王子妃宛の書簡",
+      "date": { "year": 1757, "month": 5, "day": 13 },
+      "publication": "Ernst Berner / Gustav Berthold Volz, Aus der Zeit des Siebenjährigen Krieges. Tagebuchblätter und Briefe der Prinzessin Heinrich und des Königlichen Hauses. (Berlin: Alexander Duncker Verlag, 1908)",
+      "pages": "298",
+      "url": "",
+      "quote": "",
+      "summary": "",
+      "note": "書簡の日付は出典メモで「5月13日（1757年）」と記載（年は括弧書き）。"
+    },
+    {
+      "id": "s-berner-volz-1908-ferdinand-1757-05-12",
+      "type": "letter",
+      "author": "プロイセン王子フェルディナント",
+      "recipient": "プロイセンのハインリヒ王子妃",
+      "place": "ヴェレスラヴィンの陣営",
+      "title": "フェルディナントよりハインリヒ王子妃宛の書簡",
+      "date": { "year": 1757, "month": 5, "day": 12 },
+      "publication": "Ernst Berner / Gustav Berthold Volz, Aus der Zeit des Siebenjährigen Krieges. Tagebuchblätter und Briefe der Prinzessin Heinrich und des Königlichen Hauses. (Berlin: Alexander Duncker Verlag, 1908)",
+      "pages": "340",
+      "url": "",
+      "quote": "",
+      "summary": "",
+      "note": ""
     }
   ]
 }

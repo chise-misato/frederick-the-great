@@ -582,7 +582,9 @@
     function row(k, v) { if (v) rows.push('<div class="bt-kv"><dt>' + k + '</dt><dd>' + v + '</dd></div>'); }
     row('著者', esc(s.author));
     row('宛先', esc(s.recipient));
+    row('差出地', esc(s.place));
     if (hasYear(s.date)) row('日付', esc(fmtDate(s.date)) + ' <span class="bt-prec">' + PREC_LABEL[precision(s.date)] + '</span>');
+    row('収録', esc(s.publication));
     row('巻', esc(s.volume));
     row('ページ', esc(s.pages));
     row('該当箇所', esc(link && link.locator));
