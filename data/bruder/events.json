@@ -105,6 +105,30 @@
       "interpretations": [],
       "notes": "",
       "contextIds": []
+    },
+    {
+      "id": "e-1763-03-07-marschall-house-sold",
+      "date": { "year": 1763, "month": 3, "day": 7 },
+      "dateNote": "日付はレーンドルフの日記の記述日。館の購入・ハインリヒの訪問・売却それぞれの時期は入力に記載がない。",
+      "title": "兄の一言で夢の館を手放す：フェルディナントとマルシャル邸",
+      "shortTitle": "「醜い」の一言で館を売却",
+      "people": ["heinrich", "ferdinand"],
+      "relatedPeople": [
+        { "name": "マルシャル", "role": "故国務大臣・館の元所有者" }
+      ],
+      "categories": ["family", "testimony"],
+      "summary": "フェルディナントは故国務大臣マルシャルの館を買い取って大改造を施し、手に入れた喜びを絶えず口にしていた。しかし訪れたハインリヒに「醜い」と言われたことで館がいやになり、売り払ってしまった。",
+      "sources": [
+        { "id": "s-lehndorff-diary", "locator": "PP.455-456", "date": { "year": 1763, "month": 3, "day": 7 } }
+      ],
+      "facts": [
+        { "text": "レーンドルフは日記に、フェルディナントが故国務大臣マルシャルの館を買い取り、大掛かりな改造を施していたと記している。", "sources": ["s-lehndorff-diary"] },
+        { "text": "同日記によれば、フェルディナントはこの館を手に入れられたことに対する喜びを絶えず口にしていた。", "sources": ["s-lehndorff-diary"] },
+        { "text": "同日記によれば、ハインリヒがこの館を訪れて醜いと言ったことにより、フェルディナントはこの館がいやになり、売り払ってしまった。", "sources": ["s-lehndorff-diary"] }
+      ],
+      "interpretations": [],
+      "notes": "",
+      "contextIds": []
     }
   ]
 }
